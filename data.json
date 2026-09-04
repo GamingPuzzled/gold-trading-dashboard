@@ -1,39 +1,55 @@
 {
-  "generated_at": "2026-09-04T03:04:31.808790+00:00",
+  "generated_at": "2026-09-04T03:08:39.957232+00:00",
   "starting_bankroll": 600.0,
-  "bankroll": 601.6,
+  "bankroll": 593.83,
   "strategy_stats": {
     "favorite_yes": {
-      "wins": 223,
-      "n": 232
+      "wins": 224,
+      "n": 234
     },
     "favorite_no": {
-      "wins": 219,
-      "n": 225
+      "wins": 220,
+      "n": 226
     }
   },
   "trades": [
     {
-      "window_id": "KXGOLD15M-26SEP031615",
-      "ts": "2026-09-03T20:11:50.450218+00:00",
-      "side": "favorite_no",
-      "price": 0.912,
-      "size": 10,
-      "realized_pnl": 0.7799999999999997
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP032145",
-      "ts": "2026-09-04T01:41:17.750491+00:00",
-      "side": "favorite_yes",
-      "price": 0.908,
-      "size": 10,
-      "realized_pnl": 0.8199999999999997
-    },
-    {
       "window_id": "KXGOLD15M-26SEP032200",
-      "ts": "2026-09-04T01:51:23.160887+00:00",
+      "ts": "2026-09-04T01:57:36.374902+00:00",
+      "side": "favorite_yes",
+      "price": 0.9299999999999999,
+      "size": 10,
+      "realized_pnl": 0.6000000000000006
+    },
+    {
+      "window_id": "KXGOLD15M-26SEP032230",
+      "ts": "2026-09-04T02:22:18.080124+00:00",
       "side": "favorite_no",
-      "price": 0.909,
+      "price": 0.907,
+      "size": 10,
+      "realized_pnl": 0.8299999999999997
+    },
+    {
+      "window_id": "KXGOLD15M-26SEP032245",
+      "ts": "2026-09-04T02:40:23.842610+00:00",
+      "side": "favorite_yes",
+      "price": 0.87,
+      "size": 10,
+      "realized_pnl": -8.8
+    },
+    {
+      "window_id": "KXGOLD15M-26SEP032300",
+      "ts": "2026-09-04T02:48:41.774038+00:00",
+      "side": "favorite_yes",
+      "price": 0.87,
+      "size": 10,
+      "realized_pnl": 1.2000000000000002
+    },
+    {
+      "window_id": "KXGOLD15M-26SEP032315",
+      "ts": "2026-09-04T03:06:31.354253+00:00",
+      "side": "favorite_no",
+      "price": 0.88,
       "size": 10,
       "realized_pnl": null
     }
