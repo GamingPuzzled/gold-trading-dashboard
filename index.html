@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gold Trading — Live Portfolio</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg:             #fcfcfb;
+    --surface:        #ffffff;
+    --surface-2:      #f5f4f1;
+    --border:         #e5e3dd;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted:     #8a8880;
+    --series-1:       #2a78d6;
+    --grid:           #e5e3dd;
+    --good:           #0ca30c;
+    --critical:       #d03b3b;
+    --good-bg:        #e8f6e8;
+    --critical-bg:    #fbe9e9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg:             #121211;
+      --surface:        #1a1a19;
+      --surface-2:      #202020;
+      --border:         #33322e;
+      --text-primary:   #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted:     #8a8880;
+      --series-1:       #3987e5;
+      --grid:           #2a2a27;
+      --good:           #0ca30c;
+      --critical:       #e66767;
+      --good-bg:        #0f2010;
+      --critical-bg:    #2a1414;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg:             #121211;
+    --surface:        #1a1a19;
+    --surface-2:      #202020;
+    --border:         #33322e;
+    --text-primary:   #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted:     #8a8880;
+    --series-1:       #3987e5;
+    --grid:           #2a2a27;
+    --good:           #0ca30c;
+    --critical:       #e66767;
+    --good-bg:        #0f2010;
+    --critical-bg:    #2a1414;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  h1 { font-size: 20px; font-weight: 600; margin: 0; }
+  .subtitle { color: var(--text-secondary); font-size: 13px; margin-top: 2px; }
+  .meta { text-align: right; color: var(--text-muted); font-size: 12px; }
+  .meta a { color: var(--text-secondary); }
+
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  .tile-label { color: var(--text-secondary); font-size: 12px; margin-bottom: 6px; }
+  .tile-value { font-size: 24px; font-weight: 650; font-variant-numeric: tabular-nums; }
+  .tile-sub { font-size: 12px; margin-top: 4px; color: var(--text-muted); }
+  .tile-sub.pos { color: var(--good); }
+  .tile-sub.neg { color: var(--critical); }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 24px; }
+  .card-title { font-size: 14px; font-weight: 600; margin: 0 0 4px; }
+  .card-note { color: var(--text-muted); font-size: 12px; margin: 0 0 14px; }
+
+  svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .grid-line { stroke: var(--grid); stroke-width: 1; }
+  .axis-label { fill: var(--text-muted); font-size: 10px; }
+  .chart-line { fill: none; stroke: var(--series-1); stroke-width: 2; }
+  .chart-point { fill: var(--surface); stroke: var(--series-1); stroke-width: 2; }
+  .chart-point-hit { fill: transparent; cursor: pointer; }
+  .crosshair { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0; pointer-events: none; }
+  .tooltip {
+    position: absolute; pointer-events: none; background: var(--text-primary); color: var(--bg);
+    font-size: 11px; padding: 5px 8px; border-radius: 6px; white-space: nowrap; opacity: 0;
+    transform: translate(-50%, -130%); transition: opacity 0.1s;
+  }
+  .empty-note { color: var(--text-muted); font-size: 13px; padding: 20px 0; text-align: center; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums; }
+  th { color: var(--text-secondary); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.02em; }
+  td.num { text-align: right; }
+  .status-pill { display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 500; }
+  .status-pill.won { background: var(--good-bg); color: var(--good); }
+  .status-pill.lost { background: var(--critical-bg); color: var(--critical); }
+  .status-pill.pending { background: var(--surface-2); color: var(--text-muted); }
+  .table-scroll { overflow-x: auto; }
+
+  footer { color: var(--text-muted); font-size: 12px; text-align: center; margin-top: 32px; line-height: 1.6; }
+  footer a { color: var(--text-secondary); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Gold Trading</h1>
+        <div class="subtitle">Live paper-trading portfolio — Kalshi KXGOLD15M</div>
+      </div>
+      <div class="meta">
+        <div id="last-updated">loading…</div>
+        <div><a href="https://github.com/GamingPuzzled/gold-trading" target="_blank" rel="noopener">strategy &amp; code →</a></div>
+      </div>
+    </header>
+
+    <div class="tiles">
+      <div class="tile">
+        <div class="tile-label">Paper bankroll</div>
+        <div class="tile-value" id="tile-bankroll">—</div>
+        <div class="tile-sub" id="tile-bankroll-sub">—</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">Total realized PnL</div>
+        <div class="tile-value" id="tile-pnl">—</div>
+        <div class="tile-sub" id="tile-pnl-sub">—</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">Trades settled</div>
+        <div class="tile-value" id="tile-trades">—</div>
+        <div class="tile-sub" id="tile-trades-sub">—</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="card-title">Bankroll over time</p>
+      <p class="card-note">Starting from $<span id="starting-bankroll">—</span> paper capital. Each point is a settled trade.</p>
+      <div id="chart-container"></div>
+    </div>
+
+    <div class="tiles">
+      <div class="tile">
+        <div class="tile-label">Favorite YES win rate</div>
+        <div class="tile-value" id="tile-yes-rate">—</div>
+        <div class="tile-sub" id="tile-yes-n">—</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">Favorite NO win rate</div>
+        <div class="tile-value" id="tile-no-rate">—</div>
+        <div class="tile-sub" id="tile-no-n">—</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="card-title">Trades</p>
+      <p class="card-note">Most recent first. "Side" is which favorite was bought, not gold's direction.</p>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Time (UTC)</th><th>Window</th><th>Side</th><th class="num">Entry</th><th class="num">Size</th><th>Status</th><th class="num">PnL</th></tr>
+          </thead>
+          <tbody id="trades-body"></tbody>
+        </table>
+      </div>
+      <div class="empty-note" id="trades-empty" hidden>No trades yet — most windows never trigger a signal.</div>
+    </div>
+
+    <footer>
+      Paper trading only — simulated fills, no real money. Strategy: extreme-price favorite mispricing (unproven, accumulating evidence).<br>
+      Data refreshes periodically from the live bot. <a href="https://github.com/GamingPuzzled/gold-trading" target="_blank" rel="noopener">github.com/GamingPuzzled/gold-trading</a>
+    </footer>
+  </div>
+
+<script>
+const fmtUSD = (v) => (v < 0 ? "-$" : "$") + Math.abs(v).toFixed(2);
+const fmtPct = (v) => (v * 100).toFixed(1) + "%";
+const fmtTime = (iso) => {
+  const d = new Date(iso);
+  return d.toISOString().slice(0, 16).replace("T", " ");
+};
+
+function renderTiles(data) {
+  const bankroll = data.bankroll;
+  const start = data.starting_bankroll;
+  const delta = bankroll - start;
+  document.getElementById("tile-bankroll").textContent = fmtUSD(bankroll);
+  document.getElementById("tile-bankroll-sub").textContent = (delta >= 0 ? "+" : "") + fmtUSD(delta) + " since start";
+  document.getElementById("tile-bankroll-sub").className = "tile-sub " + (delta >= 0 ? "pos" : "neg");
+  document.getElementById("starting-bankroll").textContent = start.toFixed(2);
+
+  const totalPnl = data.trades.reduce((s, t) => s + (t.realized_pnl ?? 0), 0);
+  document.getElementById("tile-pnl").textContent = fmtUSD(totalPnl);
+  document.getElementById("tile-pnl-sub").className = "tile-sub " + (totalPnl >= 0 ? "pos" : "neg");
+  document.getElementById("tile-pnl-sub").textContent = "across all settled trades";
+
+  const settled = data.trades.filter(t => t.realized_pnl !== null);
+  const wins = settled.filter(t => t.realized_pnl > 0).length;
+  document.getElementById("tile-trades").textContent = settled.length;
+  document.getElementById("tile-trades-sub").textContent = settled.length ? `${wins} won / ${settled.length - wins} lost` : "none settled yet";
+
+  const yes = data.strategy_stats.favorite_yes, no = data.strategy_stats.favorite_no;
+  document.getElementById("tile-yes-rate").textContent = yes.n ? fmtPct(yes.wins / yes.n) : "—";
+  document.getElementById("tile-yes-n").textContent = `${yes.wins} / ${yes.n} trades (live evidence)`;
+  document.getElementById("tile-no-rate").textContent = no.n ? fmtPct(no.wins / no.n) : "—";
+  document.getElementById("tile-no-n").textContent = `${no.wins} / ${no.n} trades (live evidence)`;
+}
+
+function renderTrades(trades) {
+  const body = document.getElementById("trades-body");
+  const empty = document.getElementById("trades-empty");
+  if (!trades.length) { empty.hidden = false; return; }
+  empty.hidden = true;
+  const sorted = [...trades].sort((a, b) => new Date(b.ts) - new Date(a.ts));
+  body.innerHTML = sorted.map(t => {
+    let statusClass = "pending", statusLabel = "● pending";
+    if (t.realized_pnl !== null) {
+      statusClass = t.realized_pnl > 0 ? "won" : "lost";
+      statusLabel = t.realized_pnl > 0 ? "✓ won" : "✗ lost";
+    }
+    const sideLabel = t.side === "favorite_yes" ? "YES favorite" : "NO favorite";
+    const pnlText = t.realized_pnl === null ? "—" : fmtUSD(t.realized_pnl);
+    return `<tr>
+      <td>${fmtTime(t.ts)}</td>
+      <td>${t.window_id.replace("KXGOLD15M-", "")}</td>
+      <td>${sideLabel}</td>
+      <td class="num">${(t.price * 100).toFixed(1)}¢</td>
+      <td class="num">${t.size}</td>
+      <td><span class="status-pill ${statusClass}">${statusLabel}</span></td>
+      <td class="num">${pnlText}</td>
+    </tr>`;
+  }).join("");
+}
+
+function renderChart(trades, startingBankroll) {
+  const container = document.getElementById("chart-container");
+  const settled = trades.filter(t => t.realized_pnl !== null).sort((a, b) => new Date(a.ts) - new Date(b.ts));
+
+  if (settled.length < 2) {
+    container.innerHTML = '<div class="empty-note">Not enough settled trades yet for a trend line.</div>';
+    return;
+  }
+
+  let running = startingBankroll;
+  const points = [{ ts: null, value: running }];
+  for (const t of settled) {
+    running += t.realized_pnl;
+    points.push({ ts: t.ts, value: running });
+  }
+
+  const W = 900, H = 260, padL = 56, padR = 16, padT = 16, padB = 28;
+  const innerW = W - padL - padR, innerH = H - padT - padB;
+  const values = points.map(p => p.value);
+  let minV = Math.min(...values), maxV = Math.max(...values);
+  if (minV === maxV) { minV -= 1; maxV += 1; }
+  const pad = (maxV - minV) * 0.12;
+  minV -= pad; maxV += pad;
+
+  const x = (i) => padL + (i / (points.length - 1)) * innerW;
+  const y = (v) => padT + innerH - ((v - minV) / (maxV - minV)) * innerH;
+
+  const gridCount = 4;
+  let gridLines = "", gridLabels = "";
+  for (let i = 0; i <= gridCount; i++) {
+    const v = minV + (i / gridCount) * (maxV - minV);
+    const yy = y(v);
+    gridLines += `<line class="grid-line" x1="${padL}" y1="${yy}" x2="${W - padR}" y2="${yy}"/>`;
+    gridLabels += `<text class="axis-label" x="${padL - 8}" y="${yy + 3}" text-anchor="end">$${v.toFixed(0)}</text>`;
+  }
+
+  const path = points.map((p, i) => `${i === 0 ? "M" : "L"} ${x(i).toFixed(1)} ${y(p.value).toFixed(1)}`).join(" ");
+  const dots = points.map((p, i) =>
+    `<circle class="chart-point" cx="${x(i).toFixed(1)}" cy="${y(p.value).toFixed(1)}" r="3.5"/>
+     <circle class="chart-point-hit" data-i="${i}" cx="${x(i).toFixed(1)}" cy="${y(p.value).toFixed(1)}" r="10"/>`
+  ).join("");
+
+  container.innerHTML = `
+    <div style="position:relative">
+      <svg viewBox="0 0 ${W} ${H}">
+        ${gridLines}
+        ${gridLabels}
+        <path class="chart-line" d="${path}"/>
+        ${dots}
+        <line class="crosshair" id="crosshair" x1="0" y1="${padT}" x2="0" y2="${H - padB}"/>
+      </svg>
+      <div class="tooltip" id="tooltip"></div>
+    </div>`;
+
+  const svg = container.querySelector("svg");
+  const tooltip = document.getElementById("tooltip");
+  const crosshair = document.getElementById("crosshair");
+  svg.querySelectorAll(".chart-point-hit").forEach(el => {
+    el.addEventListener("mouseenter", () => {
+      const i = +el.dataset.i;
+      const p = points[i];
+      const rect = svg.getBoundingClientRect();
+      const px = (x(i) / W) * rect.width;
+      const py = (y(p.value) / H) * rect.height;
+      tooltip.style.left = px + "px";
+      tooltip.style.top = py + "px";
+      tooltip.style.opacity = 1;
+      tooltip.textContent = (p.ts ? fmtTime(p.ts) + " — " : "start — ") + fmtUSD(p.value);
+      crosshair.setAttribute("x1", x(i)); crosshair.setAttribute("x2", x(i));
+      crosshair.style.opacity = 1;
+    });
+    el.addEventListener("mouseleave", () => { tooltip.style.opacity = 0; crosshair.style.opacity = 0; });
+  });
+}
+
+fetch("./data.json?_=" + Date.now())
+  .then(r => r.json())
+  .then(data => {
+    document.getElementById("last-updated").textContent = "updated " + fmtTime(data.generated_at) + " UTC";
+    renderTiles(data);
+    renderTrades(data.trades);
+    renderChart(data.trades, data.starting_bankroll);
+  })
+  .catch(err => {
+    document.getElementById("last-updated").textContent = "failed to load data";
+    console.error(err);
+  });
+</script>
+</body>
+</html>

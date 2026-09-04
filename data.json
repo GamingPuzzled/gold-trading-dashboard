@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-09-04T03:04:31.808790+00:00",
+  "starting_bankroll": 600.0,
+  "bankroll": 601.6,
+  "strategy_stats": {
+    "favorite_yes": {
+      "wins": 223,
+      "n": 232
+    },
+    "favorite_no": {
+      "wins": 219,
+      "n": 225
+    }
+  },
+  "trades": [
+    {
+      "window_id": "KXGOLD15M-26SEP031615",
+      "ts": "2026-09-03T20:11:50.450218+00:00",
+      "side": "favorite_no",
+      "price": 0.912,
+      "size": 10,
+      "realized_pnl": 0.7799999999999997
+    },
+    {
+      "window_id": "KXGOLD15M-26SEP032145",
+      "ts": "2026-09-04T01:41:17.750491+00:00",
+      "side": "favorite_yes",
+      "price": 0.908,
+      "size": 10,
+      "realized_pnl": 0.8199999999999997
+    },
+    {
+      "window_id": "KXGOLD15M-26SEP032200",
+      "ts": "2026-09-04T01:51:23.160887+00:00",
+      "side": "favorite_no",
+      "price": 0.909,
+      "size": 10,
+      "realized_pnl": null
+    }
+  ]
+}
