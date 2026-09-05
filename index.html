@@ -15,6 +15,7 @@
     --text-secondary: #52514e;
     --text-muted:     #8a8880;
     --series-1:       #2a78d6;
+    --series-2:       #eb6834;
     --grid:           #e5e3dd;
     --good:           #0ca30c;
     --critical:       #d03b3b;
@@ -32,6 +33,7 @@
       --text-secondary: #c3c2b7;
       --text-muted:     #8a8880;
       --series-1:       #3987e5;
+      --series-2:       #d95926;
       --grid:           #2a2a27;
       --good:           #0ca30c;
       --critical:       #e66767;
@@ -49,6 +51,7 @@
     --text-secondary: #c3c2b7;
     --text-muted:     #8a8880;
     --series-1:       #3987e5;
+    --series-2:       #d95926;
     --grid:           #2a2a27;
     --good:           #0ca30c;
     --critical:       #e66767;
@@ -66,29 +69,36 @@
   }
   .wrap { max-width: 980px; margin: 0 auto; padding: 32px 20px 60px; }
 
-  header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
   h1 { font-size: 20px; font-weight: 600; margin: 0; }
   .subtitle { color: var(--text-secondary); font-size: 13px; margin-top: 2px; }
   .meta { text-align: right; color: var(--text-muted); font-size: 12px; }
   .meta a { color: var(--text-secondary); }
 
-  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .asset-section { margin-top: 36px; }
+  .asset-section:first-of-type { margin-top: 28px; }
+  .asset-heading { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+  .asset-heading h2 { font-size: 16px; font-weight: 600; margin: 0; }
+  .asset-heading .ticker { color: var(--text-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+  .asset-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 16px; }
   .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
   .tile-label { color: var(--text-secondary); font-size: 12px; margin-bottom: 6px; }
-  .tile-value { font-size: 24px; font-weight: 650; font-variant-numeric: tabular-nums; }
+  .tile-value { font-size: 22px; font-weight: 650; font-variant-numeric: tabular-nums; }
   .tile-sub { font-size: 12px; margin-top: 4px; color: var(--text-muted); }
   .tile-sub.pos { color: var(--good); }
   .tile-sub.neg { color: var(--critical); }
 
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 24px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 16px; }
   .card-title { font-size: 14px; font-weight: 600; margin: 0 0 4px; }
   .card-note { color: var(--text-muted); font-size: 12px; margin: 0 0 14px; }
 
   svg { display: block; width: 100%; height: auto; overflow: visible; }
   .grid-line { stroke: var(--grid); stroke-width: 1; }
   .axis-label { fill: var(--text-muted); font-size: 10px; }
-  .chart-line { fill: none; stroke: var(--series-1); stroke-width: 2; }
-  .chart-point { fill: var(--surface); stroke: var(--series-1); stroke-width: 2; }
+  .chart-line { fill: none; stroke-width: 2; }
+  .chart-point { fill: var(--surface); stroke-width: 2; }
   .chart-point-hit { fill: transparent; cursor: pointer; }
   .crosshair { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0; pointer-events: none; }
   .tooltip {
@@ -116,8 +126,8 @@
   <div class="wrap">
     <header>
       <div>
-        <h1>Gold Trading</h1>
-        <div class="subtitle">Live paper-trading portfolio — Kalshi KXGOLD15M</div>
+        <h1>Trading Bots</h1>
+        <div class="subtitle">Live paper-trading portfolios — Kalshi 15-minute markets</div>
       </div>
       <div class="meta">
         <div id="last-updated">loading…</div>
@@ -125,60 +135,11 @@
       </div>
     </header>
 
-    <div class="tiles">
-      <div class="tile">
-        <div class="tile-label">Paper bankroll</div>
-        <div class="tile-value" id="tile-bankroll">—</div>
-        <div class="tile-sub" id="tile-bankroll-sub">—</div>
-      </div>
-      <div class="tile">
-        <div class="tile-label">Total realized PnL</div>
-        <div class="tile-value" id="tile-pnl">—</div>
-        <div class="tile-sub" id="tile-pnl-sub">—</div>
-      </div>
-      <div class="tile">
-        <div class="tile-label">Trades settled</div>
-        <div class="tile-value" id="tile-trades">—</div>
-        <div class="tile-sub" id="tile-trades-sub">—</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <p class="card-title">Bankroll over time</p>
-      <p class="card-note">Starting from $<span id="starting-bankroll">—</span> paper capital. Each point is a settled trade.</p>
-      <div id="chart-container"></div>
-    </div>
-
-    <div class="tiles">
-      <div class="tile">
-        <div class="tile-label">Favorite YES win rate</div>
-        <div class="tile-value" id="tile-yes-rate">—</div>
-        <div class="tile-sub" id="tile-yes-n">—</div>
-      </div>
-      <div class="tile">
-        <div class="tile-label">Favorite NO win rate</div>
-        <div class="tile-value" id="tile-no-rate">—</div>
-        <div class="tile-sub" id="tile-no-n">—</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <p class="card-title">Trades</p>
-      <p class="card-note">Most recent first. "Side" is which favorite was bought, not gold's direction.</p>
-      <div class="table-scroll">
-        <table>
-          <thead>
-            <tr><th>Time (UTC)</th><th>Window</th><th>Side</th><th class="num">Entry</th><th class="num">Size</th><th>Status</th><th class="num">PnL</th></tr>
-          </thead>
-          <tbody id="trades-body"></tbody>
-        </table>
-      </div>
-      <div class="empty-note" id="trades-empty" hidden>No trades yet — most windows never trigger a signal.</div>
-    </div>
+    <div id="assets-root"></div>
 
     <footer>
-      Paper trading only — simulated fills, no real money. Strategy: extreme-price favorite mispricing (unproven, accumulating evidence).<br>
-      Data refreshes periodically from the live bot. <a href="https://github.com/GamingPuzzled/gold-trading" target="_blank" rel="noopener">github.com/GamingPuzzled/gold-trading</a>
+      Paper trading only — simulated fills, no real money. Strategy: extreme-price favorite mispricing (unproven, accumulating evidence). Each market runs as a fully independent bot (own bankroll, own evidence).<br>
+      Data refreshes periodically from the live bots. <a href="https://github.com/GamingPuzzled/gold-trading" target="_blank" rel="noopener">github.com/GamingPuzzled/gold-trading</a>
     </footer>
   </div>
 
@@ -190,35 +151,107 @@ const fmtTime = (iso) => {
   return d.toISOString().slice(0, 16).replace("T", " ");
 };
 
-function renderTiles(data) {
+const ASSET_META = {
+  gold:   { label: "Gold",   color: "var(--series-1)" },
+  copper: { label: "Copper", color: "var(--series-2)" },
+};
+
+function assetSectionHTML(key) {
+  const meta = ASSET_META[key] || { label: key, color: "var(--series-1)" };
+  return `
+    <section class="asset-section" id="section-${key}">
+      <div class="asset-heading">
+        <span class="asset-dot" style="background:${meta.color}"></span>
+        <h2>${meta.label}</h2>
+        <span class="ticker" id="${key}-ticker"></span>
+      </div>
+
+      <div class="tiles">
+        <div class="tile">
+          <div class="tile-label">Paper bankroll</div>
+          <div class="tile-value" id="${key}-tile-bankroll">—</div>
+          <div class="tile-sub" id="${key}-tile-bankroll-sub">—</div>
+        </div>
+        <div class="tile">
+          <div class="tile-label">Total realized PnL</div>
+          <div class="tile-value" id="${key}-tile-pnl">—</div>
+          <div class="tile-sub" id="${key}-tile-pnl-sub">—</div>
+        </div>
+        <div class="tile">
+          <div class="tile-label">Trades settled</div>
+          <div class="tile-value" id="${key}-tile-trades">—</div>
+          <div class="tile-sub" id="${key}-tile-trades-sub">—</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="card-title">Bankroll over time</p>
+        <p class="card-note">Starting from $<span id="${key}-starting-bankroll">—</span> paper capital. Each point is a settled trade.</p>
+        <div id="${key}-chart-container"></div>
+      </div>
+
+      <div class="tiles">
+        <div class="tile">
+          <div class="tile-label">Favorite YES win rate</div>
+          <div class="tile-value" id="${key}-tile-yes-rate">—</div>
+          <div class="tile-sub" id="${key}-tile-yes-n">—</div>
+        </div>
+        <div class="tile">
+          <div class="tile-label">Favorite NO win rate</div>
+          <div class="tile-value" id="${key}-tile-no-rate">—</div>
+          <div class="tile-sub" id="${key}-tile-no-n">—</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="card-title">Trades</p>
+        <p class="card-note">Most recent first. "Side" is which favorite was bought, not the underlying's direction.</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>Time (UTC)</th><th>Window</th><th>Side</th><th class="num">Entry</th><th class="num">Size</th><th>Status</th><th class="num">PnL</th></tr>
+            </thead>
+            <tbody id="${key}-trades-body"></tbody>
+          </table>
+        </div>
+        <div class="empty-note" id="${key}-trades-empty" hidden>No trades yet — most windows never trigger a signal.</div>
+      </div>
+    </section>`;
+}
+
+function renderTiles(key, data) {
   const bankroll = data.bankroll;
   const start = data.starting_bankroll;
   const delta = bankroll - start;
-  document.getElementById("tile-bankroll").textContent = fmtUSD(bankroll);
-  document.getElementById("tile-bankroll-sub").textContent = (delta >= 0 ? "+" : "") + fmtUSD(delta) + " since start";
-  document.getElementById("tile-bankroll-sub").className = "tile-sub " + (delta >= 0 ? "pos" : "neg");
-  document.getElementById("starting-bankroll").textContent = start.toFixed(2);
+  document.getElementById(`${key}-ticker`).textContent = data.series_ticker || "";
+  document.getElementById(`${key}-tile-bankroll`).textContent = fmtUSD(bankroll);
+  const bankrollSub = document.getElementById(`${key}-tile-bankroll-sub`);
+  bankrollSub.textContent = (delta >= 0 ? "+" : "") + fmtUSD(delta) + " since start";
+  bankrollSub.className = "tile-sub " + (delta >= 0 ? "pos" : "neg");
+  document.getElementById(`${key}-starting-bankroll`).textContent = start.toFixed(2);
 
   const totalPnl = data.trades.reduce((s, t) => s + (t.realized_pnl ?? 0), 0);
-  document.getElementById("tile-pnl").textContent = fmtUSD(totalPnl);
-  document.getElementById("tile-pnl-sub").className = "tile-sub " + (totalPnl >= 0 ? "pos" : "neg");
-  document.getElementById("tile-pnl-sub").textContent = "across all settled trades";
+  document.getElementById(`${key}-tile-pnl`).textContent = fmtUSD(totalPnl);
+  const pnlSub = document.getElementById(`${key}-tile-pnl-sub`);
+  pnlSub.className = "tile-sub " + (totalPnl >= 0 ? "pos" : "neg");
+  pnlSub.textContent = "across all settled trades";
 
   const settled = data.trades.filter(t => t.realized_pnl !== null);
   const wins = settled.filter(t => t.realized_pnl > 0).length;
-  document.getElementById("tile-trades").textContent = settled.length;
-  document.getElementById("tile-trades-sub").textContent = settled.length ? `${wins} won / ${settled.length - wins} lost` : "none settled yet";
+  document.getElementById(`${key}-tile-trades`).textContent = settled.length;
+  document.getElementById(`${key}-tile-trades-sub`).textContent =
+    settled.length ? `${wins} won / ${settled.length - wins} lost` : "none settled yet";
 
   const yes = data.strategy_stats.favorite_yes, no = data.strategy_stats.favorite_no;
-  document.getElementById("tile-yes-rate").textContent = yes.n ? fmtPct(yes.wins / yes.n) : "—";
-  document.getElementById("tile-yes-n").textContent = `${yes.wins} / ${yes.n} trades (live evidence)`;
-  document.getElementById("tile-no-rate").textContent = no.n ? fmtPct(no.wins / no.n) : "—";
-  document.getElementById("tile-no-n").textContent = `${no.wins} / ${no.n} trades (live evidence)`;
+  document.getElementById(`${key}-tile-yes-rate`).textContent = yes.n ? fmtPct(yes.wins / yes.n) : "—";
+  document.getElementById(`${key}-tile-yes-n`).textContent = `${yes.wins} / ${yes.n} trades (live evidence)`;
+  document.getElementById(`${key}-tile-no-rate`).textContent = no.n ? fmtPct(no.wins / no.n) : "—";
+  document.getElementById(`${key}-tile-no-n`).textContent = `${no.wins} / ${no.n} trades (live evidence)`;
 }
 
-function renderTrades(trades) {
-  const body = document.getElementById("trades-body");
-  const empty = document.getElementById("trades-empty");
+function renderTrades(key, trades) {
+  const body = document.getElementById(`${key}-trades-body`);
+  const empty = document.getElementById(`${key}-trades-empty`);
   if (!trades.length) { empty.hidden = false; return; }
   empty.hidden = true;
   const sorted = [...trades].sort((a, b) => new Date(b.ts) - new Date(a.ts));
@@ -230,9 +263,10 @@ function renderTrades(trades) {
     }
     const sideLabel = t.side === "favorite_yes" ? "YES favorite" : "NO favorite";
     const pnlText = t.realized_pnl === null ? "—" : fmtUSD(t.realized_pnl);
+    const windowLabel = t.window_id.includes("-") ? t.window_id.split("-").slice(1).join("-") : t.window_id;
     return `<tr>
       <td>${fmtTime(t.ts)}</td>
-      <td>${t.window_id.replace("KXGOLD15M-", "")}</td>
+      <td>${windowLabel}</td>
       <td>${sideLabel}</td>
       <td class="num">${(t.price * 100).toFixed(1)}¢</td>
       <td class="num">${t.size}</td>
@@ -242,8 +276,8 @@ function renderTrades(trades) {
   }).join("");
 }
 
-function renderChart(trades, startingBankroll) {
-  const container = document.getElementById("chart-container");
+function renderChart(key, trades, startingBankroll, color) {
+  const container = document.getElementById(`${key}-chart-container`);
   const settled = trades.filter(t => t.realized_pnl !== null).sort((a, b) => new Date(a.ts) - new Date(b.ts));
 
   if (settled.length < 2) {
@@ -258,7 +292,7 @@ function renderChart(trades, startingBankroll) {
     points.push({ ts: t.ts, value: running });
   }
 
-  const W = 900, H = 260, padL = 56, padR = 16, padT = 16, padB = 28;
+  const W = 900, H = 220, padL = 56, padR = 16, padT = 16, padB = 28;
   const innerW = W - padL - padR, innerH = H - padT - padB;
   const values = points.map(p => p.value);
   let minV = Math.min(...values), maxV = Math.max(...values);
@@ -280,7 +314,7 @@ function renderChart(trades, startingBankroll) {
 
   const path = points.map((p, i) => `${i === 0 ? "M" : "L"} ${x(i).toFixed(1)} ${y(p.value).toFixed(1)}`).join(" ");
   const dots = points.map((p, i) =>
-    `<circle class="chart-point" cx="${x(i).toFixed(1)}" cy="${y(p.value).toFixed(1)}" r="3.5"/>
+    `<circle class="chart-point" style="stroke:${color}" cx="${x(i).toFixed(1)}" cy="${y(p.value).toFixed(1)}" r="3.5"/>
      <circle class="chart-point-hit" data-i="${i}" cx="${x(i).toFixed(1)}" cy="${y(p.value).toFixed(1)}" r="10"/>`
   ).join("");
 
@@ -289,16 +323,16 @@ function renderChart(trades, startingBankroll) {
       <svg viewBox="0 0 ${W} ${H}">
         ${gridLines}
         ${gridLabels}
-        <path class="chart-line" d="${path}"/>
+        <path class="chart-line" style="stroke:${color}" d="${path}"/>
         ${dots}
-        <line class="crosshair" id="crosshair" x1="0" y1="${padT}" x2="0" y2="${H - padB}"/>
+        <line class="crosshair" id="${key}-crosshair" x1="0" y1="${padT}" x2="0" y2="${H - padB}"/>
       </svg>
-      <div class="tooltip" id="tooltip"></div>
+      <div class="tooltip" id="${key}-tooltip"></div>
     </div>`;
 
   const svg = container.querySelector("svg");
-  const tooltip = document.getElementById("tooltip");
-  const crosshair = document.getElementById("crosshair");
+  const tooltip = document.getElementById(`${key}-tooltip`);
+  const crosshair = document.getElementById(`${key}-crosshair`);
   svg.querySelectorAll(".chart-point-hit").forEach(el => {
     el.addEventListener("mouseenter", () => {
       const i = +el.dataset.i;
@@ -317,13 +351,21 @@ function renderChart(trades, startingBankroll) {
   });
 }
 
+function renderAsset(key, data) {
+  renderTiles(key, data);
+  renderTrades(key, data.trades);
+  const meta = ASSET_META[key] || { color: "var(--series-1)" };
+  renderChart(key, data.trades, data.starting_bankroll, meta.color);
+}
+
 fetch("./data.json?_=" + Date.now())
   .then(r => r.json())
   .then(data => {
     document.getElementById("last-updated").textContent = "updated " + fmtTime(data.generated_at) + " UTC";
-    renderTiles(data);
-    renderTrades(data.trades);
-    renderChart(data.trades, data.starting_bankroll);
+    const root = document.getElementById("assets-root");
+    const keys = Object.keys(data.assets || {});
+    root.innerHTML = keys.map(assetSectionHTML).join("");
+    keys.forEach(key => renderAsset(key, data.assets[key]));
   })
   .catch(err => {
     document.getElementById("last-updated").textContent = "failed to load data";
