@@ -1,417 +1,487 @@
 {
-  "generated_at": "2026-09-05T06:23:34.697452+00:00",
-  "starting_bankroll": 600.0,
-  "bankroll": 594.73,
-  "strategy_stats": {
-    "favorite_yes": {
-      "wins": 273,
-      "n": 300
+  "generated_at": "2026-09-05T06:28:18.743122+00:00",
+  "assets": {
+    "gold": {
+      "series_ticker": "KXGOLD15M",
+      "starting_bankroll": 600.0,
+      "bankroll": 594.73,
+      "strategy_stats": {
+        "favorite_yes": {
+          "wins": 273,
+          "n": 300
+        },
+        "favorite_no": {
+          "wins": 321,
+          "n": 344
+        }
+      },
+      "trades": [
+        {
+          "window_id": "KXGOLD15M-26SEP032200",
+          "ts": "2026-09-04T01:57:36.374902+00:00",
+          "side": "favorite_yes",
+          "price": 0.9299999999999999,
+          "size": 10,
+          "realized_pnl": 0.6000000000000006
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP032230",
+          "ts": "2026-09-04T02:22:18.080124+00:00",
+          "side": "favorite_no",
+          "price": 0.907,
+          "size": 10,
+          "realized_pnl": 0.8299999999999997
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP032245",
+          "ts": "2026-09-04T02:40:23.842610+00:00",
+          "side": "favorite_yes",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": -8.8
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP032300",
+          "ts": "2026-09-04T02:48:41.774038+00:00",
+          "side": "favorite_yes",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP032315",
+          "ts": "2026-09-04T03:06:31.354253+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": 1.1
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP032345",
+          "ts": "2026-09-04T03:42:37.324056+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040000",
+          "ts": "2026-09-04T03:58:09.151572+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": 1.1
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040015",
+          "ts": "2026-09-04T04:11:23.449969+00:00",
+          "side": "favorite_yes",
+          "price": 0.9,
+          "size": 10,
+          "realized_pnl": 0.8999999999999998
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040030",
+          "ts": "2026-09-04T04:28:21.757939+00:00",
+          "side": "favorite_yes",
+          "price": 0.89,
+          "size": 10,
+          "realized_pnl": 0.9999999999999999
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040045",
+          "ts": "2026-09-04T04:37:31.578818+00:00",
+          "side": "favorite_yes",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040115",
+          "ts": "2026-09-04T05:05:15.704340+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040130",
+          "ts": "2026-09-04T05:18:45.249344+00:00",
+          "side": "favorite_yes",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": -8.8
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040145",
+          "ts": "2026-09-04T05:39:07.114969+00:00",
+          "side": "favorite_yes",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040200",
+          "ts": "2026-09-04T05:54:48.942628+00:00",
+          "side": "favorite_no",
+          "price": 0.89,
+          "size": 10,
+          "realized_pnl": -9.0
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040215",
+          "ts": "2026-09-04T06:09:28.494164+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040245",
+          "ts": "2026-09-04T06:37:12.031898+00:00",
+          "side": "favorite_no",
+          "price": 0.9,
+          "size": 10,
+          "realized_pnl": 0.8999999999999998
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040300",
+          "ts": "2026-09-04T06:56:30.132362+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040400",
+          "ts": "2026-09-04T07:57:39.718586+00:00",
+          "side": "favorite_no",
+          "price": 0.89,
+          "size": 10,
+          "realized_pnl": 0.9999999999999999
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040415",
+          "ts": "2026-09-04T08:10:53.689968+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040445",
+          "ts": "2026-09-04T08:37:51.943945+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040500",
+          "ts": "2026-09-04T08:51:51.683273+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": -8.8
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040515",
+          "ts": "2026-09-04T09:06:41.626576+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040530",
+          "ts": "2026-09-04T09:20:21.059234+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": 1.1
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040630",
+          "ts": "2026-09-04T10:22:27.331107+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": 1.1
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040730",
+          "ts": "2026-09-04T11:19:26.922726+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": 1.1
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP040915",
+          "ts": "2026-09-04T13:01:01.000202+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": -8.9
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP041000",
+          "ts": "2026-09-04T13:58:14.639558+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": 1.1
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP041030",
+          "ts": "2026-09-04T14:28:40.801035+00:00",
+          "side": "favorite_no",
+          "price": 0.89,
+          "size": 10,
+          "realized_pnl": 0.9999999999999999
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP041100",
+          "ts": "2026-09-04T14:52:34.246834+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP041130",
+          "ts": "2026-09-04T15:28:10.503462+00:00",
+          "side": "favorite_no",
+          "price": 0.9,
+          "size": 10,
+          "realized_pnl": 0.8999999999999998
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP041200",
+          "ts": "2026-09-04T15:56:19.727778+00:00",
+          "side": "favorite_no",
+          "price": 0.89,
+          "size": 10,
+          "realized_pnl": 0.9999999999999999
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP041215",
+          "ts": "2026-09-04T16:10:19.845559+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": -8.9
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP041230",
+          "ts": "2026-09-04T16:26:06.892018+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": 1.1
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP041300",
+          "ts": "2026-09-04T16:56:38.380629+00:00",
+          "side": "favorite_no",
+          "price": 0.9,
+          "size": 10,
+          "realized_pnl": 0.8999999999999998
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP041315",
+          "ts": "2026-09-04T17:03:30.764976+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP041345",
+          "ts": "2026-09-04T17:34:26.606105+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP041445",
+          "ts": "2026-09-04T18:37:55.522833+00:00",
+          "side": "favorite_no",
+          "price": 0.9,
+          "size": 10,
+          "realized_pnl": 0.8999999999999998
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP041600",
+          "ts": "2026-09-04T19:55:44.765838+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP041615",
+          "ts": "2026-09-04T20:06:21.165430+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP041630",
+          "ts": "2026-09-04T20:24:40.722439+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP041730",
+          "ts": "2026-09-04T21:27:11.086162+00:00",
+          "side": "favorite_no",
+          "price": 0.89,
+          "size": 10,
+          "realized_pnl": 0.9999999999999999
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP041815",
+          "ts": "2026-09-04T22:09:56.153763+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP042000",
+          "ts": "2026-09-04T23:53:14.472520+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP042030",
+          "ts": "2026-09-05T00:27:31.178808+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": 1.1
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP042145",
+          "ts": "2026-09-05T01:41:20.452225+00:00",
+          "side": "favorite_no",
+          "price": 0.89,
+          "size": 10,
+          "realized_pnl": 0.9999999999999999
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP042200",
+          "ts": "2026-09-05T01:56:16.758029+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": 1.1
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP042215",
+          "ts": "2026-09-05T02:08:35.666195+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP042245",
+          "ts": "2026-09-05T02:41:40.227347+00:00",
+          "side": "favorite_no",
+          "price": 0.89,
+          "size": 10,
+          "realized_pnl": 0.9999999999999999
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP042345",
+          "ts": "2026-09-05T03:42:06.197436+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": 1.1
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP050000",
+          "ts": "2026-09-05T03:56:31.644005+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": 1.2000000000000002
+        }
+      ]
     },
-    "favorite_no": {
-      "wins": 321,
-      "n": 344
+    "copper": {
+      "series_ticker": "KXCOPPER15M",
+      "starting_bankroll": 200.0,
+      "bankroll": 206.1,
+      "strategy_stats": {
+        "favorite_yes": {
+          "wins": 67,
+          "n": 68
+        },
+        "favorite_no": {
+          "wins": 52,
+          "n": 52
+        }
+      },
+      "trades": [
+        {
+          "window_id": "KXCOPPER15M-26SEP042215",
+          "ts": "2026-09-05T02:13:59.810852+00:00",
+          "side": "favorite_yes",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": 1.1
+        },
+        {
+          "window_id": "KXCOPPER15M-26SEP042230",
+          "ts": "2026-09-05T02:26:33.470183+00:00",
+          "side": "favorite_no",
+          "price": 0.89,
+          "size": 10,
+          "realized_pnl": 0.9999999999999999
+        },
+        {
+          "window_id": "KXCOPPER15M-26SEP042300",
+          "ts": "2026-09-05T02:57:11.120776+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": 1.1
+        },
+        {
+          "window_id": "KXCOPPER15M-26SEP042315",
+          "ts": "2026-09-05T03:12:58.448933+00:00",
+          "side": "favorite_no",
+          "price": 0.89,
+          "size": 10,
+          "realized_pnl": 0.9999999999999999
+        },
+        {
+          "window_id": "KXCOPPER15M-26SEP042330",
+          "ts": "2026-09-05T03:28:09.853160+00:00",
+          "side": "favorite_yes",
+          "price": 0.91,
+          "size": 10,
+          "realized_pnl": 0.7999999999999997
+        },
+        {
+          "window_id": "KXCOPPER15M-26SEP050000",
+          "ts": "2026-09-05T03:57:40.934936+00:00",
+          "side": "favorite_yes",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": 1.1
+        }
+      ]
     }
-  },
-  "trades": [
-    {
-      "window_id": "KXGOLD15M-26SEP032200",
-      "ts": "2026-09-04T01:57:36.374902+00:00",
-      "side": "favorite_yes",
-      "price": 0.9299999999999999,
-      "size": 10,
-      "realized_pnl": 0.6000000000000006
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP032230",
-      "ts": "2026-09-04T02:22:18.080124+00:00",
-      "side": "favorite_no",
-      "price": 0.907,
-      "size": 10,
-      "realized_pnl": 0.8299999999999997
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP032245",
-      "ts": "2026-09-04T02:40:23.842610+00:00",
-      "side": "favorite_yes",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": -8.8
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP032300",
-      "ts": "2026-09-04T02:48:41.774038+00:00",
-      "side": "favorite_yes",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP032315",
-      "ts": "2026-09-04T03:06:31.354253+00:00",
-      "side": "favorite_no",
-      "price": 0.88,
-      "size": 10,
-      "realized_pnl": 1.1
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP032345",
-      "ts": "2026-09-04T03:42:37.324056+00:00",
-      "side": "favorite_no",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040000",
-      "ts": "2026-09-04T03:58:09.151572+00:00",
-      "side": "favorite_no",
-      "price": 0.88,
-      "size": 10,
-      "realized_pnl": 1.1
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040015",
-      "ts": "2026-09-04T04:11:23.449969+00:00",
-      "side": "favorite_yes",
-      "price": 0.9,
-      "size": 10,
-      "realized_pnl": 0.8999999999999998
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040030",
-      "ts": "2026-09-04T04:28:21.757939+00:00",
-      "side": "favorite_yes",
-      "price": 0.89,
-      "size": 10,
-      "realized_pnl": 0.9999999999999999
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040045",
-      "ts": "2026-09-04T04:37:31.578818+00:00",
-      "side": "favorite_yes",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040115",
-      "ts": "2026-09-04T05:05:15.704340+00:00",
-      "side": "favorite_no",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040130",
-      "ts": "2026-09-04T05:18:45.249344+00:00",
-      "side": "favorite_yes",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": -8.8
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040145",
-      "ts": "2026-09-04T05:39:07.114969+00:00",
-      "side": "favorite_yes",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040200",
-      "ts": "2026-09-04T05:54:48.942628+00:00",
-      "side": "favorite_no",
-      "price": 0.89,
-      "size": 10,
-      "realized_pnl": -9.0
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040215",
-      "ts": "2026-09-04T06:09:28.494164+00:00",
-      "side": "favorite_no",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040245",
-      "ts": "2026-09-04T06:37:12.031898+00:00",
-      "side": "favorite_no",
-      "price": 0.9,
-      "size": 10,
-      "realized_pnl": 0.8999999999999998
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040300",
-      "ts": "2026-09-04T06:56:30.132362+00:00",
-      "side": "favorite_no",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040400",
-      "ts": "2026-09-04T07:57:39.718586+00:00",
-      "side": "favorite_no",
-      "price": 0.89,
-      "size": 10,
-      "realized_pnl": 0.9999999999999999
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040415",
-      "ts": "2026-09-04T08:10:53.689968+00:00",
-      "side": "favorite_no",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040445",
-      "ts": "2026-09-04T08:37:51.943945+00:00",
-      "side": "favorite_no",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040500",
-      "ts": "2026-09-04T08:51:51.683273+00:00",
-      "side": "favorite_no",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": -8.8
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040515",
-      "ts": "2026-09-04T09:06:41.626576+00:00",
-      "side": "favorite_no",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040530",
-      "ts": "2026-09-04T09:20:21.059234+00:00",
-      "side": "favorite_no",
-      "price": 0.88,
-      "size": 10,
-      "realized_pnl": 1.1
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040630",
-      "ts": "2026-09-04T10:22:27.331107+00:00",
-      "side": "favorite_no",
-      "price": 0.88,
-      "size": 10,
-      "realized_pnl": 1.1
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040730",
-      "ts": "2026-09-04T11:19:26.922726+00:00",
-      "side": "favorite_no",
-      "price": 0.88,
-      "size": 10,
-      "realized_pnl": 1.1
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP040915",
-      "ts": "2026-09-04T13:01:01.000202+00:00",
-      "side": "favorite_no",
-      "price": 0.88,
-      "size": 10,
-      "realized_pnl": -8.9
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP041000",
-      "ts": "2026-09-04T13:58:14.639558+00:00",
-      "side": "favorite_no",
-      "price": 0.88,
-      "size": 10,
-      "realized_pnl": 1.1
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP041030",
-      "ts": "2026-09-04T14:28:40.801035+00:00",
-      "side": "favorite_no",
-      "price": 0.89,
-      "size": 10,
-      "realized_pnl": 0.9999999999999999
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP041100",
-      "ts": "2026-09-04T14:52:34.246834+00:00",
-      "side": "favorite_no",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP041130",
-      "ts": "2026-09-04T15:28:10.503462+00:00",
-      "side": "favorite_no",
-      "price": 0.9,
-      "size": 10,
-      "realized_pnl": 0.8999999999999998
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP041200",
-      "ts": "2026-09-04T15:56:19.727778+00:00",
-      "side": "favorite_no",
-      "price": 0.89,
-      "size": 10,
-      "realized_pnl": 0.9999999999999999
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP041215",
-      "ts": "2026-09-04T16:10:19.845559+00:00",
-      "side": "favorite_no",
-      "price": 0.88,
-      "size": 10,
-      "realized_pnl": -8.9
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP041230",
-      "ts": "2026-09-04T16:26:06.892018+00:00",
-      "side": "favorite_no",
-      "price": 0.88,
-      "size": 10,
-      "realized_pnl": 1.1
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP041300",
-      "ts": "2026-09-04T16:56:38.380629+00:00",
-      "side": "favorite_no",
-      "price": 0.9,
-      "size": 10,
-      "realized_pnl": 0.8999999999999998
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP041315",
-      "ts": "2026-09-04T17:03:30.764976+00:00",
-      "side": "favorite_no",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP041345",
-      "ts": "2026-09-04T17:34:26.606105+00:00",
-      "side": "favorite_no",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP041445",
-      "ts": "2026-09-04T18:37:55.522833+00:00",
-      "side": "favorite_no",
-      "price": 0.9,
-      "size": 10,
-      "realized_pnl": 0.8999999999999998
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP041600",
-      "ts": "2026-09-04T19:55:44.765838+00:00",
-      "side": "favorite_no",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP041615",
-      "ts": "2026-09-04T20:06:21.165430+00:00",
-      "side": "favorite_no",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP041630",
-      "ts": "2026-09-04T20:24:40.722439+00:00",
-      "side": "favorite_no",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP041730",
-      "ts": "2026-09-04T21:27:11.086162+00:00",
-      "side": "favorite_no",
-      "price": 0.89,
-      "size": 10,
-      "realized_pnl": 0.9999999999999999
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP041815",
-      "ts": "2026-09-04T22:09:56.153763+00:00",
-      "side": "favorite_no",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP042000",
-      "ts": "2026-09-04T23:53:14.472520+00:00",
-      "side": "favorite_no",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP042030",
-      "ts": "2026-09-05T00:27:31.178808+00:00",
-      "side": "favorite_no",
-      "price": 0.88,
-      "size": 10,
-      "realized_pnl": 1.1
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP042145",
-      "ts": "2026-09-05T01:41:20.452225+00:00",
-      "side": "favorite_no",
-      "price": 0.89,
-      "size": 10,
-      "realized_pnl": 0.9999999999999999
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP042200",
-      "ts": "2026-09-05T01:56:16.758029+00:00",
-      "side": "favorite_no",
-      "price": 0.88,
-      "size": 10,
-      "realized_pnl": 1.1
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP042215",
-      "ts": "2026-09-05T02:08:35.666195+00:00",
-      "side": "favorite_no",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP042245",
-      "ts": "2026-09-05T02:41:40.227347+00:00",
-      "side": "favorite_no",
-      "price": 0.89,
-      "size": 10,
-      "realized_pnl": 0.9999999999999999
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP042345",
-      "ts": "2026-09-05T03:42:06.197436+00:00",
-      "side": "favorite_no",
-      "price": 0.88,
-      "size": 10,
-      "realized_pnl": 1.1
-    },
-    {
-      "window_id": "KXGOLD15M-26SEP050000",
-      "ts": "2026-09-05T03:56:31.644005+00:00",
-      "side": "favorite_no",
-      "price": 0.87,
-      "size": 10,
-      "realized_pnl": 1.2000000000000002
-    }
-  ]
+  }
 }
