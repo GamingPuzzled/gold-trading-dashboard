@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-09T14:55:55.550250+00:00",
+  "generated_at": "2026-09-09T15:00:56.521804+00:00",
   "assets": {
     "gold": {
       "series_ticker": "KXGOLD15M",
       "starting_bankroll": 600.0,
-      "bankroll": 546.02,
+      "bankroll": 547.12,
       "strategy_stats": {
         "favorite_yes": {
           "wins": 273,
           "n": 300
         },
         "favorite_no": {
-          "wins": 410,
-          "n": 450
+          "wins": 411,
+          "n": 451
         }
       },
       "trades": [
@@ -1263,21 +1263,29 @@
           "price": 0.87,
           "size": 10,
           "realized_pnl": -8.8
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP091100",
+          "ts": "2026-09-09T14:58:05.386570+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": 1.1
         }
       ]
     },
     "copper": {
       "series_ticker": "KXCOPPER15M",
       "starting_bankroll": 200.0,
-      "bankroll": 270.4,
+      "bankroll": 271.5,
       "strategy_stats": {
         "favorite_yes": {
           "wins": 185,
           "n": 196
         },
         "favorite_no": {
-          "wins": 149,
-          "n": 156
+          "wins": 150,
+          "n": 157
         }
       },
       "trades": [
@@ -3181,6 +3189,14 @@
           "window_id": "KXCOPPER15M-26SEP091045",
           "ts": "2026-09-09T14:41:30.143221+00:00",
           "side": "favorite_yes",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": 1.1
+        },
+        {
+          "window_id": "KXCOPPER15M-26SEP091100",
+          "ts": "2026-09-09T14:57:57.957389+00:00",
+          "side": "favorite_no",
           "price": 0.88,
           "size": 10,
           "realized_pnl": 1.1
