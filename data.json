@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-09T02:26:54.703530+00:00",
+  "generated_at": "2026-09-09T02:32:24.675343+00:00",
   "assets": {
     "gold": {
       "series_ticker": "KXGOLD15M",
       "starting_bankroll": 600.0,
-      "bankroll": 544.72,
+      "bankroll": 545.82,
       "strategy_stats": {
         "favorite_yes": {
           "wins": 273,
           "n": 300
         },
         "favorite_no": {
-          "wins": 394,
-          "n": 432
+          "wins": 395,
+          "n": 433
         }
       },
       "trades": [
@@ -1119,6 +1119,14 @@
           "price": 0.87,
           "size": 10,
           "realized_pnl": 1.2000000000000002
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP082230",
+          "ts": "2026-09-09T02:27:47.559039+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": 1.1
         }
       ]
     },
