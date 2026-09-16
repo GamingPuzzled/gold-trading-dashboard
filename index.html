@@ -118,6 +118,21 @@
   .status-pill.pending { background: var(--surface-2); color: var(--text-muted); }
   .table-scroll { overflow-x: auto; }
 
+  tr.trade-row { cursor: pointer; }
+  tr.trade-row:hover { background: var(--surface-2); }
+  tr.trade-row td:first-child { position: relative; padding-left: 22px; }
+  tr.trade-row td:first-child::before {
+    content: "▸"; position: absolute; left: 8px; color: var(--text-muted);
+    font-size: 10px; transition: transform 0.15s;
+  }
+  tr.trade-row.expanded td:first-child::before { transform: rotate(90deg); }
+  tr.trade-detail { display: none; }
+  tr.trade-detail.expanded { display: table-row; }
+  tr.trade-detail td { background: var(--surface-2); padding: 12px 10px 14px 22px; border-bottom: 1px solid var(--border); }
+  .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px 20px; }
+  .detail-item .detail-label { color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 2px; }
+  .detail-item .detail-value { font-variant-numeric: tabular-nums; }
+
   footer { color: var(--text-muted); font-size: 12px; text-align: center; margin-top: 32px; line-height: 1.6; }
   footer a { color: var(--text-secondary); }
 </style>
@@ -249,13 +264,19 @@ function renderTiles(key, data) {
   document.getElementById(`${key}-tile-no-n`).textContent = `${no.wins} / ${no.n} trades (live evidence)`;
 }
 
+// Kalshi's real per-order fee: round(0.07 * contracts * price * (1-price), 2),
+// confirmed against live trade data (see gold_trading/strategy/edge_calculator.py
+// fee_for_order) -- not fee-per-contract, rounds once on the order total.
+const FEE_RATE = 0.07;
+const feeForOrder = (price, contracts) => Math.round(FEE_RATE * contracts * price * (1 - price) * 100) / 100;
+
 function renderTrades(key, trades) {
   const body = document.getElementById(`${key}-trades-body`);
   const empty = document.getElementById(`${key}-trades-empty`);
   if (!trades.length) { empty.hidden = false; return; }
   empty.hidden = true;
   const sorted = [...trades].sort((a, b) => new Date(b.ts) - new Date(a.ts));
-  body.innerHTML = sorted.map(t => {
+  body.innerHTML = sorted.map((t, i) => {
     let statusClass = "pending", statusLabel = "● pending";
     if (t.realized_pnl !== null) {
       statusClass = t.realized_pnl > 0 ? "won" : "lost";
@@ -264,7 +285,25 @@ function renderTrades(key, trades) {
     const sideLabel = t.side === "favorite_yes" ? "YES favorite" : "NO favorite";
     const pnlText = t.realized_pnl === null ? "—" : fmtUSD(t.realized_pnl);
     const windowLabel = t.window_id.includes("-") ? t.window_id.split("-").slice(1).join("-") : t.window_id;
-    return `<tr>
+
+    const fee = feeForOrder(t.price, t.size);
+    const notional = t.price * t.size;
+    const grossPnl = t.realized_pnl === null ? null : t.realized_pnl + fee;
+    const rowId = `${key}-trade-${i}`;
+
+    const detailItems = [
+      ["Event ticker", t.window_id],
+      ["Timestamp (UTC)", t.ts.replace("T", " ").replace(/\.\d+\+.*/, "").replace("+00:00", "")],
+      ["Contract bought", sideLabel],
+      ["Entry price", `${(t.price * 100).toFixed(1)}¢ / contract`],
+      ["Contracts", t.size],
+      ["Notional", fmtUSD(notional)],
+      ["Est. fee", fmtUSD(fee)],
+      ["Gross PnL (pre-fee)", grossPnl === null ? "—" : fmtUSD(grossPnl)],
+      ["Net PnL (settled)", pnlText],
+    ];
+
+    return `<tr class="trade-row" data-target="${rowId}">
       <td>${fmtTime(t.ts)}</td>
       <td>${windowLabel}</td>
       <td>${sideLabel}</td>
@@ -272,8 +311,27 @@ function renderTrades(key, trades) {
       <td class="num">${t.size}</td>
       <td><span class="status-pill ${statusClass}">${statusLabel}</span></td>
       <td class="num">${pnlText}</td>
+    </tr>
+    <tr class="trade-detail" id="${rowId}">
+      <td colspan="7">
+        <div class="detail-grid">
+          ${detailItems.map(([label, value]) => `
+            <div class="detail-item">
+              <div class="detail-label">${label}</div>
+              <div class="detail-value">${value}</div>
+            </div>`).join("")}
+        </div>
+      </td>
     </tr>`;
   }).join("");
+
+  body.querySelectorAll("tr.trade-row").forEach(row => {
+    row.addEventListener("click", () => {
+      const detail = document.getElementById(row.dataset.target);
+      row.classList.toggle("expanded");
+      detail.classList.toggle("expanded");
+    });
+  });
 }
 
 function renderChart(key, trades, startingBankroll, color) {
