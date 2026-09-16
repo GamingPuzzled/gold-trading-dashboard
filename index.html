@@ -118,6 +118,16 @@
   .status-pill.pending { background: var(--surface-2); color: var(--text-muted); }
   .table-scroll { overflow-x: auto; }
 
+  .trades-toggle {
+    display: flex; align-items: baseline; gap: 8px; width: 100%; background: none; border: none;
+    padding: 0; margin: 0 0 4px; font: inherit; color: inherit; cursor: pointer; text-align: left;
+  }
+  .trades-toggle .chevron { color: var(--text-muted); font-size: 11px; transition: transform 0.15s; }
+  .trades-toggle[aria-expanded="true"] .chevron { transform: rotate(90deg); }
+  .trades-toggle .card-title { margin: 0; }
+  .trades-toggle-count { color: var(--text-muted); font-size: 12px; font-weight: 400; }
+  .trades-body { margin-top: 14px; }
+
   tr.trade-row { cursor: pointer; }
   tr.trade-row:hover { background: var(--surface-2); }
   tr.trade-row td:first-child { position: relative; padding-left: 22px; }
@@ -219,17 +229,23 @@ function assetSectionHTML(key) {
       </div>
 
       <div class="card">
-        <p class="card-title">Trades</p>
-        <p class="card-note">Most recent first. "Side" is which favorite was bought, not the underlying's direction.</p>
-        <div class="table-scroll">
-          <table>
-            <thead>
-              <tr><th>Time (UTC)</th><th>Window</th><th>Side</th><th class="num">Entry</th><th class="num">Size</th><th>Status</th><th class="num">PnL</th></tr>
-            </thead>
-            <tbody id="${key}-trades-body"></tbody>
-          </table>
+        <button class="trades-toggle" id="${key}-trades-toggle" aria-expanded="false">
+          <span class="chevron">▸</span>
+          <span class="card-title">Trades</span>
+          <span class="trades-toggle-count" id="${key}-trades-count"></span>
+        </button>
+        <div class="trades-body" id="${key}-trades-collapsible" hidden>
+          <p class="card-note">Most recent first. "Side" is which favorite was bought, not the underlying's direction.</p>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr><th>Time (UTC)</th><th>Window</th><th>Side</th><th class="num">Entry</th><th class="num">Size</th><th>Status</th><th class="num">PnL</th></tr>
+              </thead>
+              <tbody id="${key}-trades-body"></tbody>
+            </table>
+          </div>
+          <div class="empty-note" id="${key}-trades-empty" hidden>No trades yet — most windows never trigger a signal.</div>
         </div>
-        <div class="empty-note" id="${key}-trades-empty" hidden>No trades yet — most windows never trigger a signal.</div>
       </div>
     </section>`;
 }
@@ -273,6 +289,17 @@ const feeForOrder = (price, contracts) => Math.round(FEE_RATE * contracts * pric
 function renderTrades(key, trades) {
   const body = document.getElementById(`${key}-trades-body`);
   const empty = document.getElementById(`${key}-trades-empty`);
+  const toggle = document.getElementById(`${key}-trades-toggle`);
+  const collapsible = document.getElementById(`${key}-trades-collapsible`);
+  const count = document.getElementById(`${key}-trades-count`);
+
+  count.textContent = trades.length ? `${trades.length} trade${trades.length === 1 ? "" : "s"}` : "none yet";
+  toggle.addEventListener("click", () => {
+    const expanded = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!expanded));
+    collapsible.hidden = expanded;
+  });
+
   if (!trades.length) { empty.hidden = false; return; }
   empty.hidden = true;
   const sorted = [...trades].sort((a, b) => new Date(b.ts) - new Date(a.ts));
