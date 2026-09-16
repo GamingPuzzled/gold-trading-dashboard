@@ -16,6 +16,10 @@
     --text-muted:     #8a8880;
     --series-1:       #2a78d6;
     --series-2:       #eb6834;
+    --series-3:       #0f9d7c;
+    --series-4:       #8656d9;
+    --series-5:       #c0932a;
+    --series-6:       #d6437e;
     --grid:           #e5e3dd;
     --good:           #0ca30c;
     --critical:       #d03b3b;
@@ -34,6 +38,10 @@
       --text-muted:     #8a8880;
       --series-1:       #3987e5;
       --series-2:       #d95926;
+      --series-3:       #1fbf98;
+      --series-4:       #a479ea;
+      --series-5:       #d9ac4a;
+      --series-6:       #e8619a;
       --grid:           #2a2a27;
       --good:           #0ca30c;
       --critical:       #e66767;
@@ -52,6 +60,10 @@
     --text-muted:     #8a8880;
     --series-1:       #3987e5;
     --series-2:       #d95926;
+    --series-3:       #1fbf98;
+    --series-4:       #a479ea;
+    --series-5:       #d9ac4a;
+    --series-6:       #e8619a;
     --grid:           #2a2a27;
     --good:           #0ca30c;
     --critical:       #e66767;
@@ -81,6 +93,11 @@
   .asset-heading h2 { font-size: 16px; font-weight: 600; margin: 0; }
   .asset-heading .ticker { color: var(--text-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
   .asset-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .sim-badge {
+    font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
+    color: var(--text-muted); border: 1px solid var(--border); border-radius: 999px;
+    padding: 1px 7px; cursor: help;
+  }
 
   .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 16px; }
   .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
@@ -163,8 +180,9 @@
     <div id="assets-root"></div>
 
     <footer>
-      Paper trading only — simulated fills, no real money. Strategy: extreme-price favorite mispricing (unproven, accumulating evidence). Each market runs as a fully independent bot (own bankroll, own evidence).<br>
-      Data refreshes periodically from the live bots. <a href="https://github.com/GamingPuzzled/gold-trading" target="_blank" rel="noopener">github.com/GamingPuzzled/gold-trading</a>
+      Paper trading only — simulated fills, no real money. Strategy: extreme-price favorite mispricing (unproven, accumulating evidence). Each market runs independently (own bankroll, own evidence).<br>
+      Gold and Copper run as real live_trading bots. Markets marked "simulated" are paper-simulated from a passive orderbook watcher (same strategy logic, no live bot behind them yet).<br>
+      Data refreshes every 5 minutes. <a href="https://github.com/GamingPuzzled/gold-trading" target="_blank" rel="noopener">github.com/GamingPuzzled/gold-trading</a>
     </footer>
   </div>
 
@@ -177,18 +195,34 @@ const fmtTime = (iso) => {
 };
 
 const ASSET_META = {
-  gold:   { label: "Gold",   color: "var(--series-1)" },
-  copper: { label: "Copper", color: "var(--series-2)" },
+  gold:   { label: "Gold",       color: "var(--series-1)" },
+  copper: { label: "Copper",     color: "var(--series-2)" },
+  btc:    { label: "Bitcoin",    color: "var(--series-3)" },
+  eth:    { label: "Ethereum",   color: "var(--series-4)" },
+  xrp:    { label: "XRP",        color: "var(--series-5)" },
+  silver: { label: "Silver",     color: "var(--series-6)" },
+  wti:    { label: "WTI Oil",    color: "var(--series-1)" },
+  sol:    { label: "Solana",     color: "var(--series-2)" },
+  doge:   { label: "Dogecoin",   color: "var(--series-3)" },
+  hype:   { label: "Hyperliquid", color: "var(--series-4)" },
+  zec:    { label: "Zcash",      color: "var(--series-5)" },
+  bnb:    { label: "BNB",        color: "var(--series-6)" },
+  near:   { label: "NEAR",       color: "var(--series-1)" },
+  natgas: { label: "Natural Gas", color: "var(--series-2)" },
 };
 
-function assetSectionHTML(key) {
+function assetSectionHTML(key, simulated) {
   const meta = ASSET_META[key] || { label: key, color: "var(--series-1)" };
+  const badge = simulated
+    ? `<span class="sim-badge" title="Paper-simulated from a passive orderbook watcher, not a real running bot -- same strategy logic (extreme_edge_signal.detect_favorite, threshold=0.85), fixed 10-contract size, no live bankroll behind it">simulated</span>`
+    : "";
   return `
     <section class="asset-section" id="section-${key}">
       <div class="asset-heading">
         <span class="asset-dot" style="background:${meta.color}"></span>
         <h2>${meta.label}</h2>
         <span class="ticker" id="${key}-ticker"></span>
+        ${badge}
       </div>
 
       <div class="tiles">
@@ -461,7 +495,7 @@ function loadAndRender() {
       const keys = Object.keys(data.assets || {});
       if (!sectionsBuilt) {
         const root = document.getElementById("assets-root");
-        root.innerHTML = keys.map(assetSectionHTML).join("");
+        root.innerHTML = keys.map(key => assetSectionHTML(key, !!data.assets[key].simulated)).join("");
         sectionsBuilt = true;
       }
       keys.forEach(key => renderAsset(key, data.assets[key]));
