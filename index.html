@@ -294,11 +294,14 @@ function renderTrades(key, trades) {
   const count = document.getElementById(`${key}-trades-count`);
 
   count.textContent = trades.length ? `${trades.length} trade${trades.length === 1 ? "" : "s"}` : "none yet";
-  toggle.addEventListener("click", () => {
-    const expanded = toggle.getAttribute("aria-expanded") === "true";
-    toggle.setAttribute("aria-expanded", String(!expanded));
-    collapsible.hidden = expanded;
-  });
+  if (!toggle.dataset.bound) {
+    toggle.dataset.bound = "1";
+    toggle.addEventListener("click", () => {
+      const expanded = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!expanded));
+      collapsible.hidden = expanded;
+    });
+  }
 
   if (!trades.length) { empty.hidden = false; return; }
   empty.hidden = true;
@@ -443,19 +446,34 @@ function renderAsset(key, data) {
   renderChart(key, data.trades, data.starting_bankroll, meta.color);
 }
 
-fetch("./data.json?_=" + Date.now())
-  .then(r => r.json())
-  .then(data => {
-    document.getElementById("last-updated").textContent = "updated " + fmtTime(data.generated_at) + " UTC";
-    const root = document.getElementById("assets-root");
-    const keys = Object.keys(data.assets || {});
-    root.innerHTML = keys.map(assetSectionHTML).join("");
-    keys.forEach(key => renderAsset(key, data.assets[key]));
-  })
-  .catch(err => {
-    document.getElementById("last-updated").textContent = "failed to load data";
-    console.error(err);
-  });
+// Data on the server refreshes every 5 minutes (dashboard-export.timer) --
+// polling faster than that would just re-fetch the same data.json. Only the
+// section skeleton is (re)built on the first load; later refreshes update
+// data in place so an open "Trades" panel doesn't collapse out from under you.
+const REFRESH_INTERVAL_MS = 5 * 60 * 1000;
+let sectionsBuilt = false;
+
+function loadAndRender() {
+  fetch("./data.json?_=" + Date.now())
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById("last-updated").textContent = "updated " + fmtTime(data.generated_at) + " UTC";
+      const keys = Object.keys(data.assets || {});
+      if (!sectionsBuilt) {
+        const root = document.getElementById("assets-root");
+        root.innerHTML = keys.map(assetSectionHTML).join("");
+        sectionsBuilt = true;
+      }
+      keys.forEach(key => renderAsset(key, data.assets[key]));
+    })
+    .catch(err => {
+      document.getElementById("last-updated").textContent = "failed to load data";
+      console.error(err);
+    });
+}
+
+loadAndRender();
+setInterval(loadAndRender, REFRESH_INTERVAL_MS);
 </script>
 </body>
 </html>
