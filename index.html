@@ -177,6 +177,35 @@
       </div>
     </header>
 
+    <section class="asset-section" id="section-total" style="margin-top:0">
+      <div class="asset-heading">
+        <span class="asset-dot" style="background:var(--text-primary)"></span>
+        <h2>Total (all markets)</h2>
+      </div>
+      <div class="tiles">
+        <div class="tile">
+          <div class="tile-label">Combined bankroll</div>
+          <div class="tile-value" id="total-tile-bankroll">—</div>
+          <div class="tile-sub" id="total-tile-bankroll-sub">—</div>
+        </div>
+        <div class="tile">
+          <div class="tile-label">Total realized PnL</div>
+          <div class="tile-value" id="total-tile-pnl">—</div>
+          <div class="tile-sub" id="total-tile-pnl-sub">—</div>
+        </div>
+        <div class="tile">
+          <div class="tile-label">Trades settled</div>
+          <div class="tile-value" id="total-tile-trades">—</div>
+          <div class="tile-sub" id="total-tile-trades-sub">—</div>
+        </div>
+      </div>
+      <div class="card">
+        <p class="card-title">Combined bankroll over time</p>
+        <p class="card-note">Sum of every market's starting capital, one point per settled trade across all 14 markets combined.</p>
+        <div id="total-chart-container"></div>
+      </div>
+    </section>
+
     <div id="assets-root"></div>
 
     <footer>
@@ -480,6 +509,32 @@ function renderAsset(key, data) {
   renderChart(key, data.trades, data.starting_bankroll, meta.color);
 }
 
+function renderTotal(assets) {
+  const allAssets = Object.values(assets);
+  const startingBankroll = allAssets.reduce((s, a) => s + a.starting_bankroll, 0);
+  const allTrades = allAssets.flatMap(a => a.trades);
+  const totalPnl = allTrades.reduce((s, t) => s + (t.realized_pnl ?? 0), 0);
+  const bankroll = startingBankroll + totalPnl;
+
+  document.getElementById("total-tile-bankroll").textContent = fmtUSD(bankroll);
+  const bankrollSub = document.getElementById("total-tile-bankroll-sub");
+  bankrollSub.textContent = (totalPnl >= 0 ? "+" : "") + fmtUSD(totalPnl) + " since start";
+  bankrollSub.className = "tile-sub " + (totalPnl >= 0 ? "pos" : "neg");
+
+  document.getElementById("total-tile-pnl").textContent = fmtUSD(totalPnl);
+  const pnlSub = document.getElementById("total-tile-pnl-sub");
+  pnlSub.className = "tile-sub " + (totalPnl >= 0 ? "pos" : "neg");
+  pnlSub.textContent = `across ${Object.keys(assets).length} markets`;
+
+  const settled = allTrades.filter(t => t.realized_pnl !== null);
+  const wins = settled.filter(t => t.realized_pnl > 0).length;
+  document.getElementById("total-tile-trades").textContent = settled.length;
+  document.getElementById("total-tile-trades-sub").textContent =
+    settled.length ? `${wins} won / ${settled.length - wins} lost` : "none settled yet";
+
+  renderChart("total", allTrades, startingBankroll, "var(--text-primary)");
+}
+
 // Data on the server refreshes every 5 minutes (dashboard-export.timer) --
 // polling faster than that would just re-fetch the same data.json. Only the
 // section skeleton is (re)built on the first load; later refreshes update
@@ -504,6 +559,7 @@ function loadAndRender() {
         sectionsBuilt = true;
       }
       keys.forEach(key => renderAsset(key, data.assets[key]));
+      renderTotal(data.assets);
     })
     .catch(err => {
       document.getElementById("last-updated").textContent = "failed to load data";
