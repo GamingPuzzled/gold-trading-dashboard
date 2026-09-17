@@ -201,7 +201,7 @@
       </div>
       <div class="card">
         <p class="card-title">Combined bankroll over time</p>
-        <p class="card-note">Sum of every market's starting capital, one point per settled trade across all 14 markets combined.</p>
+        <p class="card-note">Since 2026-09-16, when all 14 markets started being measured together -- gold/copper's own real trading history goes back further (see their own sections below), but combining that with the other 12 markets' shorter history would understate how new most of this portfolio is.</p>
         <div id="total-chart-container"></div>
       </div>
     </section>
@@ -509,16 +509,35 @@ function renderAsset(key, data) {
   renderChart(key, data.trades, data.starting_bankroll, meta.color);
 }
 
+// When the passive watcher started measuring all 14 markets together
+// (gold/copper's own history goes back much further as real live bots;
+// the other 12 only exist from this point on -- comparing the combined
+// total before this date would just be gold+copper alone, then a jump
+// when the rest join in, so the total starts here instead).
+const TOTAL_SINCE = "2026-09-16T15:54:00Z";
+
 function renderTotal(assets) {
   const allAssets = Object.values(assets);
-  const startingBankroll = allAssets.reduce((s, a) => s + a.starting_bankroll, 0);
-  const allTrades = allAssets.flatMap(a => a.trades);
+  const cutoff = new Date(TOTAL_SINCE);
+
+  // Each asset's bankroll baseline is its starting capital plus whatever
+  // it had already earned/lost before the cutoff -- so the combined chart
+  // starts from "where every market actually stood" at that moment, not
+  // from each market's original inception.
+  const startingBankroll = allAssets.reduce((s, a) => {
+    const priorPnl = a.trades
+      .filter(t => t.realized_pnl !== null && new Date(t.ts) < cutoff)
+      .reduce((sum, t) => sum + t.realized_pnl, 0);
+    return s + a.starting_bankroll + priorPnl;
+  }, 0);
+
+  const allTrades = allAssets.flatMap(a => a.trades).filter(t => new Date(t.ts) >= cutoff);
   const totalPnl = allTrades.reduce((s, t) => s + (t.realized_pnl ?? 0), 0);
   const bankroll = startingBankroll + totalPnl;
 
   document.getElementById("total-tile-bankroll").textContent = fmtUSD(bankroll);
   const bankrollSub = document.getElementById("total-tile-bankroll-sub");
-  bankrollSub.textContent = (totalPnl >= 0 ? "+" : "") + fmtUSD(totalPnl) + " since start";
+  bankrollSub.textContent = (totalPnl >= 0 ? "+" : "") + fmtUSD(totalPnl) + " since all 14 markets started";
   bankrollSub.className = "tile-sub " + (totalPnl >= 0 ? "pos" : "neg");
 
   document.getElementById("total-tile-pnl").textContent = fmtUSD(totalPnl);
