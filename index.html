@@ -494,8 +494,13 @@ function loadAndRender() {
       document.getElementById("last-updated").textContent = "updated " + fmtTime(data.generated_at) + " UTC";
       const keys = Object.keys(data.assets || {});
       if (!sectionsBuilt) {
+        // Highest PnL first. Fixed at first build (not re-sorted on later
+        // refreshes) so sections don't reshuffle out from under you every
+        // 5 minutes while you're looking at the page.
+        const pnl = key => data.assets[key].bankroll - data.assets[key].starting_bankroll;
+        const sortedKeys = [...keys].sort((a, b) => pnl(b) - pnl(a));
         const root = document.getElementById("assets-root");
-        root.innerHTML = keys.map(key => assetSectionHTML(key, !!data.assets[key].simulated)).join("");
+        root.innerHTML = sortedKeys.map(key => assetSectionHTML(key, !!data.assets[key].simulated)).join("");
         sectionsBuilt = true;
       }
       keys.forEach(key => renderAsset(key, data.assets[key]));
