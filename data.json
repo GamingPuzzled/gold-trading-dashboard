@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-17T14:24:54.718545+00:00",
+  "generated_at": "2026-09-17T14:30:34.817235+00:00",
   "assets": {
     "gold": {
       "series_ticker": "KXGOLD15M",
@@ -2269,11 +2269,11 @@
     "copper": {
       "series_ticker": "KXCOPPER15M",
       "starting_bankroll": 200.0,
-      "bankroll": 402.5226999999999,
+      "bankroll": 403.7299999999999,
       "strategy_stats": {
         "favorite_yes": {
-          "wins": 366,
-          "n": 392
+          "wins": 367,
+          "n": 393
         },
         "favorite_no": {
           "wins": 338,
@@ -7384,6 +7384,14 @@
           "price": 0.8800000000000001,
           "size": 10,
           "realized_pnl": 1.1299999999999988
+        },
+        {
+          "window_id": "KXCOPPER15M-26SEP171030",
+          "ts": "2026-09-17T14:25:46.274055+00:00",
+          "side": "favorite_yes",
+          "price": 0.87127,
+          "size": 10,
+          "realized_pnl": 1.2073
         }
       ]
     },
@@ -8739,6 +8747,14 @@
           "price": 0.88,
           "size": 10,
           "realized_pnl": -8.870000000000001
+        },
+        {
+          "window_id": "KXETH15M-26SEP171030",
+          "ts": "2026-09-17T14:25:25.981583+00:00",
+          "side": "favorite_yes",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -10071,6 +10087,14 @@
           "price": 0.88,
           "size": 10,
           "realized_pnl": 1.13
+        },
+        {
+          "window_id": "KXSILVER15M-26SEP171030",
+          "ts": "2026-09-17T14:28:16.459786+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -15511,6 +15535,14 @@
           "price": 0.88,
           "size": 10,
           "realized_pnl": 1.13
+        },
+        {
+          "window_id": "KXNATGAS15M-26SEP171030",
+          "ts": "2026-09-17T14:25:39.542316+00:00",
+          "side": "favorite_no",
+          "price": 0.9,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
