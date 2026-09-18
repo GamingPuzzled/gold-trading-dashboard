@@ -99,6 +99,18 @@
     padding: 1px 7px; cursor: help;
   }
 
+  .canary-toggle {
+    display: inline-flex; gap: 2px; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 2px; margin-bottom: 14px; width: fit-content;
+  }
+  .canary-toggle-btn {
+    font: inherit; font-size: 12px; font-weight: 500; padding: 5px 12px; border: none; border-radius: 6px;
+    background: none; color: var(--text-secondary); cursor: pointer;
+  }
+  .canary-toggle-btn.active { background: var(--surface); color: var(--text-primary); box-shadow: 0 1px 2px var(--border); }
+  .canary-toggle-btn:hover:not(.active):not(:disabled) { color: var(--text-primary); }
+  .canary-toggle-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
   .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 16px; }
   .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
   .tile-label { color: var(--text-secondary); font-size: 12px; margin-bottom: 6px; }
@@ -245,6 +257,11 @@ function assetSectionHTML(key, simulated) {
   const badge = simulated
     ? `<span class="sim-badge" title="Paper-simulated from a passive orderbook watcher, not a real running bot -- same strategy logic (extreme_edge_signal.detect_favorite, threshold=0.85), fixed 10-contract size, no live bankroll behind it">simulated</span>`
     : "";
+  const canaryToggle = key === "btc" ? `
+    <div class="canary-toggle" id="btc-canary-toggle" title="&quot;Canary-gated&quot; skips a BTC signal if BNB or HYPE had a known loss in the preceding 15 minutes (2026-09-18 finding: shared crypto-market shocks tend to hit BTC shortly after). Tracked honestly going forward, no lookahead.">
+      <button class="canary-toggle-btn active" data-mode="all">All signals</button>
+      <button class="canary-toggle-btn" data-mode="canary">Canary-gated</button>
+    </div>` : "";
   return `
     <section class="asset-section" id="section-${key}">
       <div class="asset-heading">
@@ -253,6 +270,7 @@ function assetSectionHTML(key, simulated) {
         <span class="ticker" id="${key}-ticker"></span>
         ${badge}
       </div>
+      ${canaryToggle}
 
       <div class="tiles">
         <div class="tile">
@@ -502,7 +520,38 @@ function renderChart(key, trades, startingBankroll, color) {
   });
 }
 
+// BTC's "canary-gated" variant (2026-09-18 finding): skips a BTC signal if
+// BNB or HYPE had a known loss in the preceding 15 minutes. Toggle state is
+// per-page, not persisted -- defaults to "all signals" on every load.
+let btcViewMode = "all";
+let latestBtcData = null;
+
 function renderAsset(key, data) {
+  if (key === "btc") {
+    latestBtcData = data;
+    const toggle = document.getElementById("btc-canary-toggle");
+    if (toggle && !toggle.dataset.bound) {
+      toggle.dataset.bound = "1";
+      toggle.querySelectorAll(".canary-toggle-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          if (btn.classList.contains("active")) return;
+          toggle.querySelectorAll(".canary-toggle-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          btcViewMode = btn.dataset.mode;
+          renderAsset("btc", latestBtcData);
+        });
+      });
+    }
+    const hasCanaryData = !!data.canary_variant;
+    if (toggle) {
+      const canaryBtn = toggle.querySelector('[data-mode="canary"]');
+      canaryBtn.disabled = !hasCanaryData;
+      canaryBtn.title = hasCanaryData ? "" : "No canary-tagged trades yet";
+    }
+    if (btcViewMode === "canary" && hasCanaryData) {
+      data = { ...data, ...data.canary_variant };
+    }
+  }
   renderTiles(key, data);
   renderTrades(key, data.trades);
   const meta = ASSET_META[key] || { color: "var(--series-1)" };
