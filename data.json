@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-18T12:54:54.722355+00:00",
+  "generated_at": "2026-09-18T13:00:21.893486+00:00",
   "assets": {
     "gold": {
       "series_ticker": "KXGOLD15M",
@@ -2351,17 +2351,25 @@
           "price": 0.8699999999999999,
           "size": 10,
           "realized_pnl": 1.220000000000001
+        },
+        {
+          "window_id": "KXGOLD15M-26SEP180900",
+          "ts": "2026-09-18T12:57:54.135856+00:00",
+          "side": "favorite_no",
+          "price": 0.8699999999999999,
+          "size": 10,
+          "realized_pnl": null
         }
       ]
     },
     "copper": {
       "series_ticker": "KXCOPPER15M",
       "starting_bankroll": 200.0,
-      "bankroll": 402.03659999999985,
+      "bankroll": 403.2565999999999,
       "strategy_stats": {
         "favorite_yes": {
-          "wins": 396,
-          "n": 423
+          "wins": 397,
+          "n": 424
         },
         "favorite_no": {
           "wins": 359,
@@ -7928,6 +7936,14 @@
           "price": 0.8789899999999999,
           "size": 10,
           "realized_pnl": 1.1401000000000006
+        },
+        {
+          "window_id": "KXCOPPER15M-26SEP180900",
+          "ts": "2026-09-18T12:56:50.096825+00:00",
+          "side": "favorite_yes",
+          "price": 0.8699999999999999,
+          "size": 10,
+          "realized_pnl": 1.220000000000001
         }
       ]
     },
@@ -13503,6 +13519,14 @@
           "price": 0.87,
           "size": 10,
           "realized_pnl": 1.22
+        },
+        {
+          "window_id": "KXSILVER15M-26SEP180900",
+          "ts": "2026-09-18T12:57:38.283930+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -14873,6 +14897,14 @@
           "price": 0.88,
           "size": 10,
           "realized_pnl": 1.13
+        },
+        {
+          "window_id": "KXWTI15M-26SEP180900",
+          "ts": "2026-09-18T12:55:54.497267+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -16267,6 +16299,14 @@
           "price": 0.87,
           "size": 10,
           "realized_pnl": 1.22
+        },
+        {
+          "window_id": "KXSOL15M-26SEP180900",
+          "ts": "2026-09-18T12:55:05.433889+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -17661,6 +17701,14 @@
           "price": 0.87,
           "size": 10,
           "realized_pnl": 1.22
+        },
+        {
+          "window_id": "KXDOGE15M-26SEP180900",
+          "ts": "2026-09-18T12:56:35.843667+00:00",
+          "side": "favorite_no",
+          "price": 0.9,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -21859,6 +21907,14 @@
           "price": 0.88,
           "size": 10,
           "realized_pnl": 1.13
+        },
+        {
+          "window_id": "KXBNB15M-26SEP180900",
+          "ts": "2026-09-18T12:57:40.110506+00:00",
+          "side": "favorite_no",
+          "price": 0.902,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
