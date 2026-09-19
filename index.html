@@ -99,17 +99,28 @@
     padding: 1px 7px; cursor: help;
   }
 
-  .canary-toggle {
-    display: inline-flex; gap: 2px; background: var(--surface-2); border: 1px solid var(--border);
-    border-radius: 8px; padding: 2px; margin-bottom: 14px; width: fit-content;
+  .gate-switches {
+    display: flex; flex-wrap: wrap; gap: 8px 18px; margin-bottom: 14px;
   }
-  .canary-toggle-btn {
-    font: inherit; font-size: 12px; font-weight: 500; padding: 5px 12px; border: none; border-radius: 6px;
-    background: none; color: var(--text-secondary); cursor: pointer;
+  .gate-switch {
+    display: inline-flex; align-items: center; gap: 7px; cursor: pointer; user-select: none;
+    font-size: 12px; font-weight: 500; color: var(--text-secondary);
   }
-  .canary-toggle-btn.active { background: var(--surface); color: var(--text-primary); box-shadow: 0 1px 2px var(--border); }
-  .canary-toggle-btn:hover:not(.active):not(:disabled) { color: var(--text-primary); }
-  .canary-toggle-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .gate-switch input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .gate-switch .track {
+    flex: none; width: 30px; height: 18px; border-radius: 9px; background: var(--border);
+    position: relative; transition: background 0.15s;
+  }
+  .gate-switch .track::after {
+    content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%;
+    background: var(--surface); box-shadow: 0 1px 2px rgba(0,0,0,0.25); transition: transform 0.15s;
+  }
+  .gate-switch input:checked + .track { background: var(--series-3); }
+  .gate-switch input:checked + .track::after { transform: translateX(12px); }
+  .gate-switch input:focus-visible + .track { outline: 2px solid var(--series-3); outline-offset: 2px; }
+  .gate-switch:hover:not(.disabled) { color: var(--text-primary); }
+  .gate-switch.disabled { opacity: 0.4; cursor: not-allowed; }
+  .gate-switch.disabled .track { cursor: not-allowed; }
 
   .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 16px; }
   .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
@@ -194,13 +205,18 @@
         <span class="asset-dot" style="background:var(--text-primary)"></span>
         <h2>Portfolio (Copper, DOGE, NEAR, ETH, BTC, ZEC)</h2>
       </div>
-      <div class="canary-toggle" id="total-gate-toggle">
-        <button class="canary-toggle-btn active" data-mode="all" title="No gate -- every signal at threshold 0.85">All signals</button>
-        <button class="canary-toggle-btn" data-mode="canary" title="Applies the canary gate to BTC and NEAR (their only defined rules: BTC<-BNB/HYPE, NEAR<-ETH). Copper/DOGE/ETH/ZEC have no canary rule, so their trades pass through unfiltered.">Canary-gated</button>
-        <button class="canary-toggle-btn" data-mode="slope" title="Applies the momentum gate (experimental, 2026-09-19) to every asset that has enough trailing history. Copper (a real bot, not in the paper-sim data this gate is built on) always passes through unfiltered.">Momentum-gated</button>
-        <button class="canary-toggle-btn" data-mode="basket_yes" title="Applies the pooled crypto-basket yes-momentum gate (experimental, 2026-09-19) to favorite_yes signals; favorite_no and copper (not in the crypto basket) pass through unfiltered.">Yes-momentum</button>
-        <button class="canary-toggle-btn" data-mode="both" title="Requires BOTH the canary and momentum gates to say take (intersection) wherever each is defined for that asset; assets missing a gate pass through unfiltered on that dimension.">Canary + Momentum</button>
+      <div class="gate-switches" id="total-gate-switches">
+        <label class="gate-switch" data-mode="canary" title="Applies the canary gate to BTC and NEAR (their only defined rules: BTC<-BNB/HYPE, NEAR<-ETH). Copper/DOGE/ETH/ZEC have no canary rule, so their trades pass through unfiltered.">
+          <input type="checkbox"><span class="track"></span>Canary-gated
+        </label>
+        <label class="gate-switch" data-mode="slope" title="Applies the momentum gate (experimental, 2026-09-19) to every asset that has enough trailing history. Copper (a real bot, not in the paper-sim data this gate is built on) always passes through unfiltered.">
+          <input type="checkbox"><span class="track"></span>Momentum-gated
+        </label>
+        <label class="gate-switch" data-mode="basket_yes" title="Applies the pooled crypto-basket yes-momentum gate (experimental, 2026-09-19) to favorite_yes signals; favorite_no and copper (not in the crypto basket) pass through unfiltered.">
+          <input type="checkbox"><span class="track"></span>Yes-momentum
+        </label>
       </div>
+      <p class="card-note" style="margin-top:-8px">Switches combine (AND) when more than one is on. An asset with no rule for a given gate passes through unfiltered on that dimension rather than being dropped.</p>
       <div class="tiles">
         <div class="tile">
           <div class="tile-label">Combined bankroll</div>
@@ -298,9 +314,10 @@ function assetSectionHTML(key, simulated) {
     : "";
   const gates = GATE_META[key];
   const canaryToggle = gates ? `
-    <div class="canary-toggle" id="${key}-canary-toggle">
-      <button class="canary-toggle-btn active" data-mode="all" title="No gate -- every signal at threshold 0.85">All signals</button>
-      ${gates.map(g => `<button class="canary-toggle-btn" data-mode="${g.mode}" title="${g.title}">${g.label}</button>`).join("\n      ")}
+    <div class="gate-switches" id="${key}-gate-switches">
+      ${gates.map(g => `<label class="gate-switch" data-mode="${g.mode}" title="${g.title}">
+        <input type="checkbox"><span class="track"></span>${g.label}
+      </label>`).join("\n      ")}
     </div>` : "";
   return `
     <section class="asset-section" id="section-${key}">
@@ -560,42 +577,65 @@ function renderChart(key, trades, startingBankroll, color) {
   });
 }
 
-// Per-asset gated variants (see GATE_META above): each mode swaps in a
-// {bankroll, trades, ...} slice pre-filtered by the paper simulator (canary
-// gate, momentum/slope gate, ...). Toggle state is per-page, not persisted
-// -- defaults to "all signals" on every load.
-const gateViewMode = {};
+// Per-asset gated variants (see GATE_META above): each switch, when on,
+// intersects that gate's pre-filtered window_id set into the trade list;
+// multiple switches on at once combine with AND. Switch state is per-page,
+// not persisted -- everything defaults off ("all signals") on every load.
+const activeGatesByAsset = {};
 const latestGateData = {};
+
+// Recomputes {starting_bankroll, bankroll, strategy_stats, trades} from a
+// filtered trade list the same way the server does for a single-gate
+// variant -- needed here because combining switches produces a trade list
+// no single server-side variant covers. realized_pnl > 0 = win, matching
+// the convention used everywhere else on this page (trade objects don't
+// carry a separate result field).
+function variantFromTrades(startingBankroll, trades) {
+  const stats = { favorite_yes: { wins: 0, n: 0 }, favorite_no: { wins: 0, n: 0 } };
+  let totalPnl = 0;
+  for (const t of trades) {
+    if (t.realized_pnl !== null) {
+      stats[t.side].n++;
+      if (t.realized_pnl > 0) stats[t.side].wins++;
+      totalPnl += t.realized_pnl;
+    }
+  }
+  return { starting_bankroll: startingBankroll, bankroll: startingBankroll + totalPnl, strategy_stats: stats, trades };
+}
 
 function renderAsset(key, data) {
   const gates = GATE_META[key];
   if (gates) {
     latestGateData[key] = data;
-    const mode = gateViewMode[key] || "all";
-    const toggle = document.getElementById(`${key}-canary-toggle`);
-    if (toggle && !toggle.dataset.bound) {
-      toggle.dataset.bound = "1";
-      toggle.querySelectorAll(".canary-toggle-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          if (btn.classList.contains("active") || btn.disabled) return;
-          toggle.querySelectorAll(".canary-toggle-btn").forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          gateViewMode[key] = btn.dataset.mode;
+    const active = activeGatesByAsset[key] || (activeGatesByAsset[key] = new Set());
+    const switches = document.getElementById(`${key}-gate-switches`);
+    if (switches && !switches.dataset.bound) {
+      switches.dataset.bound = "1";
+      switches.querySelectorAll(".gate-switch").forEach(label => {
+        const input = label.querySelector("input");
+        input.addEventListener("change", () => {
+          if (input.checked) active.add(label.dataset.mode); else active.delete(label.dataset.mode);
           renderAsset(key, latestGateData[key]);
         });
       });
     }
-    const activeGate = gates.find(g => g.mode === mode);
+    const windowIdSets = [];
     for (const g of gates) {
-      const btn = toggle && toggle.querySelector(`[data-mode="${g.mode}"]`);
+      const label = switches && switches.querySelector(`[data-mode="${g.mode}"]`);
+      const input = label && label.querySelector("input");
       const hasData = !!data[g.variant];
-      if (btn) {
-        btn.disabled = !hasData;
-        btn.title = hasData ? g.title.replace(/&quot;/g, '"') : "No tagged trades yet";
+      if (label) {
+        label.classList.toggle("disabled", !hasData);
+        label.title = hasData ? g.title.replace(/&quot;/g, '"') : "No tagged trades yet";
+      }
+      if (input) input.disabled = !hasData;
+      if (hasData && active.has(g.mode)) {
+        windowIdSets.push(new Set(data[g.variant].trades.map(t => t.window_id)));
       }
     }
-    if (activeGate && data[activeGate.variant]) {
-      data = { ...data, ...data[activeGate.variant] };
+    if (windowIdSets.length) {
+      const trades = data.trades.filter(t => windowIdSets.every(s => s.has(t.window_id)));
+      data = { ...data, ...variantFromTrades(data.starting_bankroll, trades) };
     }
   }
   renderTiles(key, data);
@@ -612,31 +652,26 @@ function renderAsset(key, data) {
 const TOTAL_SINCE = "2026-09-16T15:54:00Z";
 const PORTFOLIO_KEYS = ["copper", "doge", "near", "eth", "btc", "zec"];
 
-// Filters one asset's full trade list down to what a given gate mode would
-// have taken. window_id is unique per market/window within an asset (one
-// trade per window per threshold), so it's a safe join key back into the
-// pre-filtered canary_variant/slope_variant trade lists the server already
-// computed. An asset missing a gate (e.g. copper has neither; DOGE/ETH/ZEC
-// have no canary rule) passes through unfiltered on that dimension rather
-// than being dropped -- "no gate defined" isn't the same as "gate says no."
-function portfolioTradesForAsset(asset, mode) {
-  if (mode === "all") return asset.trades;
-  const wantCanary = mode === "canary" || mode === "both";
-  const wantSlope = mode === "slope" || mode === "both";
-  const wantBasketYes = mode === "basket_yes";
-  const canarySet = (wantCanary && asset.canary_variant)
-    ? new Set(asset.canary_variant.trades.map(t => t.window_id)) : null;
-  const slopeSet = (wantSlope && asset.slope_variant)
-    ? new Set(asset.slope_variant.trades.map(t => t.window_id)) : null;
-  const basketYesSet = (wantBasketYes && asset.basket_yes_variant)
-    ? new Set(asset.basket_yes_variant.trades.map(t => t.window_id)) : null;
-  return asset.trades.filter(t =>
-    (canarySet === null || canarySet.has(t.window_id)) &&
-    (slopeSet === null || slopeSet.has(t.window_id)) &&
-    (basketYesSet === null || basketYesSet.has(t.window_id)));
+// Filters one asset's full trade list down to what the currently-active
+// gate switches would have taken (AND across whichever are on). window_id
+// is unique per market/window within an asset, so it's a safe join key
+// back into the pre-filtered canary_variant/slope_variant/basket_yes_variant
+// trade lists the server already computed. An asset missing a gate (e.g.
+// copper has none; DOGE/ETH/ZEC have no canary rule) passes through
+// unfiltered on that dimension rather than being dropped -- "no gate
+// defined" isn't the same as "gate says no."
+const TOTAL_GATE_VARIANT_KEY = { canary: "canary_variant", slope: "slope_variant", basket_yes: "basket_yes_variant" };
+function portfolioTradesForAsset(asset, activeGates) {
+  const windowIdSets = [];
+  for (const mode of activeGates) {
+    const variant = asset[TOTAL_GATE_VARIANT_KEY[mode]];
+    if (variant) windowIdSets.push(new Set(variant.trades.map(t => t.window_id)));
+  }
+  if (!windowIdSets.length) return asset.trades;
+  return asset.trades.filter(t => windowIdSets.every(s => s.has(t.window_id)));
 }
 
-let totalGateMode = "all";
+const totalActiveGates = new Set();
 let latestAssetsForTotal = null;
 
 function renderTotal(assets) {
@@ -644,7 +679,7 @@ function renderTotal(assets) {
   const portfolio = PORTFOLIO_KEYS.filter(k => assets[k]).map(k => assets[k]);
   const cutoff = new Date(TOTAL_SINCE);
 
-  const filteredPerAsset = portfolio.map(a => portfolioTradesForAsset(a, totalGateMode));
+  const filteredPerAsset = portfolio.map(a => portfolioTradesForAsset(a, totalActiveGates));
 
   // Each asset's bankroll baseline is its starting capital plus whatever
   // it had already earned/lost before the cutoff (under this same gate
@@ -679,15 +714,13 @@ function renderTotal(assets) {
 
   renderChart("total", allTrades, startingBankroll, "var(--text-primary)");
 
-  const toggle = document.getElementById("total-gate-toggle");
-  if (toggle && !toggle.dataset.bound) {
-    toggle.dataset.bound = "1";
-    toggle.querySelectorAll(".canary-toggle-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        if (btn.classList.contains("active")) return;
-        toggle.querySelectorAll(".canary-toggle-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        totalGateMode = btn.dataset.mode;
+  const switches = document.getElementById("total-gate-switches");
+  if (switches && !switches.dataset.bound) {
+    switches.dataset.bound = "1";
+    switches.querySelectorAll(".gate-switch").forEach(label => {
+      const input = label.querySelector("input");
+      input.addEventListener("change", () => {
+        if (input.checked) totalActiveGates.add(label.dataset.mode); else totalActiveGates.delete(label.dataset.mode);
         renderTotal(latestAssetsForTotal);
       });
     });
