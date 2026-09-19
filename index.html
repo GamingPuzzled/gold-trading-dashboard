@@ -252,13 +252,19 @@ const ASSET_META = {
   natgas: { label: "Natural Gas", color: "var(--series-2)" },
 };
 
+const CANARY_META = {
+  btc:  { title: "&quot;Canary-gated&quot; skips a BTC signal if BNB or HYPE had a known loss in the preceding 15 minutes (2026-09-18 finding: shared crypto-market shocks tend to hit BTC shortly after). Tracked honestly going forward, no lookahead." },
+  near: { title: "&quot;Canary-gated&quot; skips a NEAR signal if ETH had a known loss in the preceding 15 minutes (2026-09-19 finding). Tracked honestly going forward, no lookahead." },
+};
+
 function assetSectionHTML(key, simulated) {
   const meta = ASSET_META[key] || { label: key, color: "var(--series-1)" };
   const badge = simulated
     ? `<span class="sim-badge" title="Paper-simulated from a passive orderbook watcher, not a real running bot -- same strategy logic (extreme_edge_signal.detect_favorite, threshold=0.85), fixed 10-contract size, no live bankroll behind it">simulated</span>`
     : "";
-  const canaryToggle = key === "btc" ? `
-    <div class="canary-toggle" id="btc-canary-toggle" title="&quot;Canary-gated&quot; skips a BTC signal if BNB or HYPE had a known loss in the preceding 15 minutes (2026-09-18 finding: shared crypto-market shocks tend to hit BTC shortly after). Tracked honestly going forward, no lookahead.">
+  const canaryInfo = CANARY_META[key];
+  const canaryToggle = canaryInfo ? `
+    <div class="canary-toggle" id="${key}-canary-toggle" title="${canaryInfo.title}">
       <button class="canary-toggle-btn active" data-mode="all">All signals</button>
       <button class="canary-toggle-btn" data-mode="canary">Canary-gated</button>
     </div>` : "";
@@ -520,16 +526,18 @@ function renderChart(key, trades, startingBankroll, color) {
   });
 }
 
-// BTC's "canary-gated" variant (2026-09-18 finding): skips a BTC signal if
-// BNB or HYPE had a known loss in the preceding 15 minutes. Toggle state is
-// per-page, not persisted -- defaults to "all signals" on every load.
-let btcViewMode = "all";
-let latestBtcData = null;
+// Per-asset "canary-gated" variants (see CANARY_META above): skip a signal
+// if its canary asset(s) had a known loss in the preceding 15 minutes.
+// Toggle state is per-page, not persisted -- defaults to "all signals" on
+// every load.
+const canaryViewMode = {};
+const latestCanaryData = {};
 
 function renderAsset(key, data) {
-  if (key === "btc") {
-    latestBtcData = data;
-    const toggle = document.getElementById("btc-canary-toggle");
+  if (CANARY_META[key]) {
+    latestCanaryData[key] = data;
+    const mode = canaryViewMode[key] || "all";
+    const toggle = document.getElementById(`${key}-canary-toggle`);
     if (toggle && !toggle.dataset.bound) {
       toggle.dataset.bound = "1";
       toggle.querySelectorAll(".canary-toggle-btn").forEach(btn => {
@@ -537,8 +545,8 @@ function renderAsset(key, data) {
           if (btn.classList.contains("active")) return;
           toggle.querySelectorAll(".canary-toggle-btn").forEach(b => b.classList.remove("active"));
           btn.classList.add("active");
-          btcViewMode = btn.dataset.mode;
-          renderAsset("btc", latestBtcData);
+          canaryViewMode[key] = btn.dataset.mode;
+          renderAsset(key, latestCanaryData[key]);
         });
       });
     }
@@ -548,7 +556,7 @@ function renderAsset(key, data) {
       canaryBtn.disabled = !hasCanaryData;
       canaryBtn.title = hasCanaryData ? "" : "No canary-tagged trades yet";
     }
-    if (btcViewMode === "canary" && hasCanaryData) {
+    if (mode === "canary" && hasCanaryData) {
       data = { ...data, ...data.canary_variant };
     }
   }
