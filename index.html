@@ -192,7 +192,13 @@
     <section class="asset-section" id="section-total" style="margin-top:0">
       <div class="asset-heading">
         <span class="asset-dot" style="background:var(--text-primary)"></span>
-        <h2>Total (all markets)</h2>
+        <h2>Portfolio (Copper, DOGE, NEAR, ETH, BTC, ZEC)</h2>
+      </div>
+      <div class="canary-toggle" id="total-gate-toggle">
+        <button class="canary-toggle-btn active" data-mode="all" title="No gate -- every signal at threshold 0.85">All signals</button>
+        <button class="canary-toggle-btn" data-mode="canary" title="Applies the canary gate to BTC and NEAR (their only defined rules: BTC<-BNB/HYPE, NEAR<-ETH). Copper/DOGE/ETH/ZEC have no canary rule, so their trades pass through unfiltered.">Canary-gated</button>
+        <button class="canary-toggle-btn" data-mode="slope" title="Applies the momentum gate (experimental, 2026-09-19) to every asset that has enough trailing history. Copper (a real bot, not in the paper-sim data this gate is built on) always passes through unfiltered.">Momentum-gated</button>
+        <button class="canary-toggle-btn" data-mode="both" title="Requires BOTH gates to say take (intersection) wherever a gate is defined for that asset; assets missing a gate pass through unfiltered on that dimension.">Canary + Momentum</button>
       </div>
       <div class="tiles">
         <div class="tile">
@@ -213,7 +219,7 @@
       </div>
       <div class="card">
         <p class="card-title">Combined bankroll over time</p>
-        <p class="card-note">Since 2026-09-16, when all 14 markets started being measured together -- gold/copper's own real trading history goes back further (see their own sections below), but combining that with the other 12 markets' shorter history would understate how new most of this portfolio is.</p>
+        <p class="card-note">Since 2026-09-16, when the sim-tracked markets in this portfolio started being measured -- copper's own real trading history goes back further (see its own section below), but combining that with the others' shorter history would understate how new most of this portfolio is.</p>
         <div id="total-chart-container"></div>
       </div>
     </section>
@@ -595,35 +601,62 @@ function renderAsset(key, data) {
 // total before this date would just be gold+copper alone, then a jump
 // when the rest join in, so the total starts here instead).
 const TOTAL_SINCE = "2026-09-16T15:54:00Z";
+const PORTFOLIO_KEYS = ["copper", "doge", "near", "eth", "btc", "zec"];
+
+// Filters one asset's full trade list down to what a given gate mode would
+// have taken. window_id is unique per market/window within an asset (one
+// trade per window per threshold), so it's a safe join key back into the
+// pre-filtered canary_variant/slope_variant trade lists the server already
+// computed. An asset missing a gate (e.g. copper has neither; DOGE/ETH/ZEC
+// have no canary rule) passes through unfiltered on that dimension rather
+// than being dropped -- "no gate defined" isn't the same as "gate says no."
+function portfolioTradesForAsset(asset, mode) {
+  if (mode === "all") return asset.trades;
+  const wantCanary = mode === "canary" || mode === "both";
+  const wantSlope = mode === "slope" || mode === "both";
+  const canarySet = (wantCanary && asset.canary_variant)
+    ? new Set(asset.canary_variant.trades.map(t => t.window_id)) : null;
+  const slopeSet = (wantSlope && asset.slope_variant)
+    ? new Set(asset.slope_variant.trades.map(t => t.window_id)) : null;
+  return asset.trades.filter(t =>
+    (canarySet === null || canarySet.has(t.window_id)) &&
+    (slopeSet === null || slopeSet.has(t.window_id)));
+}
+
+let totalGateMode = "all";
+let latestAssetsForTotal = null;
 
 function renderTotal(assets) {
-  const allAssets = Object.values(assets);
+  latestAssetsForTotal = assets;
+  const portfolio = PORTFOLIO_KEYS.filter(k => assets[k]).map(k => assets[k]);
   const cutoff = new Date(TOTAL_SINCE);
 
+  const filteredPerAsset = portfolio.map(a => portfolioTradesForAsset(a, totalGateMode));
+
   // Each asset's bankroll baseline is its starting capital plus whatever
-  // it had already earned/lost before the cutoff -- so the combined chart
-  // starts from "where every market actually stood" at that moment, not
-  // from each market's original inception.
-  const startingBankroll = allAssets.reduce((s, a) => {
-    const priorPnl = a.trades
+  // it had already earned/lost before the cutoff (under this same gate
+  // mode) -- so the combined chart starts from "where every market
+  // actually stood" at that moment, not from each market's own inception.
+  const startingBankroll = portfolio.reduce((s, a, i) => {
+    const priorPnl = filteredPerAsset[i]
       .filter(t => t.realized_pnl !== null && new Date(t.ts) < cutoff)
       .reduce((sum, t) => sum + t.realized_pnl, 0);
     return s + a.starting_bankroll + priorPnl;
   }, 0);
 
-  const allTrades = allAssets.flatMap(a => a.trades).filter(t => new Date(t.ts) >= cutoff);
+  const allTrades = filteredPerAsset.flat().filter(t => new Date(t.ts) >= cutoff);
   const totalPnl = allTrades.reduce((s, t) => s + (t.realized_pnl ?? 0), 0);
   const bankroll = startingBankroll + totalPnl;
 
   document.getElementById("total-tile-bankroll").textContent = fmtUSD(bankroll);
   const bankrollSub = document.getElementById("total-tile-bankroll-sub");
-  bankrollSub.textContent = (totalPnl >= 0 ? "+" : "") + fmtUSD(totalPnl) + " since all 14 markets started";
+  bankrollSub.textContent = (totalPnl >= 0 ? "+" : "") + fmtUSD(totalPnl) + " since portfolio tracking started";
   bankrollSub.className = "tile-sub " + (totalPnl >= 0 ? "pos" : "neg");
 
   document.getElementById("total-tile-pnl").textContent = fmtUSD(totalPnl);
   const pnlSub = document.getElementById("total-tile-pnl-sub");
   pnlSub.className = "tile-sub " + (totalPnl >= 0 ? "pos" : "neg");
-  pnlSub.textContent = `across ${Object.keys(assets).length} markets`;
+  pnlSub.textContent = `across ${portfolio.length} markets`;
 
   const settled = allTrades.filter(t => t.realized_pnl !== null);
   const wins = settled.filter(t => t.realized_pnl > 0).length;
@@ -632,6 +665,20 @@ function renderTotal(assets) {
     settled.length ? `${wins} won / ${settled.length - wins} lost` : "none settled yet";
 
   renderChart("total", allTrades, startingBankroll, "var(--text-primary)");
+
+  const toggle = document.getElementById("total-gate-toggle");
+  if (toggle && !toggle.dataset.bound) {
+    toggle.dataset.bound = "1";
+    toggle.querySelectorAll(".canary-toggle-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (btn.classList.contains("active")) return;
+        toggle.querySelectorAll(".canary-toggle-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        totalGateMode = btn.dataset.mode;
+        renderTotal(latestAssetsForTotal);
+      });
+    });
+  }
 }
 
 // Data on the server refreshes every 5 minutes (dashboard-export.timer) --
