@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T20:09:51.919369+00:00",
+  "generated_at": "2026-09-19T20:14:09.825911+00:00",
   "assets": {
     "gold": {
       "series_ticker": "KXGOLD15M",
@@ -14995,6 +14995,14 @@
           "price": 0.88,
           "size": 10,
           "realized_pnl": 1.13
+        },
+        {
+          "window_id": "KXETH15M-26SEP191615",
+          "ts": "2026-09-19T20:10:46.764749+00:00",
+          "side": "favorite_yes",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -25893,6 +25901,14 @@
           "price": 0.87,
           "size": 10,
           "realized_pnl": -8.78
+        },
+        {
+          "window_id": "KXDOGE15M-26SEP191615",
+          "ts": "2026-09-19T20:11:26.829437+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -30689,6 +30705,14 @@
           "price": 0.87,
           "size": 10,
           "realized_pnl": 1.22
+        },
+        {
+          "window_id": "KXZEC15M-26SEP191615",
+          "ts": "2026-09-19T20:12:48.131783+00:00",
+          "side": "favorite_yes",
+          "price": 0.89,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -35485,9 +35509,2209 @@
           "price": 0.9319999999999999,
           "size": 10,
           "realized_pnl": 0.6400000000000006
+        },
+        {
+          "window_id": "KXNEAR15M-26SEP191615",
+          "ts": "2026-09-19T20:11:03.164483+00:00",
+          "side": "favorite_yes",
+          "price": 0.9,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
-      "simulated": true
+      "simulated": true,
+      "canary_variant": {
+        "starting_bankroll": 100.0,
+        "bankroll": 123.83999999999986,
+        "strategy_stats": {
+          "favorite_yes": {
+            "wins": 136,
+            "n": 153
+          },
+          "favorite_no": {
+            "wins": 111,
+            "n": 118
+          }
+        },
+        "trades": [
+          {
+            "window_id": "KXNEAR15M-26SEP161200",
+            "ts": "2026-09-16T15:54:13.801990+00:00",
+            "side": "favorite_yes",
+            "price": 0.915,
+            "size": 10,
+            "realized_pnl": 0.7999999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161215",
+            "ts": "2026-09-16T16:11:38.982451+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161230",
+            "ts": "2026-09-16T16:24:19.468305+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161245",
+            "ts": "2026-09-16T16:42:59.074002+00:00",
+            "side": "favorite_no",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161300",
+            "ts": "2026-09-16T16:57:55.300476+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161315",
+            "ts": "2026-09-16T17:08:46.117490+00:00",
+            "side": "favorite_no",
+            "price": 0.916,
+            "size": 10,
+            "realized_pnl": 0.7899999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161330",
+            "ts": "2026-09-16T17:21:12.369724+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161345",
+            "ts": "2026-09-16T17:35:36.924384+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161400",
+            "ts": "2026-09-16T17:54:12.984902+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161415",
+            "ts": "2026-09-16T18:04:47.770162+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161430",
+            "ts": "2026-09-16T18:22:59.556820+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161515",
+            "ts": "2026-09-16T19:03:55.517318+00:00",
+            "side": "favorite_yes",
+            "price": 0.92,
+            "size": 10,
+            "realized_pnl": 0.7499999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161530",
+            "ts": "2026-09-16T19:21:56.189946+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161545",
+            "ts": "2026-09-16T19:35:37.061780+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161600",
+            "ts": "2026-09-16T19:48:01.250754+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161615",
+            "ts": "2026-09-16T20:05:26.221196+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": -8.870000000000001
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161630",
+            "ts": "2026-09-16T20:20:41.771967+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161700",
+            "ts": "2026-09-16T20:48:44.366942+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161715",
+            "ts": "2026-09-16T21:09:50.108553+00:00",
+            "side": "favorite_yes",
+            "price": 0.916,
+            "size": 10,
+            "realized_pnl": 0.7899999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161730",
+            "ts": "2026-09-16T21:21:01.803028+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161800",
+            "ts": "2026-09-16T21:48:36.524986+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161815",
+            "ts": "2026-09-16T22:08:53.576025+00:00",
+            "side": "favorite_no",
+            "price": 0.913,
+            "size": 10,
+            "realized_pnl": -9.190000000000001
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161830",
+            "ts": "2026-09-16T22:23:12.548208+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161845",
+            "ts": "2026-09-16T22:42:05.564823+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161900",
+            "ts": "2026-09-16T22:50:10.482226+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161915",
+            "ts": "2026-09-16T23:08:13.514233+00:00",
+            "side": "favorite_yes",
+            "price": 0.913,
+            "size": 10,
+            "realized_pnl": 0.8099999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161930",
+            "ts": "2026-09-16T23:17:27.794422+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP161945",
+            "ts": "2026-09-16T23:44:09.248758+00:00",
+            "side": "favorite_yes",
+            "price": 0.998,
+            "size": 10,
+            "realized_pnl": 0.020000000000000018
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP162000",
+            "ts": "2026-09-16T23:58:34.707146+00:00",
+            "side": "favorite_no",
+            "price": 0.903,
+            "size": 10,
+            "realized_pnl": 0.9099999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP162015",
+            "ts": "2026-09-17T00:10:23.482130+00:00",
+            "side": "favorite_yes",
+            "price": 0.909,
+            "size": 10,
+            "realized_pnl": 0.8499999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP162030",
+            "ts": "2026-09-17T00:19:20.649962+00:00",
+            "side": "favorite_yes",
+            "price": 0.916,
+            "size": 10,
+            "realized_pnl": 0.7899999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP162045",
+            "ts": "2026-09-17T00:44:12.989549+00:00",
+            "side": "favorite_no",
+            "price": 0.952,
+            "size": 10,
+            "realized_pnl": 0.4500000000000004
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP162100",
+            "ts": "2026-09-17T00:57:22.218692+00:00",
+            "side": "favorite_no",
+            "price": 0.923,
+            "size": 10,
+            "realized_pnl": 0.7199999999999995
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP162115",
+            "ts": "2026-09-17T01:05:07.747323+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP162130",
+            "ts": "2026-09-17T01:25:42.278606+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP162145",
+            "ts": "2026-09-17T01:34:45.180489+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP162200",
+            "ts": "2026-09-17T01:52:35.647590+00:00",
+            "side": "favorite_no",
+            "price": 0.91,
+            "size": 10,
+            "realized_pnl": 0.8399999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP162215",
+            "ts": "2026-09-17T02:07:14.409470+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP162230",
+            "ts": "2026-09-17T02:26:57.581939+00:00",
+            "side": "favorite_yes",
+            "price": 0.916,
+            "size": 10,
+            "realized_pnl": 0.7899999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP162300",
+            "ts": "2026-09-17T02:55:47.851212+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP162315",
+            "ts": "2026-09-17T03:04:17.795947+00:00",
+            "side": "favorite_yes",
+            "price": 0.92,
+            "size": 10,
+            "realized_pnl": 0.7499999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP162330",
+            "ts": "2026-09-17T03:22:42.399264+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP162345",
+            "ts": "2026-09-17T03:32:44.439051+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170000",
+            "ts": "2026-09-17T03:54:37.939872+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170015",
+            "ts": "2026-09-17T04:03:03.326091+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170030",
+            "ts": "2026-09-17T04:18:29.773776+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170045",
+            "ts": "2026-09-17T04:37:14.148056+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170100",
+            "ts": "2026-09-17T04:58:10.421237+00:00",
+            "side": "favorite_no",
+            "price": 0.9319999999999999,
+            "size": 10,
+            "realized_pnl": 0.6400000000000006
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170115",
+            "ts": "2026-09-17T05:05:02.119027+00:00",
+            "side": "favorite_no",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170130",
+            "ts": "2026-09-17T05:24:51.307817+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170145",
+            "ts": "2026-09-17T05:39:04.421009+00:00",
+            "side": "favorite_no",
+            "price": 0.91,
+            "size": 10,
+            "realized_pnl": 0.8399999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170200",
+            "ts": "2026-09-17T05:48:19.126131+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170215",
+            "ts": "2026-09-17T06:06:43.221963+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170230",
+            "ts": "2026-09-17T06:21:19.726454+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170245",
+            "ts": "2026-09-17T06:36:21.032205+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170300",
+            "ts": "2026-09-17T06:58:15.885153+00:00",
+            "side": "favorite_no",
+            "price": 0.937,
+            "size": 10,
+            "realized_pnl": 0.5899999999999994
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170515",
+            "ts": "2026-09-17T09:06:12.551021+00:00",
+            "side": "favorite_yes",
+            "price": 0.913,
+            "size": 10,
+            "realized_pnl": 0.8099999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170530",
+            "ts": "2026-09-17T09:20:28.451906+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170545",
+            "ts": "2026-09-17T09:35:45.715339+00:00",
+            "side": "favorite_yes",
+            "price": 0.92,
+            "size": 10,
+            "realized_pnl": 0.7499999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170615",
+            "ts": "2026-09-17T10:04:55.888104+00:00",
+            "side": "favorite_no",
+            "price": 0.925,
+            "size": 10,
+            "realized_pnl": 0.6999999999999995
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170630",
+            "ts": "2026-09-17T10:23:41.463899+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170645",
+            "ts": "2026-09-17T10:37:13.367170+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170700",
+            "ts": "2026-09-17T10:55:33.201054+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170715",
+            "ts": "2026-09-17T11:09:15.630174+00:00",
+            "side": "favorite_yes",
+            "price": 0.901,
+            "size": 10,
+            "realized_pnl": 0.9299999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170730",
+            "ts": "2026-09-17T11:21:49.587271+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170745",
+            "ts": "2026-09-17T11:42:05.895951+00:00",
+            "side": "favorite_no",
+            "price": 0.912,
+            "size": 10,
+            "realized_pnl": 0.8199999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170800",
+            "ts": "2026-09-17T11:48:15.576286+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170815",
+            "ts": "2026-09-17T12:13:05.666911+00:00",
+            "side": "favorite_yes",
+            "price": 0.978,
+            "size": 10,
+            "realized_pnl": 0.2000000000000002
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170830",
+            "ts": "2026-09-17T12:22:21.055078+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170845",
+            "ts": "2026-09-17T12:39:36.572806+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170900",
+            "ts": "2026-09-17T12:51:02.280845+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170915",
+            "ts": "2026-09-17T13:05:37.180221+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170930",
+            "ts": "2026-09-17T13:26:19.357528+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP170945",
+            "ts": "2026-09-17T13:39:05.955296+00:00",
+            "side": "favorite_no",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171000",
+            "ts": "2026-09-17T13:49:18.341019+00:00",
+            "side": "favorite_yes",
+            "price": 0.901,
+            "size": 10,
+            "realized_pnl": 0.9299999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171015",
+            "ts": "2026-09-17T14:02:27.326986+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": -8.97
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171045",
+            "ts": "2026-09-17T14:36:05.855225+00:00",
+            "side": "favorite_no",
+            "price": 0.92,
+            "size": 10,
+            "realized_pnl": 0.7499999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171100",
+            "ts": "2026-09-17T14:51:16.850388+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171115",
+            "ts": "2026-09-17T15:09:04.710103+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171130",
+            "ts": "2026-09-17T15:27:54.519304+00:00",
+            "side": "favorite_no",
+            "price": 0.901,
+            "size": 10,
+            "realized_pnl": 0.9299999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171145",
+            "ts": "2026-09-17T15:37:11.806888+00:00",
+            "side": "favorite_yes",
+            "price": 0.901,
+            "size": 10,
+            "realized_pnl": 0.9299999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171200",
+            "ts": "2026-09-17T15:53:08.360071+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171215",
+            "ts": "2026-09-17T16:05:25.103286+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171230",
+            "ts": "2026-09-17T16:18:04.217214+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171245",
+            "ts": "2026-09-17T16:42:56.595030+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171300",
+            "ts": "2026-09-17T16:52:12.800294+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171315",
+            "ts": "2026-09-17T17:03:38.086770+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171330",
+            "ts": "2026-09-17T17:28:23.969627+00:00",
+            "side": "favorite_no",
+            "price": 0.961,
+            "size": 10,
+            "realized_pnl": 0.3600000000000003
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171345",
+            "ts": "2026-09-17T17:41:26.487661+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171400",
+            "ts": "2026-09-17T17:50:31.986059+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171415",
+            "ts": "2026-09-17T18:10:38.370408+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171430",
+            "ts": "2026-09-17T18:21:14.301408+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171445",
+            "ts": "2026-09-17T18:34:03.443872+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171500",
+            "ts": "2026-09-17T18:53:29.670358+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171515",
+            "ts": "2026-09-17T19:01:37.346574+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171545",
+            "ts": "2026-09-17T19:38:00.187752+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171600",
+            "ts": "2026-09-17T19:53:15.825365+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171630",
+            "ts": "2026-09-17T20:17:18.143178+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": -8.78
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171645",
+            "ts": "2026-09-17T20:43:13.795279+00:00",
+            "side": "favorite_yes",
+            "price": 0.937,
+            "size": 10,
+            "realized_pnl": 0.5899999999999994
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171700",
+            "ts": "2026-09-17T20:59:30.397045+00:00",
+            "side": "favorite_no",
+            "price": 0.989,
+            "size": 10,
+            "realized_pnl": 0.1000000000000001
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171715",
+            "ts": "2026-09-17T21:14:26.740915+00:00",
+            "side": "favorite_no",
+            "price": 0.91,
+            "size": 10,
+            "realized_pnl": 0.8399999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171730",
+            "ts": "2026-09-17T21:24:17.460137+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171745",
+            "ts": "2026-09-17T21:38:03.596248+00:00",
+            "side": "favorite_yes",
+            "price": 0.926,
+            "size": 10,
+            "realized_pnl": 0.6899999999999995
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171815",
+            "ts": "2026-09-17T22:12:35.169771+00:00",
+            "side": "favorite_no",
+            "price": 0.902,
+            "size": 10,
+            "realized_pnl": 0.9199999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171830",
+            "ts": "2026-09-17T22:28:25.550361+00:00",
+            "side": "favorite_yes",
+            "price": 0.915,
+            "size": 10,
+            "realized_pnl": 0.7999999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171845",
+            "ts": "2026-09-17T22:38:12.717524+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171900",
+            "ts": "2026-09-17T22:46:29.639771+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171915",
+            "ts": "2026-09-17T23:05:30.417299+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171930",
+            "ts": "2026-09-17T23:25:37.243049+00:00",
+            "side": "favorite_yes",
+            "price": 0.928,
+            "size": 10,
+            "realized_pnl": 0.6699999999999995
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP171945",
+            "ts": "2026-09-17T23:35:57.449417+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP172000",
+            "ts": "2026-09-17T23:52:16.648255+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP172015",
+            "ts": "2026-09-18T00:12:10.089208+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": -8.78
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP172030",
+            "ts": "2026-09-18T00:17:03.243029+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP172045",
+            "ts": "2026-09-18T00:37:54.098199+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP172100",
+            "ts": "2026-09-18T00:50:43.655552+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP172115",
+            "ts": "2026-09-18T01:02:38.560569+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP172130",
+            "ts": "2026-09-18T01:19:29.290573+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP172200",
+            "ts": "2026-09-18T01:57:06.415580+00:00",
+            "side": "favorite_no",
+            "price": 0.95,
+            "size": 10,
+            "realized_pnl": 0.4700000000000004
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP172215",
+            "ts": "2026-09-18T02:12:46.081925+00:00",
+            "side": "favorite_no",
+            "price": 0.956,
+            "size": 10,
+            "realized_pnl": 0.41000000000000036
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP172230",
+            "ts": "2026-09-18T02:17:27.138556+00:00",
+            "side": "favorite_yes",
+            "price": 0.916,
+            "size": 10,
+            "realized_pnl": 0.7899999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP172245",
+            "ts": "2026-09-18T02:42:17.439058+00:00",
+            "side": "favorite_no",
+            "price": 0.926,
+            "size": 10,
+            "realized_pnl": 0.6899999999999995
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP172300",
+            "ts": "2026-09-18T02:54:22.327598+00:00",
+            "side": "favorite_yes",
+            "price": 0.901,
+            "size": 10,
+            "realized_pnl": 0.9299999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP172315",
+            "ts": "2026-09-18T03:02:45.076009+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP172330",
+            "ts": "2026-09-18T03:21:23.243760+00:00",
+            "side": "favorite_no",
+            "price": 0.928,
+            "size": 10,
+            "realized_pnl": 0.6699999999999995
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP172345",
+            "ts": "2026-09-18T03:43:21.110166+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": -9.06
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180000",
+            "ts": "2026-09-18T03:49:09.814277+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180015",
+            "ts": "2026-09-18T04:09:44.479778+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180030",
+            "ts": "2026-09-18T04:23:54.856864+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180045",
+            "ts": "2026-09-18T04:37:29.847312+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180100",
+            "ts": "2026-09-18T04:47:31.852504+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180115",
+            "ts": "2026-09-18T05:03:36.865193+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180130",
+            "ts": "2026-09-18T05:21:17.327681+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180145",
+            "ts": "2026-09-18T05:41:47.244471+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180215",
+            "ts": "2026-09-18T06:06:49.806357+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180230",
+            "ts": "2026-09-18T06:19:29.143289+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180245",
+            "ts": "2026-09-18T06:36:29.630278+00:00",
+            "side": "favorite_yes",
+            "price": 0.9299999999999999,
+            "size": 10,
+            "realized_pnl": 0.6500000000000006
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180300",
+            "ts": "2026-09-18T06:52:10.622473+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": -8.870000000000001
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180330",
+            "ts": "2026-09-18T07:26:33.480959+00:00",
+            "side": "favorite_no",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180345",
+            "ts": "2026-09-18T07:35:36.200383+00:00",
+            "side": "favorite_yes",
+            "price": 0.918,
+            "size": 10,
+            "realized_pnl": 0.7699999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180400",
+            "ts": "2026-09-18T07:50:38.908392+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180415",
+            "ts": "2026-09-18T08:06:10.061016+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180430",
+            "ts": "2026-09-18T08:27:52.944985+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180445",
+            "ts": "2026-09-18T08:39:14.441518+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180500",
+            "ts": "2026-09-18T08:47:03.496503+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180515",
+            "ts": "2026-09-18T09:07:03.793906+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180530",
+            "ts": "2026-09-18T09:19:28.543483+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180600",
+            "ts": "2026-09-18T09:49:43.615230+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": -8.870000000000001
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180615",
+            "ts": "2026-09-18T10:09:43.304283+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180630",
+            "ts": "2026-09-18T10:24:05.705753+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180645",
+            "ts": "2026-09-18T10:44:06.878580+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180700",
+            "ts": "2026-09-18T10:53:01.096486+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180745",
+            "ts": "2026-09-18T11:34:38.461558+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180800",
+            "ts": "2026-09-18T11:58:30.311320+00:00",
+            "side": "favorite_no",
+            "price": 0.9359999999999999,
+            "size": 10,
+            "realized_pnl": 0.6000000000000005
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180815",
+            "ts": "2026-09-18T12:09:19.705468+00:00",
+            "side": "favorite_no",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180830",
+            "ts": "2026-09-18T12:22:08.507500+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180845",
+            "ts": "2026-09-18T12:33:38.394908+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180900",
+            "ts": "2026-09-18T12:50:40.184782+00:00",
+            "side": "favorite_yes",
+            "price": 0.909,
+            "size": 10,
+            "realized_pnl": 0.8499999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180915",
+            "ts": "2026-09-18T13:10:26.577226+00:00",
+            "side": "favorite_no",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180930",
+            "ts": "2026-09-18T13:18:16.373736+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP180945",
+            "ts": "2026-09-18T13:32:03.404283+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181000",
+            "ts": "2026-09-18T13:47:07.623053+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181015",
+            "ts": "2026-09-18T14:05:31.675534+00:00",
+            "side": "favorite_yes",
+            "price": 0.901,
+            "size": 10,
+            "realized_pnl": 0.9299999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181030",
+            "ts": "2026-09-18T14:22:24.855985+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": -9.06
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181045",
+            "ts": "2026-09-18T14:39:07.727039+00:00",
+            "side": "favorite_yes",
+            "price": 0.949,
+            "size": 10,
+            "realized_pnl": 0.4800000000000004
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181100",
+            "ts": "2026-09-18T14:53:02.776966+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181115",
+            "ts": "2026-09-18T15:02:24.760478+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181130",
+            "ts": "2026-09-18T15:21:01.781261+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181145",
+            "ts": "2026-09-18T15:38:23.495942+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181200",
+            "ts": "2026-09-18T15:52:25.799182+00:00",
+            "side": "favorite_yes",
+            "price": 0.948,
+            "size": 10,
+            "realized_pnl": -9.51
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181215",
+            "ts": "2026-09-18T16:06:51.867229+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181230",
+            "ts": "2026-09-18T16:22:12.983484+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181245",
+            "ts": "2026-09-18T16:31:48.300239+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181300",
+            "ts": "2026-09-18T16:54:19.467531+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181315",
+            "ts": "2026-09-18T17:02:19.486435+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181330",
+            "ts": "2026-09-18T17:20:58.569556+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181345",
+            "ts": "2026-09-18T17:39:28.595548+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181415",
+            "ts": "2026-09-18T18:09:58.288419+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": -8.97
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181430",
+            "ts": "2026-09-18T18:27:48.425563+00:00",
+            "side": "favorite_no",
+            "price": 0.914,
+            "size": 10,
+            "realized_pnl": 0.7999999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181445",
+            "ts": "2026-09-18T18:36:03.836287+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181500",
+            "ts": "2026-09-18T18:53:29.394997+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181515",
+            "ts": "2026-09-18T19:05:03.202329+00:00",
+            "side": "favorite_yes",
+            "price": 0.924,
+            "size": 10,
+            "realized_pnl": 0.7099999999999995
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181530",
+            "ts": "2026-09-18T19:21:13.643531+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181545",
+            "ts": "2026-09-18T19:37:28.734058+00:00",
+            "side": "favorite_no",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181615",
+            "ts": "2026-09-18T20:04:18.843127+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181630",
+            "ts": "2026-09-18T20:17:39.319740+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181645",
+            "ts": "2026-09-18T20:35:24.342557+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181700",
+            "ts": "2026-09-18T20:54:34.467043+00:00",
+            "side": "favorite_no",
+            "price": 0.916,
+            "size": 10,
+            "realized_pnl": 0.7899999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181715",
+            "ts": "2026-09-18T21:12:54.511526+00:00",
+            "side": "favorite_yes",
+            "price": 0.901,
+            "size": 10,
+            "realized_pnl": 0.9299999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181730",
+            "ts": "2026-09-18T21:22:39.532600+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181745",
+            "ts": "2026-09-18T21:34:19.166770+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181815",
+            "ts": "2026-09-18T22:05:44.681358+00:00",
+            "side": "favorite_no",
+            "price": 0.901,
+            "size": 10,
+            "realized_pnl": 0.9299999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181830",
+            "ts": "2026-09-18T22:21:34.395035+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181845",
+            "ts": "2026-09-18T22:34:24.760481+00:00",
+            "side": "favorite_no",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181900",
+            "ts": "2026-09-18T22:52:40.730519+00:00",
+            "side": "favorite_yes",
+            "price": 0.901,
+            "size": 10,
+            "realized_pnl": 0.9299999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181915",
+            "ts": "2026-09-18T23:11:54.446263+00:00",
+            "side": "favorite_yes",
+            "price": 0.948,
+            "size": 10,
+            "realized_pnl": 0.49000000000000044
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181930",
+            "ts": "2026-09-18T23:21:30.323227+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP181945",
+            "ts": "2026-09-18T23:33:34.901804+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP182000",
+            "ts": "2026-09-18T23:50:34.961938+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": -8.870000000000001
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP182015",
+            "ts": "2026-09-19T00:07:00.017258+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP182030",
+            "ts": "2026-09-19T00:17:20.141710+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP182045",
+            "ts": "2026-09-19T00:42:55.181851+00:00",
+            "side": "favorite_no",
+            "price": 0.901,
+            "size": 10,
+            "realized_pnl": 0.9299999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP182100",
+            "ts": "2026-09-19T00:51:39.798402+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP182115",
+            "ts": "2026-09-19T01:06:49.884311+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP182130",
+            "ts": "2026-09-19T01:26:20.387843+00:00",
+            "side": "favorite_yes",
+            "price": 0.916,
+            "size": 10,
+            "realized_pnl": 0.7899999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP182145",
+            "ts": "2026-09-19T01:34:05.390436+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": -8.97
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP182200",
+            "ts": "2026-09-19T01:50:09.611761+00:00",
+            "side": "favorite_no",
+            "price": 0.924,
+            "size": 10,
+            "realized_pnl": 0.7099999999999995
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP182215",
+            "ts": "2026-09-19T02:09:25.114920+00:00",
+            "side": "favorite_yes",
+            "price": 0.915,
+            "size": 10,
+            "realized_pnl": 0.7999999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP182230",
+            "ts": "2026-09-19T02:19:00.526672+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP182245",
+            "ts": "2026-09-19T02:32:00.585418+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": -9.06
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP182300",
+            "ts": "2026-09-19T02:48:05.150987+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP182315",
+            "ts": "2026-09-19T03:05:24.808951+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP182330",
+            "ts": "2026-09-19T03:24:24.819072+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP182345",
+            "ts": "2026-09-19T03:36:44.861861+00:00",
+            "side": "favorite_no",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190015",
+            "ts": "2026-09-19T04:08:39.947616+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": -8.870000000000001
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190030",
+            "ts": "2026-09-19T04:20:45.005235+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": -8.870000000000001
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190045",
+            "ts": "2026-09-19T04:32:15.032388+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190100",
+            "ts": "2026-09-19T04:53:15.109332+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190115",
+            "ts": "2026-09-19T05:09:04.389472+00:00",
+            "side": "favorite_yes",
+            "price": 0.95,
+            "size": 10,
+            "realized_pnl": 0.4700000000000004
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190130",
+            "ts": "2026-09-19T05:23:29.386095+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": -8.97
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190145",
+            "ts": "2026-09-19T05:38:40.270629+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": -8.78
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190215",
+            "ts": "2026-09-19T06:07:50.332860+00:00",
+            "side": "favorite_no",
+            "price": 0.964,
+            "size": 10,
+            "realized_pnl": 0.3400000000000003
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190230",
+            "ts": "2026-09-19T06:26:20.382666+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190245",
+            "ts": "2026-09-19T06:36:00.439948+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190300",
+            "ts": "2026-09-19T06:58:44.631952+00:00",
+            "side": "favorite_yes",
+            "price": 0.923,
+            "size": 10,
+            "realized_pnl": 0.7199999999999995
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190315",
+            "ts": "2026-09-19T07:07:00.511540+00:00",
+            "side": "favorite_no",
+            "price": 0.909,
+            "size": 10,
+            "realized_pnl": 0.8499999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190330",
+            "ts": "2026-09-19T07:19:35.544962+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190400",
+            "ts": "2026-09-19T07:50:20.604205+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190415",
+            "ts": "2026-09-19T08:14:30.711255+00:00",
+            "side": "favorite_yes",
+            "price": 0.979,
+            "size": 10,
+            "realized_pnl": 0.20000000000000018
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190430",
+            "ts": "2026-09-19T08:21:00.761134+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190445",
+            "ts": "2026-09-19T08:39:10.796623+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190500",
+            "ts": "2026-09-19T08:55:30.887567+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": -8.870000000000001
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190515",
+            "ts": "2026-09-19T09:07:35.878124+00:00",
+            "side": "favorite_no",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190530",
+            "ts": "2026-09-19T09:18:25.903495+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190545",
+            "ts": "2026-09-19T09:39:06.020380+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190600",
+            "ts": "2026-09-19T09:48:41.023048+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190615",
+            "ts": "2026-09-19T10:04:21.075941+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190630",
+            "ts": "2026-09-19T10:16:16.105995+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190645",
+            "ts": "2026-09-19T10:32:00.320235+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": -8.97
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190700",
+            "ts": "2026-09-19T10:51:21.247962+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190715",
+            "ts": "2026-09-19T11:12:21.310157+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190745",
+            "ts": "2026-09-19T11:36:51.372491+00:00",
+            "side": "favorite_yes",
+            "price": 0.925,
+            "size": 10,
+            "realized_pnl": 0.6999999999999995
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190800",
+            "ts": "2026-09-19T11:55:50.646234+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190815",
+            "ts": "2026-09-19T12:04:50.699196+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190830",
+            "ts": "2026-09-19T12:21:21.577219+00:00",
+            "side": "favorite_no",
+            "price": 0.913,
+            "size": 10,
+            "realized_pnl": 0.8099999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190845",
+            "ts": "2026-09-19T12:36:30.841477+00:00",
+            "side": "favorite_no",
+            "price": 0.927,
+            "size": 10,
+            "realized_pnl": 0.6799999999999995
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190900",
+            "ts": "2026-09-19T12:52:51.688960+00:00",
+            "side": "favorite_yes",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": -8.97
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190915",
+            "ts": "2026-09-19T13:05:11.734490+00:00",
+            "side": "favorite_no",
+            "price": 0.9339999999999999,
+            "size": 10,
+            "realized_pnl": 0.6200000000000006
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP190930",
+            "ts": "2026-09-19T13:27:36.841736+00:00",
+            "side": "favorite_no",
+            "price": 0.96,
+            "size": 10,
+            "realized_pnl": 0.37000000000000033
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191000",
+            "ts": "2026-09-19T13:54:36.503554+00:00",
+            "side": "favorite_yes",
+            "price": 0.907,
+            "size": 10,
+            "realized_pnl": 0.8699999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191015",
+            "ts": "2026-09-19T14:03:21.082418+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191030",
+            "ts": "2026-09-19T14:27:31.598541+00:00",
+            "side": "favorite_yes",
+            "price": 0.947,
+            "size": 10,
+            "realized_pnl": 0.4900000000000005
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191045",
+            "ts": "2026-09-19T14:35:37.042930+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191100",
+            "ts": "2026-09-19T14:55:12.120341+00:00",
+            "side": "favorite_yes",
+            "price": 0.921,
+            "size": 10,
+            "realized_pnl": 0.7399999999999995
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191115",
+            "ts": "2026-09-19T15:04:26.314320+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": -8.870000000000001
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191130",
+            "ts": "2026-09-19T15:18:01.388169+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191145",
+            "ts": "2026-09-19T15:34:17.229068+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": -8.78
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191200",
+            "ts": "2026-09-19T15:51:42.272931+00:00",
+            "side": "favorite_yes",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191215",
+            "ts": "2026-09-19T16:09:07.381067+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191245",
+            "ts": "2026-09-19T16:42:52.418341+00:00",
+            "side": "favorite_yes",
+            "price": 0.946,
+            "size": 10,
+            "realized_pnl": 0.5000000000000004
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191300",
+            "ts": "2026-09-19T16:54:42.464205+00:00",
+            "side": "favorite_no",
+            "price": 0.91,
+            "size": 10,
+            "realized_pnl": -9.16
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191315",
+            "ts": "2026-09-19T17:08:36.732855+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191330",
+            "ts": "2026-09-19T17:27:17.598945+00:00",
+            "side": "favorite_yes",
+            "price": 0.942,
+            "size": 10,
+            "realized_pnl": 0.5400000000000005
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191400",
+            "ts": "2026-09-19T17:55:27.696777+00:00",
+            "side": "favorite_no",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191415",
+            "ts": "2026-09-19T18:07:41.903534+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191430",
+            "ts": "2026-09-19T18:22:12.857902+00:00",
+            "side": "favorite_no",
+            "price": 0.89,
+            "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191445",
+            "ts": "2026-09-19T18:33:22.857008+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191500",
+            "ts": "2026-09-19T18:51:32.892696+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191515",
+            "ts": "2026-09-19T19:05:57.957154+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191530",
+            "ts": "2026-09-19T19:21:03.037746+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191545",
+            "ts": "2026-09-19T19:39:08.070973+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": 1.13
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191600",
+            "ts": "2026-09-19T19:59:08.122146+00:00",
+            "side": "favorite_no",
+            "price": 0.9319999999999999,
+            "size": 10,
+            "realized_pnl": 0.6400000000000006
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP191615",
+            "ts": "2026-09-19T20:11:03.164483+00:00",
+            "side": "favorite_yes",
+            "price": 0.9,
+            "size": 10,
+            "realized_pnl": null
+          }
+        ]
+      }
     },
     "natgas": {
       "series_ticker": "KXNATGAS15M",
