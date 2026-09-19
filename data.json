@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T02:46:14.761094+00:00",
+  "generated_at": "2026-09-19T02:51:34.683760+00:00",
   "assets": {
     "gold": {
       "series_ticker": "KXGOLD15M",
@@ -15245,6 +15245,14 @@
           "price": 0.89,
           "size": 10,
           "realized_pnl": 1.0299999999999998
+        },
+        {
+          "window_id": "KXXRP15M-26SEP182300",
+          "ts": "2026-09-19T02:50:48.336465+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -26241,6 +26249,14 @@
           "price": 0.903,
           "size": 10,
           "realized_pnl": 0.9099999999999997
+        },
+        {
+          "window_id": "KXZEC15M-26SEP182300",
+          "ts": "2026-09-19T02:48:43.872868+00:00",
+          "side": "favorite_yes",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -26248,15 +26264,15 @@
     "bnb": {
       "series_ticker": "KXBNB15M",
       "starting_bankroll": 100.0,
-      "bankroll": 82.93999999999998,
+      "bankroll": 83.87999999999998,
       "strategy_stats": {
         "favorite_yes": {
           "wins": 110,
           "n": 123
         },
         "favorite_no": {
-          "wins": 92,
-          "n": 104
+          "wins": 93,
+          "n": 105
         }
       },
       "trades": [
@@ -28082,7 +28098,7 @@
           "side": "favorite_no",
           "price": 0.9,
           "size": 10,
-          "realized_pnl": null
+          "realized_pnl": 0.9399999999999997
         }
       ],
       "simulated": true
@@ -29925,6 +29941,14 @@
           "price": 0.9,
           "size": 10,
           "realized_pnl": -9.06
+        },
+        {
+          "window_id": "KXNEAR15M-26SEP182300",
+          "ts": "2026-09-19T02:48:05.150987+00:00",
+          "side": "favorite_yes",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
