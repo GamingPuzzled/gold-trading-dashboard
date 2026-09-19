@@ -252,21 +252,40 @@ const ASSET_META = {
   natgas: { label: "Natural Gas", color: "var(--series-2)" },
 };
 
-const CANARY_META = {
-  btc:  { title: "&quot;Canary-gated&quot; skips a BTC signal if BNB or HYPE had a known loss in the preceding 15 minutes (2026-09-18 finding: shared crypto-market shocks tend to hit BTC shortly after). Tracked honestly going forward, no lookahead." },
-  near: { title: "&quot;Canary-gated&quot; skips a NEAR signal if ETH had a known loss in the preceding 15 minutes (2026-09-19 finding). Tracked honestly going forward, no lookahead." },
+// Each entry: { variant: JSON key holding the gated {bankroll, trades, ...}
+// data, mode: toggle button's data-mode, label, title }. Order matters --
+// first entry per asset renders first (after "All signals").
+const MOMENTUM_TITLE = "&quot;Momentum-gated&quot; (2026-09-19, EXPERIMENTAL -- not used for the deployed strategy) skips a signal unless this asset's own trailing 20 resolved trades show a rising cumulative-PnL trend. Backtests were mixed across assets and window sizes, a sign of overfitting a short history rather than a real effect -- tracked honestly (no lookahead) to see if it holds up with more data.";
+const GATE_META = {
+  btc: [
+    { variant: "canary_variant", mode: "canary", label: "Canary-gated",
+      title: "&quot;Canary-gated&quot; skips a BTC signal if BNB or HYPE had a known loss in the preceding 15 minutes (2026-09-18 finding: shared crypto-market shocks tend to hit BTC shortly after). Tracked honestly going forward, no lookahead." },
+  ],
+  near: [
+    { variant: "canary_variant", mode: "canary", label: "Canary-gated",
+      title: "&quot;Canary-gated&quot; skips a NEAR signal if ETH had a known loss in the preceding 15 minutes (2026-09-19 finding). Tracked honestly going forward, no lookahead." },
+    { variant: "slope_variant", mode: "slope", label: "Momentum (experimental)", title: MOMENTUM_TITLE },
+  ],
 };
+// The momentum/slope gate is tracked for every simulated market (see
+// backtest/live_paper_simulator.py's tag_slope_gate) -- wire it up for the
+// rest of them too, generically. Whether a toggle actually shows still
+// depends on that asset having enough resolved trades (slope_variant present).
+for (const key of Object.keys(ASSET_META)) {
+  if (key === "gold" || key === "copper" || key === "near" || key === "btc") continue;
+  GATE_META[key] = [{ variant: "slope_variant", mode: "slope", label: "Momentum (experimental)", title: MOMENTUM_TITLE }];
+}
 
 function assetSectionHTML(key, simulated) {
   const meta = ASSET_META[key] || { label: key, color: "var(--series-1)" };
   const badge = simulated
     ? `<span class="sim-badge" title="Paper-simulated from a passive orderbook watcher, not a real running bot -- same strategy logic (extreme_edge_signal.detect_favorite, threshold=0.85), fixed 10-contract size, no live bankroll behind it">simulated</span>`
     : "";
-  const canaryInfo = CANARY_META[key];
-  const canaryToggle = canaryInfo ? `
-    <div class="canary-toggle" id="${key}-canary-toggle" title="${canaryInfo.title}">
-      <button class="canary-toggle-btn active" data-mode="all">All signals</button>
-      <button class="canary-toggle-btn" data-mode="canary">Canary-gated</button>
+  const gates = GATE_META[key];
+  const canaryToggle = gates ? `
+    <div class="canary-toggle" id="${key}-canary-toggle">
+      <button class="canary-toggle-btn active" data-mode="all" title="No gate -- every signal at threshold 0.85">All signals</button>
+      ${gates.map(g => `<button class="canary-toggle-btn" data-mode="${g.mode}" title="${g.title}">${g.label}</button>`).join("\n      ")}
     </div>` : "";
   return `
     <section class="asset-section" id="section-${key}">
@@ -526,38 +545,42 @@ function renderChart(key, trades, startingBankroll, color) {
   });
 }
 
-// Per-asset "canary-gated" variants (see CANARY_META above): skip a signal
-// if its canary asset(s) had a known loss in the preceding 15 minutes.
-// Toggle state is per-page, not persisted -- defaults to "all signals" on
-// every load.
-const canaryViewMode = {};
-const latestCanaryData = {};
+// Per-asset gated variants (see GATE_META above): each mode swaps in a
+// {bankroll, trades, ...} slice pre-filtered by the paper simulator (canary
+// gate, momentum/slope gate, ...). Toggle state is per-page, not persisted
+// -- defaults to "all signals" on every load.
+const gateViewMode = {};
+const latestGateData = {};
 
 function renderAsset(key, data) {
-  if (CANARY_META[key]) {
-    latestCanaryData[key] = data;
-    const mode = canaryViewMode[key] || "all";
+  const gates = GATE_META[key];
+  if (gates) {
+    latestGateData[key] = data;
+    const mode = gateViewMode[key] || "all";
     const toggle = document.getElementById(`${key}-canary-toggle`);
     if (toggle && !toggle.dataset.bound) {
       toggle.dataset.bound = "1";
       toggle.querySelectorAll(".canary-toggle-btn").forEach(btn => {
         btn.addEventListener("click", () => {
-          if (btn.classList.contains("active")) return;
+          if (btn.classList.contains("active") || btn.disabled) return;
           toggle.querySelectorAll(".canary-toggle-btn").forEach(b => b.classList.remove("active"));
           btn.classList.add("active");
-          canaryViewMode[key] = btn.dataset.mode;
-          renderAsset(key, latestCanaryData[key]);
+          gateViewMode[key] = btn.dataset.mode;
+          renderAsset(key, latestGateData[key]);
         });
       });
     }
-    const hasCanaryData = !!data.canary_variant;
-    if (toggle) {
-      const canaryBtn = toggle.querySelector('[data-mode="canary"]');
-      canaryBtn.disabled = !hasCanaryData;
-      canaryBtn.title = hasCanaryData ? "" : "No canary-tagged trades yet";
+    const activeGate = gates.find(g => g.mode === mode);
+    for (const g of gates) {
+      const btn = toggle && toggle.querySelector(`[data-mode="${g.mode}"]`);
+      const hasData = !!data[g.variant];
+      if (btn) {
+        btn.disabled = !hasData;
+        btn.title = hasData ? g.title.replace(/&quot;/g, '"') : "No tagged trades yet";
+      }
     }
-    if (mode === "canary" && hasCanaryData) {
-      data = { ...data, ...data.canary_variant };
+    if (activeGate && data[activeGate.variant]) {
+      data = { ...data, ...data[activeGate.variant] };
     }
   }
   renderTiles(key, data);
