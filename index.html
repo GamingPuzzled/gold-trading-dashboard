@@ -198,7 +198,8 @@
         <button class="canary-toggle-btn active" data-mode="all" title="No gate -- every signal at threshold 0.85">All signals</button>
         <button class="canary-toggle-btn" data-mode="canary" title="Applies the canary gate to BTC and NEAR (their only defined rules: BTC<-BNB/HYPE, NEAR<-ETH). Copper/DOGE/ETH/ZEC have no canary rule, so their trades pass through unfiltered.">Canary-gated</button>
         <button class="canary-toggle-btn" data-mode="slope" title="Applies the momentum gate (experimental, 2026-09-19) to every asset that has enough trailing history. Copper (a real bot, not in the paper-sim data this gate is built on) always passes through unfiltered.">Momentum-gated</button>
-        <button class="canary-toggle-btn" data-mode="both" title="Requires BOTH gates to say take (intersection) wherever a gate is defined for that asset; assets missing a gate pass through unfiltered on that dimension.">Canary + Momentum</button>
+        <button class="canary-toggle-btn" data-mode="basket_yes" title="Applies the pooled crypto-basket yes-momentum gate (experimental, 2026-09-19) to favorite_yes signals; favorite_no and copper (not in the crypto basket) pass through unfiltered.">Yes-momentum</button>
+        <button class="canary-toggle-btn" data-mode="both" title="Requires BOTH the canary and momentum gates to say take (intersection) wherever each is defined for that asset; assets missing a gate pass through unfiltered on that dimension.">Canary + Momentum</button>
       </div>
       <div class="tiles">
         <div class="tile">
@@ -262,6 +263,8 @@ const ASSET_META = {
 // data, mode: toggle button's data-mode, label, title }. Order matters --
 // first entry per asset renders first (after "All signals").
 const MOMENTUM_TITLE = "&quot;Momentum-gated&quot; (2026-09-19, EXPERIMENTAL -- not used for the deployed strategy) skips a signal unless this asset's own trailing 20 resolved trades show a rising cumulative-PnL trend. Backtests were mixed across assets and window sizes, a sign of overfitting a short history rather than a real effect -- tracked honestly (no lookahead) to see if it holds up with more data.";
+const BASKET_YES_TITLE = "&quot;Yes-momentum&quot; (2026-09-19, EXPERIMENTAL) skips a favorite_yes signal unless the WHOLE crypto basket's pooled favorite_yes trades (trailing 20, across BTC/ETH/XRP/DOGE/SOL/BNB/HYPE/ZEC/NEAR combined) show a rising cumulative-PnL trend -- motivated by a bad favorite_yes day hitting every crypto asset at once, so a basket-level detector should react faster than any single asset's own history. favorite_no is unaffected. Tracked honestly (no lookahead), not validated.";
+const BASKET_YES_ASSET_KEYS = ["btc", "eth", "xrp", "doge", "sol", "bnb", "hype", "zec", "near"];
 const GATE_META = {
   btc: [
     { variant: "canary_variant", mode: "canary", label: "Canary-gated",
@@ -280,6 +283,12 @@ const GATE_META = {
 for (const key of Object.keys(ASSET_META)) {
   if (key === "gold" || key === "copper" || key === "near" || key === "btc") continue;
   GATE_META[key] = [{ variant: "slope_variant", mode: "slope", label: "Momentum (experimental)", title: MOMENTUM_TITLE }];
+}
+// The basket yes-momentum gate only applies to the 9 crypto assets it's
+// pooled from (see BASKET_YES_ASSETS in backtest/live_paper_simulator.py).
+for (const key of BASKET_YES_ASSET_KEYS) {
+  (GATE_META[key] || (GATE_META[key] = [])).push(
+    { variant: "basket_yes_variant", mode: "basket_yes", label: "Yes-momentum (experimental)", title: BASKET_YES_TITLE });
 }
 
 function assetSectionHTML(key, simulated) {
@@ -614,13 +623,17 @@ function portfolioTradesForAsset(asset, mode) {
   if (mode === "all") return asset.trades;
   const wantCanary = mode === "canary" || mode === "both";
   const wantSlope = mode === "slope" || mode === "both";
+  const wantBasketYes = mode === "basket_yes";
   const canarySet = (wantCanary && asset.canary_variant)
     ? new Set(asset.canary_variant.trades.map(t => t.window_id)) : null;
   const slopeSet = (wantSlope && asset.slope_variant)
     ? new Set(asset.slope_variant.trades.map(t => t.window_id)) : null;
+  const basketYesSet = (wantBasketYes && asset.basket_yes_variant)
+    ? new Set(asset.basket_yes_variant.trades.map(t => t.window_id)) : null;
   return asset.trades.filter(t =>
     (canarySet === null || canarySet.has(t.window_id)) &&
-    (slopeSet === null || slopeSet.has(t.window_id)));
+    (slopeSet === null || slopeSet.has(t.window_id)) &&
+    (basketYesSet === null || basketYesSet.has(t.window_id)));
 }
 
 let totalGateMode = "all";
