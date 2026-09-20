@@ -209,9 +209,6 @@
         <label class="gate-switch" data-mode="canary" title="Applies the canary gate to BTC and NEAR (their only defined rules: BTC<-BNB/HYPE, NEAR<-ETH). Copper/DOGE/ETH/ZEC have no canary rule, so their trades pass through unfiltered.">
           <input type="checkbox"><span class="track"></span>Canary-gated
         </label>
-        <label class="gate-switch" data-mode="slope" title="Applies the momentum gate (experimental, 2026-09-19) to every asset that has enough trailing history. Copper (a real bot, not in the paper-sim data this gate is built on) always passes through unfiltered.">
-          <input type="checkbox"><span class="track"></span>Momentum-gated
-        </label>
         <label class="gate-switch" data-mode="basket_yes" title="Applies the pooled crypto-basket yes-momentum gate (experimental, 2026-09-19) to favorite_yes signals; favorite_no and copper (not in the crypto basket) pass through unfiltered.">
           <input type="checkbox"><span class="track"></span>Yes-momentum
         </label>
@@ -278,7 +275,6 @@ const ASSET_META = {
 // Each entry: { variant: JSON key holding the gated {bankroll, trades, ...}
 // data, mode: toggle button's data-mode, label, title }. Order matters --
 // first entry per asset renders first (after "All signals").
-const MOMENTUM_TITLE = "&quot;Momentum-gated&quot; (2026-09-19, EXPERIMENTAL -- not used for the deployed strategy) skips a signal unless this asset's own trailing 20 resolved trades show a rising cumulative-PnL trend. Backtests were mixed across assets and window sizes, a sign of overfitting a short history rather than a real effect -- tracked honestly (no lookahead) to see if it holds up with more data.";
 const BASKET_YES_TITLE = "&quot;Yes-momentum&quot; (2026-09-19, EXPERIMENTAL) skips a favorite_yes signal unless the crypto basket's pooled favorite_yes trades (trailing 20, across BTC/ETH/DOGE/ZEC/NEAR -- the 5 traded assets only; originally pooled all 9 crypto series but SOL/XRP/BNB/HYPE were found to dilute the signal rather than sharpen it) show a rising cumulative-PnL trend -- motivated by a bad favorite_yes day hitting every crypto asset at once, so a basket-level detector should react faster than any single asset's own history. favorite_no is unaffected. Tracked honestly (no lookahead), not validated.";
 const BASKET_YES_ASSET_KEYS = ["btc", "eth", "doge", "zec", "near"];
 const GATE_META = {
@@ -289,19 +285,10 @@ const GATE_META = {
   near: [
     { variant: "canary_variant", mode: "canary", label: "Canary-gated",
       title: "&quot;Canary-gated&quot; skips a NEAR signal if ETH had a known loss in the preceding 15 minutes (2026-09-19 finding). Tracked honestly going forward, no lookahead." },
-    { variant: "slope_variant", mode: "slope", label: "Momentum (experimental)", title: MOMENTUM_TITLE },
   ],
 };
-// The momentum/slope gate is tracked for every simulated market (see
-// backtest/live_paper_simulator.py's tag_slope_gate) -- wire it up for the
-// rest of them too, generically. Whether a toggle actually shows still
-// depends on that asset having enough resolved trades (slope_variant present).
-for (const key of Object.keys(ASSET_META)) {
-  if (key === "gold" || key === "copper" || key === "near" || key === "btc") continue;
-  GATE_META[key] = [{ variant: "slope_variant", mode: "slope", label: "Momentum (experimental)", title: MOMENTUM_TITLE }];
-}
-// The basket yes-momentum gate only applies to the 9 crypto assets it's
-// pooled from (see BASKET_YES_ASSETS in backtest/live_paper_simulator.py).
+// The basket yes-momentum gate only applies to the 5 traded crypto assets
+// it's pooled from (see BASKET_YES_ASSETS in backtest/live_paper_simulator.py).
 for (const key of BASKET_YES_ASSET_KEYS) {
   (GATE_META[key] || (GATE_META[key] = [])).push(
     { variant: "basket_yes_variant", mode: "basket_yes", label: "Yes-momentum (experimental)", title: BASKET_YES_TITLE });
@@ -655,12 +642,12 @@ const PORTFOLIO_KEYS = ["copper", "doge", "near", "eth", "btc", "zec"];
 // Filters one asset's full trade list down to what the currently-active
 // gate switches would have taken (AND across whichever are on). window_id
 // is unique per market/window within an asset, so it's a safe join key
-// back into the pre-filtered canary_variant/slope_variant/basket_yes_variant
-// trade lists the server already computed. An asset missing a gate (e.g.
-// copper has none; DOGE/ETH/ZEC have no canary rule) passes through
-// unfiltered on that dimension rather than being dropped -- "no gate
-// defined" isn't the same as "gate says no."
-const TOTAL_GATE_VARIANT_KEY = { canary: "canary_variant", slope: "slope_variant", basket_yes: "basket_yes_variant" };
+// back into the pre-filtered canary_variant/basket_yes_variant trade lists
+// the server already computed. An asset missing a gate (e.g. copper has
+// none; DOGE/ETH/ZEC have no canary rule) passes through unfiltered on
+// that dimension rather than being dropped -- "no gate defined" isn't the
+// same as "gate says no."
+const TOTAL_GATE_VARIANT_KEY = { canary: "canary_variant", basket_yes: "basket_yes_variant" };
 function portfolioTradesForAsset(asset, activeGates) {
   const windowIdSets = [];
   for (const mode of activeGates) {
