@@ -279,8 +279,8 @@ const ASSET_META = {
 // data, mode: toggle button's data-mode, label, title }. Order matters --
 // first entry per asset renders first (after "All signals").
 const MOMENTUM_TITLE = "&quot;Momentum-gated&quot; (2026-09-19, EXPERIMENTAL -- not used for the deployed strategy) skips a signal unless this asset's own trailing 20 resolved trades show a rising cumulative-PnL trend. Backtests were mixed across assets and window sizes, a sign of overfitting a short history rather than a real effect -- tracked honestly (no lookahead) to see if it holds up with more data.";
-const BASKET_YES_TITLE = "&quot;Yes-momentum&quot; (2026-09-19, EXPERIMENTAL) skips a favorite_yes signal unless the WHOLE crypto basket's pooled favorite_yes trades (trailing 20, across BTC/ETH/XRP/DOGE/SOL/BNB/HYPE/ZEC/NEAR combined) show a rising cumulative-PnL trend -- motivated by a bad favorite_yes day hitting every crypto asset at once, so a basket-level detector should react faster than any single asset's own history. favorite_no is unaffected. Tracked honestly (no lookahead), not validated.";
-const BASKET_YES_ASSET_KEYS = ["btc", "eth", "xrp", "doge", "sol", "bnb", "hype", "zec", "near"];
+const BASKET_YES_TITLE = "&quot;Yes-momentum&quot; (2026-09-19, EXPERIMENTAL) skips a favorite_yes signal unless the crypto basket's pooled favorite_yes trades (trailing 20, across BTC/ETH/DOGE/ZEC/NEAR -- the 5 traded assets only; originally pooled all 9 crypto series but SOL/XRP/BNB/HYPE were found to dilute the signal rather than sharpen it) show a rising cumulative-PnL trend -- motivated by a bad favorite_yes day hitting every crypto asset at once, so a basket-level detector should react faster than any single asset's own history. favorite_no is unaffected. Tracked honestly (no lookahead), not validated.";
+const BASKET_YES_ASSET_KEYS = ["btc", "eth", "doge", "zec", "near"];
 const GATE_META = {
   btc: [
     { variant: "canary_variant", mode: "canary", label: "Canary-gated",
