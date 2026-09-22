@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-22T14:55:05.206067+00:00",
+  "generated_at": "2026-09-22T15:00:29.162500+00:00",
   "assets": {
     "gold": {
       "series_ticker": "KXGOLD15M",
@@ -2453,15 +2453,15 @@
     "copper": {
       "series_ticker": "KXCOPPER15M",
       "starting_bankroll": 200.0,
-      "bankroll": 377.84929999999986,
+      "bankroll": 378.98929999999984,
       "strategy_stats": {
         "favorite_yes": {
           "wins": 476,
           "n": 512
         },
         "favorite_no": {
-          "wins": 395,
-          "n": 430
+          "wins": 396,
+          "n": 431
         }
       },
       "trades": [
@@ -9088,6 +9088,14 @@
           "price": 0.8699999999999999,
           "size": 10,
           "realized_pnl": -8.78
+        },
+        {
+          "window_id": "KXCOPPER15M-26SEP221100",
+          "ts": "2026-09-22T14:56:23.194362+00:00",
+          "side": "favorite_no",
+          "price": 0.8789999999999999,
+          "size": 10,
+          "realized_pnl": 1.140000000000001
         }
       ]
     },
@@ -36263,6 +36271,14 @@
           "price": 0.88,
           "size": 10,
           "realized_pnl": 1.13
+        },
+        {
+          "window_id": "KXSILVER15M-26SEP221100",
+          "ts": "2026-09-22T14:55:13.192395+00:00",
+          "side": "favorite_yes",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -39401,6 +39417,14 @@
           "price": 0.88,
           "size": 10,
           "realized_pnl": 1.13
+        },
+        {
+          "window_id": "KXWTI15M-26SEP221100",
+          "ts": "2026-09-22T14:57:58.197875+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -48469,6 +48493,14 @@
           "price": 0.88,
           "size": 10,
           "realized_pnl": 1.13
+        },
+        {
+          "window_id": "KXDOGE15M-26SEP221100",
+          "ts": "2026-09-22T14:55:23.256539+00:00",
+          "side": "favorite_yes",
+          "price": 0.9,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true,
