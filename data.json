@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-23T10:01:23.738101+00:00",
+  "generated_at": "2026-09-23T10:06:24.967452+00:00",
   "assets": {
     "gold": {
       "series_ticker": "KXGOLD15M",
@@ -9352,6 +9352,14 @@
           "price": 0.8800000000000001,
           "size": 10,
           "realized_pnl": 1.1299999999999988
+        },
+        {
+          "window_id": "KXCOPPER15M-26SEP230615",
+          "ts": "2026-09-23T10:03:30.851322+00:00",
+          "side": "favorite_yes",
+          "price": 0.8800000000000001,
+          "size": 10,
+          "realized_pnl": null
         }
       ]
     },
@@ -36428,15 +36436,15 @@
     "silver": {
       "series_ticker": "KXSILVER15M",
       "starting_bankroll": 100.0,
-      "bankroll": -16.620000000000474,
+      "bankroll": -15.78000000000047,
       "strategy_stats": {
         "favorite_yes": {
           "wins": 211,
           "n": 244
         },
         "favorite_no": {
-          "wins": 194,
-          "n": 223
+          "wins": 195,
+          "n": 224
         }
       },
       "trades": [
@@ -40181,6 +40189,14 @@
           "ts": "2026-09-23T09:48:27.692102+00:00",
           "side": "favorite_no",
           "price": 0.91,
+          "size": 10,
+          "realized_pnl": 0.8399999999999996
+        },
+        {
+          "window_id": "KXSILVER15M-26SEP230615",
+          "ts": "2026-09-23T10:03:27.739335+00:00",
+          "side": "favorite_yes",
+          "price": 0.88,
           "size": 10,
           "realized_pnl": null
         }
@@ -43929,6 +43945,14 @@
           "price": 0.87,
           "size": 10,
           "realized_pnl": -8.78
+        },
+        {
+          "window_id": "KXWTI15M-26SEP230615",
+          "ts": "2026-09-23T10:04:02.758433+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -82301,6 +82325,14 @@
           "price": 0.901,
           "size": 10,
           "realized_pnl": 0.9299999999999997
+        },
+        {
+          "window_id": "KXNEAR15M-26SEP230615",
+          "ts": "2026-09-23T10:02:09.097762+00:00",
+          "side": "favorite_yes",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true,
@@ -86901,6 +86933,14 @@
             "price": 0.901,
             "size": 10,
             "realized_pnl": 0.9299999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP230615",
+            "ts": "2026-09-23T10:02:09.097762+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": null
           }
         ]
       },
