@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-24T04:31:08.952571+00:00",
+  "generated_at": "2026-09-24T04:36:25.312468+00:00",
   "assets": {
     "gold": {
       "series_ticker": "KXGOLD15M",
@@ -44367,6 +44367,14 @@
           "price": 0.87,
           "size": 10,
           "realized_pnl": -8.78
+        },
+        {
+          "window_id": "KXSILVER15M-26SEP240045",
+          "ts": "2026-09-24T04:34:58.773235+00:00",
+          "side": "favorite_yes",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -64348,11 +64356,11 @@
     "hype": {
       "series_ticker": "KXHYPE15M",
       "starting_bankroll": 100.0,
-      "bankroll": -0.290000000000731,
+      "bankroll": 0.7399999999992701,
       "strategy_stats": {
         "favorite_yes": {
-          "wins": 335,
-          "n": 382
+          "wins": 336,
+          "n": 383
         },
         "favorite_no": {
           "wins": 292,
@@ -70078,7 +70086,7 @@
           "side": "favorite_yes",
           "price": 0.89,
           "size": 10,
-          "realized_pnl": null
+          "realized_pnl": 1.0299999999999998
         }
       ],
       "simulated": true
@@ -91597,6 +91605,14 @@
           "price": 0.89,
           "size": 10,
           "realized_pnl": -8.97
+        },
+        {
+          "window_id": "KXNEAR15M-26SEP240045",
+          "ts": "2026-09-24T04:35:52.052712+00:00",
+          "side": "favorite_yes",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true,
@@ -96709,6 +96725,14 @@
             "price": 0.89,
             "size": 10,
             "realized_pnl": -8.97
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP240045",
+            "ts": "2026-09-24T04:35:52.052712+00:00",
+            "side": "favorite_yes",
+            "price": 0.88,
+            "size": 10,
+            "realized_pnl": null
           }
         ]
       },
