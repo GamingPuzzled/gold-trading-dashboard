@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T13:25:06.472056+00:00",
+  "generated_at": "2026-09-25T13:30:27.913336+00:00",
   "assets": {
     "gold": {
       "series_ticker": "KXGOLD15M",
@@ -2453,15 +2453,15 @@
     "copper": {
       "series_ticker": "KXCOPPER15M",
       "starting_bankroll": 200.0,
-      "bankroll": 326.3455999999998,
+      "bankroll": 327.4755999999998,
       "strategy_stats": {
         "favorite_yes": {
           "wins": 516,
           "n": 559
         },
         "favorite_no": {
-          "wins": 444,
-          "n": 489
+          "wins": 445,
+          "n": 490
         }
       },
       "trades": [
@@ -9943,7 +9943,7 @@
           "side": "favorite_no",
           "price": 0.8800000000000001,
           "size": 10,
-          "realized_pnl": null
+          "realized_pnl": 1.1299999999999988
         }
       ]
     },
@@ -45629,6 +45629,14 @@
           "price": 0.87,
           "size": 10,
           "realized_pnl": 1.22
+        },
+        {
+          "window_id": "KXXRP15M-26SEP250930",
+          "ts": "2026-09-25T13:25:32.329699+00:00",
+          "side": "favorite_no",
+          "price": 0.89,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -106661,6 +106669,14 @@
           "price": 0.9,
           "size": 10,
           "realized_pnl": 0.9399999999999997
+        },
+        {
+          "window_id": "KXNEAR15M-26SEP250930",
+          "ts": "2026-09-25T13:28:28.981671+00:00",
+          "side": "favorite_yes",
+          "price": 0.92,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true,
@@ -112669,6 +112685,14 @@
             "price": 0.9,
             "size": 10,
             "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP250930",
+            "ts": "2026-09-25T13:28:28.981671+00:00",
+            "side": "favorite_yes",
+            "price": 0.92,
+            "size": 10,
+            "realized_pnl": null
           }
         ]
       },
