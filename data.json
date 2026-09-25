@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T13:46:23.534784+00:00",
+  "generated_at": "2026-09-25T13:51:35.188373+00:00",
   "assets": {
     "gold": {
       "series_ticker": "KXGOLD15M",
@@ -81511,6 +81511,14 @@
           "price": 0.89,
           "size": 10,
           "realized_pnl": 1.0299999999999998
+        },
+        {
+          "window_id": "KXHYPE15M-26SEP251000",
+          "ts": "2026-09-25T13:48:48.168505+00:00",
+          "side": "favorite_no",
+          "price": 0.89,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -106797,6 +106805,14 @@
           "price": 0.918,
           "size": 10,
           "realized_pnl": 0.7699999999999996
+        },
+        {
+          "window_id": "KXNEAR15M-26SEP251000",
+          "ts": "2026-09-25T13:47:09.168669+00:00",
+          "side": "favorite_no",
+          "price": 0.91,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true,
@@ -112821,6 +112837,14 @@
             "price": 0.918,
             "size": 10,
             "realized_pnl": 0.7699999999999996
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP251000",
+            "ts": "2026-09-25T13:47:09.168669+00:00",
+            "side": "favorite_no",
+            "price": 0.91,
+            "size": 10,
+            "realized_pnl": null
           }
         ]
       },
@@ -117973,6 +117997,14 @@
             "price": 0.87,
             "size": 10,
             "realized_pnl": -8.78
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP251000",
+            "ts": "2026-09-25T13:47:09.168669+00:00",
+            "side": "favorite_no",
+            "price": 0.91,
+            "size": 10,
+            "realized_pnl": null
           }
         ]
       }
@@ -123318,15 +123350,15 @@
     "platinum": {
       "series_ticker": "KXPLATINUM15M",
       "starting_bankroll": 100.0,
-      "bankroll": 126.96000000000001,
+      "bankroll": 127.71000000000001,
       "strategy_stats": {
         "favorite_yes": {
           "wins": 67,
           "n": 70
         },
         "favorite_no": {
-          "wins": 69,
-          "n": 77
+          "wins": 70,
+          "n": 78
         }
       },
       "trades": [
@@ -124512,7 +124544,7 @@
           "side": "favorite_no",
           "price": 0.92,
           "size": 10,
-          "realized_pnl": null
+          "realized_pnl": 0.7499999999999996
         }
       ],
       "simulated": true
