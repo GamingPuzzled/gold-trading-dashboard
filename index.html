@@ -183,6 +183,19 @@
   .detail-item .detail-label { color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 2px; }
   .detail-item .detail-value { font-variant-numeric: tabular-nums; }
 
+  .exp-badge {
+    font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
+    color: var(--series-4); border: 1px solid currentColor; border-radius: 999px; padding: 1px 7px;
+  }
+  .exp-lede { color: var(--text-secondary); font-size: 13px; line-height: 1.55; max-width: 68ch; margin: -4px 0 14px; }
+  .exp-lede strong { color: var(--text-primary); font-weight: 600; }
+  .progress { height: 6px; background: var(--surface-2); border-radius: 3px; margin-top: 8px; overflow: hidden; }
+  .progress > span { display: block; height: 100%; background: var(--series-4); }
+  td.pos { color: var(--good); }
+  td.neg { color: var(--critical); }
+  td.muted, th.group-row { color: var(--text-muted); }
+  th.group-row { text-transform: none; font-size: 12px; background: var(--surface-2); }
+
   footer { color: var(--text-muted); font-size: 12px; text-align: center; margin-top: 32px; line-height: 1.6; }
   footer a { color: var(--text-secondary); }
 </style>
@@ -235,6 +248,78 @@
         <p class="card-title">Combined bankroll over time</p>
         <p class="card-note">Since 2026-09-16, when the sim-tracked markets in this portfolio started being measured -- copper's own real trading history goes back further (see its own section below), but combining that with the others' shorter history would understate how new most of this portfolio is.</p>
         <div id="total-chart-container"></div>
+      </div>
+    </section>
+
+    <section class="asset-section" id="section-experiments">
+      <div class="asset-heading">
+        <span class="asset-dot" style="background:var(--series-4)"></span>
+        <h2>Last-minute favorite</h2>
+        <span class="exp-badge" title="Research tracker, separate from the 0.85 strategy above. Paper only.">experiment</span>
+      </div>
+      <p class="exp-lede">
+        Crypto only (BTC, ETH, XRP, SOL, DOGE, HYPE, ZEC, BNB, NEAR). If the favorite is priced
+        <strong>60–85¢</strong> with 50, 40, 30 or 20 seconds left, buy it at the next quote. Hypothesis:
+        crypto settles on a 60-second average, so late favorites are underpriced. Forward-tested since
+        2026-09-26 with no backfill. It only works if the win rate beats the average price paid, so
+        <strong>edge</strong> below is win rate minus price. About 1,100 trades are needed to tell a 2.5¢ edge from luck.
+      </p>
+      <div class="tiles">
+        <div class="tile">
+          <div class="tile-label">Net PnL (after fees)</div>
+          <div class="tile-value" id="lastmin-pnl">—</div>
+          <div class="tile-sub" id="lastmin-pnl-sub">—</div>
+        </div>
+        <div class="tile">
+          <div class="tile-label">Edge: win rate − price</div>
+          <div class="tile-value" id="lastmin-edge">—</div>
+          <div class="tile-sub" id="lastmin-edge-sub">—</div>
+        </div>
+        <div class="tile">
+          <div class="tile-label">Trades settled</div>
+          <div class="tile-value" id="lastmin-n">—</div>
+          <div class="tile-sub" id="lastmin-n-sub">—</div>
+          <div class="progress"><span id="lastmin-progress" style="width:0"></span></div>
+        </div>
+      </div>
+      <div class="card">
+        <p class="card-title">Cumulative PnL</p>
+        <p class="card-note">10 contracts per trade, net of Kalshi fees. Each point is one settled trade.</p>
+        <div id="lastmin-chart-container"></div>
+      </div>
+      <div class="card">
+        <p class="card-title">By asset</p>
+        <p class="card-note">Each asset alone is far too small to read; this shows whether one asset is carrying the total.</p>
+        <div class="table-scroll"><table>
+          <thead><tr><th>Asset</th><th class="num">Trades</th><th class="num">Win rate</th><th class="num">Avg price</th><th class="num">Edge</th><th class="num">PnL</th></tr></thead>
+          <tbody id="lastmin-by-asset"></tbody>
+        </table></div>
+      </div>
+      <div class="card">
+        <p class="card-title">Control panel: every checkpoint, crypto vs commodities</p>
+        <p class="card-note">Logs every 60–85¢ favorite at 120s through 10s before close, not just the first one per window, so rows from the same window overlap. Commodities settle on a single closing price with no averaging, so they are the control. If the averaging idea is right, crypto edge should grow toward the close and commodities should show none.</p>
+        <div class="table-scroll"><table>
+          <thead><tr><th>Seconds left</th><th class="num">Obs</th><th class="num">Win rate</th><th class="num">Avg price</th><th class="num">Edge</th><th class="num">PnL</th></tr></thead>
+          <tbody id="lastmin-panel"></tbody>
+        </table></div>
+      </div>
+      <div class="card">
+        <button class="trades-toggle" id="lastmin-trades-toggle" aria-expanded="false">
+          <span class="chevron">▸</span>
+          <span class="card-title">Trades</span>
+          <span class="trades-toggle-count" id="lastmin-trades-count"></span>
+        </button>
+        <div class="trades-body" id="lastmin-trades-collapsible" hidden>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr><th>Time (UTC)</th><th>Window</th><th>Side</th><th class="num">Entry</th><th class="num">Size</th><th>Status</th><th class="num">PnL</th></tr>
+              </thead>
+              <tbody id="lastmin-trades-body"></tbody>
+            </table>
+          </div>
+          <div class="empty-note" id="lastmin-trades-empty" hidden>No trades yet.</div>
+        </div>
       </div>
     </section>
 
@@ -524,7 +609,7 @@ function renderChart(key, trades, startingBankroll, color) {
     const v = minV + (i / gridCount) * (maxV - minV);
     const yy = y(v);
     gridLines += `<line class="grid-line" x1="${padL}" y1="${yy}" x2="${W - padR}" y2="${yy}"/>`;
-    gridLabels += `<text class="axis-label" x="${padL - 8}" y="${yy + 3}" text-anchor="end">$${v.toFixed(0)}</text>`;
+    gridLabels += `<text class="axis-label" x="${padL - 8}" y="${yy + 3}" text-anchor="end">${v < 0 ? "-$" : "$"}${Math.abs(v).toFixed(0)}</text>`;
   }
 
   const path = points.map((p, i) => `${i === 0 ? "M" : "L"} ${x(i).toFixed(1)} ${y(p.value).toFixed(1)}`).join(" ");
@@ -723,6 +808,91 @@ function renderTotal(assets) {
 const REFRESH_INTERVAL_MS = 5 * 60 * 1000;
 let sectionsBuilt = false;
 
+// ---- Experiments (research trackers; see build_experiments in export_dashboard.py) ----
+const LASTMIN_TARGET_N = 1100;
+const SERIES_KEY = {
+  KXBTC15M: "btc", KXETH15M: "eth", KXXRP15M: "xrp", KXSOL15M: "sol", KXDOGE15M: "doge",
+  KXHYPE15M: "hype", KXZEC15M: "zec", KXBNB15M: "bnb", KXNEAR15M: "near",
+};
+const fmtPts = (v) => (v >= 0 ? "+" : "−") + Math.abs(v * 100).toFixed(1) + " pts";
+const signClass = (v) => (v > 0 ? "pos" : v < 0 ? "neg" : "");
+
+// Edge = mean(won − price). Its standard error comes from the per-trade
+// spread of (won − price), so z says how many standard errors from zero.
+function edgeStats(rows) {
+  const d = rows.map(r => (r.won ? 1 : 0) - r.price);
+  const n = d.length;
+  if (!n) return null;
+  const mean = d.reduce((a, b) => a + b, 0) / n;
+  const variance = n > 1 ? d.reduce((a, b) => a + (b - mean) ** 2, 0) / (n - 1) : 0;
+  const se = Math.sqrt(variance / n);
+  return {
+    n, mean, z: se > 0 ? mean / se : 0,
+    winRate: rows.filter(r => r.won).length / n,
+    avgPrice: rows.reduce((a, r) => a + r.price, 0) / n,
+    pnl: rows.reduce((a, r) => a + (r.realized_pnl ?? 0), 0),
+  };
+}
+
+function edgeRow(label, n, winRate, avgPrice, pnl) {
+  const edge = winRate - avgPrice;
+  return `<tr><td>${label}</td><td class="num">${n}</td><td class="num">${fmtPct(winRate)}</td>
+    <td class="num">${(avgPrice * 100).toFixed(1)}¢</td><td class="num ${signClass(edge)}">${fmtPts(edge)}</td>
+    <td class="num ${signClass(pnl)}">${fmtUSD(pnl)}</td></tr>`;
+}
+
+function renderExperiments(exp) {
+  const lm = exp && exp.lastmin;
+  if (!lm) { document.getElementById("section-experiments").hidden = true; return; }
+  const settled = lm.trades.filter(t => t.realized_pnl !== null);
+  const s = edgeStats(settled);
+
+  const pnlEl = document.getElementById("lastmin-pnl");
+  const pnlSub = document.getElementById("lastmin-pnl-sub");
+  if (s) {
+    const contracts = settled.reduce((a, t) => a + t.size, 0);
+    pnlEl.textContent = fmtUSD(s.pnl);
+    pnlSub.textContent = `${(s.pnl / contracts * 100).toFixed(2)}¢ per contract`;
+    pnlSub.className = "tile-sub " + (s.pnl >= 0 ? "pos" : "neg");
+    document.getElementById("lastmin-edge").textContent = fmtPts(s.mean);
+    const edgeSub = document.getElementById("lastmin-edge-sub");
+    edgeSub.textContent = `${fmtPct(s.winRate)} won vs ${(s.avgPrice * 100).toFixed(1)}¢ paid · z = ${s.z.toFixed(1)}` +
+      (Math.abs(s.z) < 2 ? " (noise)" : "");
+    edgeSub.className = "tile-sub " + (Math.abs(s.z) >= 2 ? (s.mean > 0 ? "pos" : "neg") : "");
+  }
+  document.getElementById("lastmin-n").textContent = settled.length;
+  document.getElementById("lastmin-n-sub").textContent =
+    `of ~${LASTMIN_TARGET_N.toLocaleString()} needed for a verdict`;
+  document.getElementById("lastmin-progress").style.width =
+    Math.min(100, settled.length / LASTMIN_TARGET_N * 100).toFixed(1) + "%";
+
+  renderChart("lastmin", lm.trades, 0, "var(--series-4)");
+  renderTrades("lastmin", lm.trades);
+
+  const bySeries = {};
+  for (const t of settled) (bySeries[t.series_ticker] || (bySeries[t.series_ticker] = [])).push(t);
+  document.getElementById("lastmin-by-asset").innerHTML = Object.entries(bySeries)
+    .map(([ticker, rows]) => [ticker, edgeStats(rows)])
+    .sort((a, b) => b[1].n - a[1].n)
+    .map(([ticker, st]) => edgeRow((ASSET_META[SERIES_KEY[ticker]] || { label: ticker }).label,
+                                   st.n, st.winRate, st.avgPrice, st.pnl))
+    .join("");
+
+  const cells = (exp.lastmin_panel && exp.lastmin_panel.cells) || [];
+  const groups = [["crypto", "Crypto (60-second average settlement)"], ["commodity", "Commodities (single closing price, control)"]];
+  document.getElementById("lastmin-panel").innerHTML = groups.map(([g, title]) => {
+    const rows = cells.filter(c => c.group === g);
+    if (!rows.length) {
+      return `<tr><th class="group-row" colspan="6">${title}</th></tr><tr><td class="muted" colspan="6">No observations yet.</td></tr>`;
+    }
+    const tot = rows.reduce((a, c) => ({ n: a.n + c.n, wins: a.wins + c.wins, price: a.price + c.price_sum, pnl: a.pnl + c.pnl }),
+                            { n: 0, wins: 0, price: 0, pnl: 0 });
+    return `<tr><th class="group-row" colspan="6">${title}</th></tr>` +
+      rows.map(c => edgeRow(`${c.secs_left}s`, c.n, c.wins / c.n, c.price_sum / c.n, c.pnl)).join("") +
+      edgeRow("<strong>All</strong>", tot.n, tot.wins / tot.n, tot.price / tot.n, tot.pnl);
+  }).join("");
+}
+
 function loadAndRender() {
   fetch("./data.json?_=" + Date.now())
     .then(r => r.json())
@@ -741,6 +911,7 @@ function loadAndRender() {
       }
       keys.forEach(key => renderAsset(key, data.assets[key]));
       renderTotal(data.assets);
+      renderExperiments(data.experiments);
     })
     .catch(err => {
       document.getElementById("last-updated").textContent = "failed to load data";
