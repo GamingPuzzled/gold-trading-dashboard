@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-28T00:28:23.598664+00:00",
+  "generated_at": "2026-09-28T00:33:35.265770+00:00",
   "assets": {
     "gold": {
       "series_ticker": "KXGOLD15M",
@@ -2453,15 +2453,15 @@
     "copper": {
       "series_ticker": "KXCOPPER15M",
       "starting_bankroll": 200.0,
-      "bankroll": 322.1965999999998,
+      "bankroll": 323.3865999999998,
       "strategy_stats": {
         "favorite_yes": {
           "wins": 524,
           "n": 569
         },
         "favorite_no": {
-          "wins": 448,
-          "n": 493
+          "wins": 449,
+          "n": 494
         }
       },
       "trades": [
@@ -10055,18 +10055,18 @@
           "side": "favorite_no",
           "price": 0.873,
           "size": 10,
-          "realized_pnl": null
+          "realized_pnl": 1.19
         }
       ]
     },
     "btc": {
       "series_ticker": "KXBTC15M",
       "starting_bankroll": 100.0,
-      "bankroll": 77.44999999999978,
+      "bankroll": 78.66999999999977,
       "strategy_stats": {
         "favorite_yes": {
-          "wins": 495,
-          "n": 560
+          "wins": 496,
+          "n": 561
         },
         "favorite_no": {
           "wins": 456,
@@ -18672,17 +18672,25 @@
           "side": "favorite_yes",
           "price": 0.87,
           "size": 10,
+          "realized_pnl": 1.22
+        },
+        {
+          "window_id": "KXBTC15M-26SEP272045",
+          "ts": "2026-09-28T00:32:05.595763+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
           "realized_pnl": null
         }
       ],
       "simulated": true,
       "canary_variant": {
         "starting_bankroll": 100.0,
-        "bankroll": 155.23999999999936,
+        "bankroll": 156.45999999999935,
         "strategy_stats": {
           "favorite_yes": {
-            "wins": 417,
-            "n": 473
+            "wins": 418,
+            "n": 474
           },
           "favorite_no": {
             "wins": 352,
@@ -25576,17 +25584,25 @@
             "side": "favorite_yes",
             "price": 0.87,
             "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXBTC15M-26SEP272045",
+            "ts": "2026-09-28T00:32:05.595763+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
             "realized_pnl": null
           }
         ]
       },
       "basket_yes_variant": {
         "starting_bankroll": 100.0,
-        "bankroll": 99.7199999999998,
+        "bankroll": 100.9399999999998,
         "strategy_stats": {
           "favorite_yes": {
-            "wins": 262,
-            "n": 295
+            "wins": 263,
+            "n": 296
           },
           "favorite_no": {
             "wins": 456,
@@ -32072,6 +32088,14 @@
             "side": "favorite_yes",
             "price": 0.87,
             "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXBTC15M-26SEP272045",
+            "ts": "2026-09-28T00:32:05.595763+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
             "realized_pnl": null
           }
         ]
@@ -32080,11 +32104,11 @@
     "eth": {
       "series_ticker": "KXETH15M",
       "starting_bankroll": 100.0,
-      "bankroll": 125.61999999999969,
+      "bankroll": 126.83999999999969,
       "strategy_stats": {
         "favorite_yes": {
-          "wins": 497,
-          "n": 557
+          "wins": 498,
+          "n": 558
         },
         "favorite_no": {
           "wins": 462,
@@ -40690,17 +40714,25 @@
           "side": "favorite_yes",
           "price": 0.87,
           "size": 10,
+          "realized_pnl": 1.22
+        },
+        {
+          "window_id": "KXETH15M-26SEP272045",
+          "ts": "2026-09-28T00:32:05.597253+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
           "realized_pnl": null
         }
       ],
       "simulated": true,
       "basket_yes_variant": {
         "starting_bankroll": 100.0,
-        "bankroll": 55.99999999999985,
+        "bankroll": 57.21999999999985,
         "strategy_stats": {
           "favorite_yes": {
-            "wins": 247,
-            "n": 284
+            "wins": 248,
+            "n": 285
           },
           "favorite_no": {
             "wins": 462,
@@ -47122,6 +47154,14 @@
             "side": "favorite_yes",
             "price": 0.87,
             "size": 10,
+            "realized_pnl": 1.22
+          },
+          {
+            "window_id": "KXETH15M-26SEP272045",
+            "ts": "2026-09-28T00:32:05.597253+00:00",
+            "side": "favorite_no",
+            "price": 0.88,
+            "size": 10,
             "realized_pnl": null
           }
         ]
@@ -47130,11 +47170,11 @@
     "xrp": {
       "series_ticker": "KXXRP15M",
       "starting_bankroll": 100.0,
-      "bankroll": 67.47999999999982,
+      "bankroll": 68.69999999999982,
       "strategy_stats": {
         "favorite_yes": {
-          "wins": 504,
-          "n": 569
+          "wins": 505,
+          "n": 570
         },
         "favorite_no": {
           "wins": 449,
@@ -55740,6 +55780,14 @@
           "side": "favorite_yes",
           "price": 0.87,
           "size": 10,
+          "realized_pnl": 1.22
+        },
+        {
+          "window_id": "KXXRP15M-26SEP272045",
+          "ts": "2026-09-28T00:32:35.637191+00:00",
+          "side": "favorite_no",
+          "price": 0.89,
+          "size": 10,
           "realized_pnl": null
         }
       ],
@@ -55748,15 +55796,15 @@
     "silver": {
       "series_ticker": "KXSILVER15M",
       "starting_bankroll": 100.0,
-      "bankroll": -93.82000000000079,
+      "bankroll": -92.60000000000079,
       "strategy_stats": {
         "favorite_yes": {
           "wins": 305,
           "n": 357
         },
         "favorite_no": {
-          "wins": 302,
-          "n": 345
+          "wins": 303,
+          "n": 346
         }
       },
       "trades": [
@@ -61382,7 +61430,7 @@
           "side": "favorite_no",
           "price": 0.87,
           "size": 10,
-          "realized_pnl": null
+          "realized_pnl": 1.22
         }
       ],
       "simulated": true
@@ -61390,11 +61438,11 @@
     "wti": {
       "series_ticker": "KXWTI15M",
       "starting_bankroll": 100.0,
-      "bankroll": 68.61999999999983,
+      "bankroll": 69.74999999999983,
       "strategy_stats": {
         "favorite_yes": {
-          "wins": 326,
-          "n": 367
+          "wins": 327,
+          "n": 368
         },
         "favorite_no": {
           "wins": 322,
@@ -67240,7 +67288,7 @@
           "side": "favorite_yes",
           "price": 0.88,
           "size": 10,
-          "realized_pnl": null
+          "realized_pnl": 1.13
         }
       ],
       "simulated": true
@@ -67248,11 +67296,11 @@
     "sol": {
       "series_ticker": "KXSOL15M",
       "starting_bankroll": 100.0,
-      "bankroll": -13.340000000001268,
+      "bankroll": -12.310000000001267,
       "strategy_stats": {
         "favorite_yes": {
-          "wins": 498,
-          "n": 574
+          "wins": 499,
+          "n": 575
         },
         "favorite_no": {
           "wins": 447,
@@ -75858,6 +75906,14 @@
           "side": "favorite_yes",
           "price": 0.89,
           "size": 10,
+          "realized_pnl": 1.0299999999999998
+        },
+        {
+          "window_id": "KXSOL15M-26SEP272045",
+          "ts": "2026-09-28T00:32:41.525157+00:00",
+          "side": "favorite_no",
+          "price": 0.9,
+          "size": 10,
           "realized_pnl": null
         }
       ],
@@ -75866,11 +75922,11 @@
     "doge": {
       "series_ticker": "KXDOGE15M",
       "starting_bankroll": 100.0,
-      "bankroll": 18.78999999999968,
+      "bankroll": 19.81999999999968,
       "strategy_stats": {
         "favorite_yes": {
-          "wins": 503,
-          "n": 572
+          "wins": 504,
+          "n": 573
         },
         "favorite_no": {
           "wins": 447,
@@ -84476,17 +84532,25 @@
           "side": "favorite_yes",
           "price": 0.89,
           "size": 10,
+          "realized_pnl": 1.0299999999999998
+        },
+        {
+          "window_id": "KXDOGE15M-26SEP272045",
+          "ts": "2026-09-28T00:32:06.122895+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
           "realized_pnl": null
         }
       ],
       "simulated": true,
       "basket_yes_variant": {
         "starting_bankroll": 100.0,
-        "bankroll": 61.72999999999992,
+        "bankroll": 62.75999999999992,
         "strategy_stats": {
           "favorite_yes": {
-            "wins": 255,
-            "n": 289
+            "wins": 256,
+            "n": 290
           },
           "favorite_no": {
             "wins": 447,
@@ -90828,6 +90892,14 @@
             "side": "favorite_yes",
             "price": 0.89,
             "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXDOGE15M-26SEP272045",
+            "ts": "2026-09-28T00:32:06.122895+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
             "realized_pnl": null
           }
         ]
@@ -90836,11 +90908,11 @@
     "hype": {
       "series_ticker": "KXHYPE15M",
       "starting_bankroll": 100.0,
-      "bankroll": -9.080000000001093,
+      "bankroll": -8.140000000001095,
       "strategy_stats": {
         "favorite_yes": {
-          "wins": 502,
-          "n": 571
+          "wins": 503,
+          "n": 572
         },
         "favorite_no": {
           "wins": 446,
@@ -99446,6 +99518,14 @@
           "side": "favorite_yes",
           "price": 0.9,
           "size": 10,
+          "realized_pnl": 0.9399999999999997
+        },
+        {
+          "window_id": "KXHYPE15M-26SEP272045",
+          "ts": "2026-09-28T00:31:12.004315+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
           "realized_pnl": null
         }
       ],
@@ -99454,11 +99534,11 @@
     "zec": {
       "series_ticker": "KXZEC15M",
       "starting_bankroll": 100.0,
-      "bankroll": 78.49999999999999,
+      "bankroll": 79.44,
       "strategy_stats": {
         "favorite_yes": {
-          "wins": 490,
-          "n": 553
+          "wins": 491,
+          "n": 554
         },
         "favorite_no": {
           "wins": 474,
@@ -108064,17 +108144,25 @@
           "side": "favorite_yes",
           "price": 0.9,
           "size": 10,
+          "realized_pnl": 0.9399999999999997
+        },
+        {
+          "window_id": "KXZEC15M-26SEP272045",
+          "ts": "2026-09-28T00:32:01.588200+00:00",
+          "side": "favorite_no",
+          "price": 0.909,
+          "size": 10,
           "realized_pnl": null
         }
       ],
       "simulated": true,
       "basket_yes_variant": {
         "starting_bankroll": 100.0,
-        "bankroll": 208.42999999999915,
+        "bankroll": 209.36999999999915,
         "strategy_stats": {
           "favorite_yes": {
-            "wins": 264,
-            "n": 287
+            "wins": 265,
+            "n": 288
           },
           "favorite_no": {
             "wins": 474,
@@ -114552,6 +114640,14 @@
             "side": "favorite_yes",
             "price": 0.9,
             "size": 10,
+            "realized_pnl": 0.9399999999999997
+          },
+          {
+            "window_id": "KXZEC15M-26SEP272045",
+            "ts": "2026-09-28T00:32:01.588200+00:00",
+            "side": "favorite_no",
+            "price": 0.909,
+            "size": 10,
             "realized_pnl": null
           }
         ]
@@ -114560,11 +114656,11 @@
     "bnb": {
       "series_ticker": "KXBNB15M",
       "starting_bankroll": 100.0,
-      "bankroll": 34.63999999999905,
+      "bankroll": 35.769999999999044,
       "strategy_stats": {
         "favorite_yes": {
-          "wins": 495,
-          "n": 560
+          "wins": 496,
+          "n": 561
         },
         "favorite_no": {
           "wins": 458,
@@ -123162,6 +123258,14 @@
           "side": "favorite_yes",
           "price": 0.88,
           "size": 10,
+          "realized_pnl": 1.13
+        },
+        {
+          "window_id": "KXBNB15M-26SEP272045",
+          "ts": "2026-09-28T00:32:38.666150+00:00",
+          "side": "favorite_no",
+          "price": 0.89,
+          "size": 10,
           "realized_pnl": null
         }
       ],
@@ -123170,11 +123274,11 @@
     "near": {
       "series_ticker": "KXNEAR15M",
       "starting_bankroll": 100.0,
-      "bankroll": 68.83999999999985,
+      "bankroll": 69.86999999999985,
       "strategy_stats": {
         "favorite_yes": {
-          "wins": 511,
-          "n": 572
+          "wins": 512,
+          "n": 573
         },
         "favorite_no": {
           "wins": 453,
@@ -131756,17 +131860,25 @@
           "side": "favorite_yes",
           "price": 0.89,
           "size": 10,
+          "realized_pnl": 1.0299999999999998
+        },
+        {
+          "window_id": "KXNEAR15M-26SEP272045",
+          "ts": "2026-09-28T00:32:02.436293+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
           "realized_pnl": null
         }
       ],
       "simulated": true,
       "canary_variant": {
         "starting_bankroll": 100.0,
-        "bankroll": 124.26999999999964,
+        "bankroll": 125.29999999999964,
         "strategy_stats": {
           "favorite_yes": {
-            "wins": 463,
-            "n": 514
+            "wins": 464,
+            "n": 515
           },
           "favorite_no": {
             "wins": 403,
@@ -139428,17 +139540,25 @@
             "side": "favorite_yes",
             "price": 0.89,
             "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP272045",
+            "ts": "2026-09-28T00:32:02.436293+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
             "realized_pnl": null
           }
         ]
       },
       "basket_yes_variant": {
         "starting_bankroll": 100.0,
-        "bankroll": 38.03000000000001,
+        "bankroll": 39.06000000000001,
         "strategy_stats": {
           "favorite_yes": {
-            "wins": 276,
-            "n": 315
+            "wins": 277,
+            "n": 316
           },
           "favorite_no": {
             "wins": 453,
@@ -145964,6 +146084,14 @@
             "side": "favorite_yes",
             "price": 0.89,
             "size": 10,
+            "realized_pnl": 1.0299999999999998
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP272045",
+            "ts": "2026-09-28T00:32:02.436293+00:00",
+            "side": "favorite_no",
+            "price": 0.87,
+            "size": 10,
             "realized_pnl": null
           }
         ]
@@ -145972,15 +146100,15 @@
     "natgas": {
       "series_ticker": "KXNATGAS15M",
       "starting_bankroll": 100.0,
-      "bankroll": 175.0099999999997,
+      "bankroll": 175.8499999999997,
       "strategy_stats": {
         "favorite_yes": {
           "wins": 356,
           "n": 387
         },
         "favorite_no": {
-          "wins": 307,
-          "n": 343
+          "wins": 308,
+          "n": 344
         }
       },
       "trades": [
@@ -151830,7 +151958,7 @@
           "side": "favorite_no",
           "price": 0.91,
           "size": 10,
-          "realized_pnl": null
+          "realized_pnl": 0.8399999999999996
         }
       ],
       "simulated": true
@@ -151838,15 +151966,15 @@
     "platinum": {
       "series_ticker": "KXPLATINUM15M",
       "starting_bankroll": 100.0,
-      "bankroll": 162.42,
+      "bankroll": 163.26,
       "strategy_stats": {
         "favorite_yes": {
           "wins": 85,
           "n": 88
         },
         "favorite_no": {
-          "wins": 88,
-          "n": 96
+          "wins": 89,
+          "n": 97
         }
       },
       "trades": [
@@ -153328,7 +153456,7 @@
           "side": "favorite_no",
           "price": 0.91,
           "size": 10,
-          "realized_pnl": null
+          "realized_pnl": 0.8399999999999996
         }
       ],
       "simulated": true
@@ -153336,15 +153464,15 @@
     "palladium": {
       "series_ticker": "KXPALLADIUM15M",
       "starting_bankroll": 100.0,
-      "bankroll": 70.80999999999999,
+      "bankroll": 71.64999999999999,
       "strategy_stats": {
         "favorite_yes": {
           "wins": 84,
           "n": 93
         },
         "favorite_no": {
-          "wins": 81,
-          "n": 92
+          "wins": 82,
+          "n": 93
         }
       },
       "trades": [
@@ -154834,7 +154962,7 @@
           "side": "favorite_no",
           "price": 0.91,
           "size": 10,
-          "realized_pnl": null
+          "realized_pnl": 0.8399999999999996
         }
       ],
       "simulated": true
