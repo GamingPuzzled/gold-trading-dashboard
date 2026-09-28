@@ -297,9 +297,9 @@
       </div>
       <div class="card">
         <p class="card-title">Control panel: every checkpoint, crypto vs commodities</p>
-        <p class="card-note">Logs every 60–85¢ favorite at 120s through 10s before close, not just the first one per window, so rows from the same window overlap. Commodities settle on a single closing price with no averaging, so they are the control. If the averaging idea is right, crypto edge should grow toward the close and commodities should show none.</p>
+        <p class="card-note">Logs every 60–85¢ favorite at checkpoints from 14 minutes to 10 seconds before close, not just the first one per window, so rows from the same window overlap. Checkpoints from 3 to 14 minutes were added 2026-09-28, after a model study found crypto quotes slightly under-confident across the whole window, not just the last minute. Commodities settle on a single closing price with no averaging, so they are the control. If the averaging idea is right, crypto edge should grow toward the close and commodities should show none.</p>
         <div class="table-scroll"><table>
-          <thead><tr><th>Seconds left</th><th class="num">Obs</th><th class="num">Win rate</th><th class="num">Avg price</th><th class="num">Edge</th><th class="num">PnL</th></tr></thead>
+          <thead><tr><th>Time left</th><th class="num">Obs</th><th class="num">Win rate</th><th class="num">Avg price</th><th class="num">Edge</th><th class="num">PnL</th></tr></thead>
           <tbody id="lastmin-panel"></tbody>
         </table></div>
       </div>
@@ -888,7 +888,7 @@ function renderExperiments(exp) {
     const tot = rows.reduce((a, c) => ({ n: a.n + c.n, wins: a.wins + c.wins, price: a.price + c.price_sum, pnl: a.pnl + c.pnl }),
                             { n: 0, wins: 0, price: 0, pnl: 0 });
     return `<tr><th class="group-row" colspan="6">${title}</th></tr>` +
-      rows.map(c => edgeRow(`${c.secs_left}s`, c.n, c.wins / c.n, c.price_sum / c.n, c.pnl)).join("") +
+      rows.map(c => edgeRow(c.secs_left >= 180 ? `${c.secs_left / 60} min` : `${c.secs_left}s`, c.n, c.wins / c.n, c.price_sum / c.n, c.pnl)).join("") +
       edgeRow("<strong>All</strong>", tot.n, tot.wins / tot.n, tot.price / tot.n, tot.pnl);
   }).join("");
 }
