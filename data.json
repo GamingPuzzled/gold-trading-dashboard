@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-28T11:10:16.931784+00:00",
+  "generated_at": "2026-09-28T11:15:18.069502+00:00",
   "assets": {
     "gold": {
       "series_ticker": "KXGOLD15M",
@@ -57645,6 +57645,14 @@
           "price": 0.89,
           "size": 10,
           "realized_pnl": 1.0299999999999998
+        },
+        {
+          "window_id": "KXXRP15M-26SEP280715",
+          "ts": "2026-09-28T11:11:19.427318+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -63623,6 +63631,14 @@
           "price": 0.933,
           "size": 10,
           "realized_pnl": 0.6299999999999994
+        },
+        {
+          "window_id": "KXSILVER15M-26SEP280715",
+          "ts": "2026-09-28T11:12:04.823030+00:00",
+          "side": "favorite_no",
+          "price": 0.88,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -163466,6 +163482,30 @@
           "fee": 0.12,
           "won": true,
           "realized_pnl": 2.0799999999999996
+        },
+        {
+          "window_id": "KXDOGE15M-26SEP280715-15",
+          "series_ticker": "KXDOGE15M",
+          "ts": "2026-09-28T11:14:10+00:00",
+          "secs_left": 50,
+          "side": "favorite_yes",
+          "price": 0.909,
+          "size": 10,
+          "fee": 0.06,
+          "won": null,
+          "realized_pnl": null
+        },
+        {
+          "window_id": "KXSOL15M-26SEP280715-15",
+          "series_ticker": "KXSOL15M",
+          "ts": "2026-09-28T11:14:10+00:00",
+          "secs_left": 50,
+          "side": "favorite_yes",
+          "price": 0.902,
+          "size": 10,
+          "fee": 0.06,
+          "won": null,
+          "realized_pnl": null
         }
       ],
       "series": [
