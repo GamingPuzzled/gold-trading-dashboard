@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-28T13:40:24.445402+00:00",
+  "generated_at": "2026-09-28T13:45:35.703793+00:00",
   "assets": {
     "gold": {
       "series_ticker": "KXGOLD15M",
@@ -2453,7 +2453,7 @@
     "copper": {
       "series_ticker": "KXCOPPER15M",
       "starting_bankroll": 200.0,
-      "bankroll": 349.5785999999998,
+      "bankroll": 340.7085999999998,
       "strategy_stats": {
         "favorite_yes": {
           "wins": 536,
@@ -2461,7 +2461,7 @@
         },
         "favorite_no": {
           "wins": 460,
-          "n": 505
+          "n": 506
         }
       },
       "trades": [
@@ -10247,7 +10247,7 @@
           "side": "favorite_no",
           "price": 0.8800000000000001,
           "size": 10,
-          "realized_pnl": null
+          "realized_pnl": -8.870000000000001
         }
       ]
     },
@@ -138101,6 +138101,14 @@
           "price": 0.87,
           "size": 10,
           "realized_pnl": -8.78
+        },
+        {
+          "window_id": "KXNEAR15M-26SEP280945",
+          "ts": "2026-09-28T13:43:38.216400+00:00",
+          "side": "favorite_yes",
+          "price": 0.95,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true,
@@ -146117,6 +146125,14 @@
             "price": 0.87,
             "size": 10,
             "realized_pnl": -8.78
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP280945",
+            "ts": "2026-09-28T13:43:38.216400+00:00",
+            "side": "favorite_yes",
+            "price": 0.95,
+            "size": 10,
+            "realized_pnl": null
           }
         ]
       },
@@ -152925,6 +152941,14 @@
             "price": 0.87,
             "size": 10,
             "realized_pnl": -8.78
+          },
+          {
+            "window_id": "KXNEAR15M-26SEP280945",
+            "ts": "2026-09-28T13:43:38.216400+00:00",
+            "side": "favorite_yes",
+            "price": 0.95,
+            "size": 10,
+            "realized_pnl": null
           }
         ]
       }
