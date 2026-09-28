@@ -266,6 +266,11 @@
       </p>
       <div class="tiles">
         <div class="tile">
+          <div class="tile-label">Paper bankroll</div>
+          <div class="tile-value" id="lastmin-bankroll">—</div>
+          <div class="tile-sub" id="lastmin-bankroll-sub">—</div>
+        </div>
+        <div class="tile">
           <div class="tile-label">Net PnL (after fees)</div>
           <div class="tile-value" id="lastmin-pnl">—</div>
           <div class="tile-sub" id="lastmin-pnl-sub">—</div>
@@ -283,8 +288,8 @@
         </div>
       </div>
       <div class="card">
-        <p class="card-title">Cumulative PnL</p>
-        <p class="card-note">10 contracts per trade, net of Kalshi fees. Each point is one settled trade.</p>
+        <p class="card-title">Bankroll over time</p>
+        <p class="card-note">Starting from $<span id="lastmin-starting-bankroll">—</span> paper capital, the same as the other simulated markets. 10 contracts per trade, net of Kalshi fees. Each point is one settled trade.</p>
         <div id="lastmin-chart-container"></div>
       </div>
       <div class="card">
@@ -846,6 +851,13 @@ function renderExperiments(exp) {
   if (!lm) { document.getElementById("section-experiments").hidden = true; return; }
   const settled = lm.trades.filter(t => t.realized_pnl !== null);
   const s = edgeStats(settled);
+  const start = lm.starting_bankroll ?? 100;
+  const pnlSoFar = s ? s.pnl : 0;
+  document.getElementById("lastmin-starting-bankroll").textContent = start.toFixed(2);
+  document.getElementById("lastmin-bankroll").textContent = fmtUSD(start + pnlSoFar);
+  const bankrollSub = document.getElementById("lastmin-bankroll-sub");
+  bankrollSub.textContent = `${pnlSoFar >= 0 ? "+" : ""}${fmtUSD(pnlSoFar)} since start (${fmtUSD(start)})`;
+  bankrollSub.className = "tile-sub " + (pnlSoFar >= 0 ? "pos" : "neg");
 
   const pnlEl = document.getElementById("lastmin-pnl");
   const pnlSub = document.getElementById("lastmin-pnl-sub");
@@ -866,7 +878,7 @@ function renderExperiments(exp) {
   document.getElementById("lastmin-progress").style.width =
     Math.min(100, settled.length / LASTMIN_TARGET_N * 100).toFixed(1) + "%";
 
-  renderChart("lastmin", lm.trades, 0, "var(--series-4)");
+  renderChart("lastmin", lm.trades, start, "var(--series-4)");
   renderTrades("lastmin", lm.trades);
 
   const bySeries = {};
