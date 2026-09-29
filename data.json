@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T21:59:03.453657+00:00",
+  "generated_at": "2026-09-29T22:04:36.925162+00:00",
   "assets": {},
   "experiments": {
     "lastmin": {
@@ -3428,6 +3428,14 @@
             "settled": 8,
             "windows": 8,
             "fills": 719
+          },
+          {
+            "close": "2026-09-29T22:00:00+00:00",
+            "spread": 19.95790490241329,
+            "settled_pnl": 25.11098215013456,
+            "settled": 8,
+            "windows": 8,
+            "fills": 658
           }
         ],
         "leg_ms": 8.0
@@ -3641,6 +3649,14 @@
             "settled": 8,
             "windows": 8,
             "fills": 575
+          },
+          {
+            "close": "2026-09-29T22:00:00+00:00",
+            "spread": 16.619507983680165,
+            "settled_pnl": 17.107006326811558,
+            "settled": 8,
+            "windows": 8,
+            "fills": 580
           }
         ],
         "leg_ms": 14.0
@@ -3649,14 +3665,14 @@
     "live_account": {
       "starting_capital": 100.0,
       "since": "2026-09-29T00:00:00+00:00",
-      "cash": 84.3823,
-      "positions_value": 0.33,
-      "equity": 84.7123,
-      "pnl": -15.2877,
-      "fills": 3179,
+      "cash": 71.3946,
+      "positions_value": 13.53,
+      "equity": 84.9246,
+      "pnl": -15.0754,
+      "fills": 3352,
       "maker_share": 1.0,
-      "markets": 70,
-      "open_positions": 8,
+      "markets": 78,
+      "open_positions": 7,
       "periods": [
         {
           "close": "2026-09-29T18:15:00+00:00",
@@ -3712,6 +3728,13 @@
           "pnl": -2.5192,
           "fills": 426,
           "contracts": 419.68,
+          "markets": 8
+        },
+        {
+          "close": "2026-09-29T22:00:00+00:00",
+          "pnl": 2.8965,
+          "fills": 768,
+          "contracts": 756.94,
           "markets": 8
         }
       ]
