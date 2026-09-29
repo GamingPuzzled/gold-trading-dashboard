@@ -196,6 +196,8 @@
   td.muted, th.group-row { color: var(--text-muted); }
   th.group-row { text-transform: none; font-size: 12px; background: var(--surface-2); }
 
+  .maker-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+
   footer { color: var(--text-muted); font-size: 12px; text-align: center; margin-top: 32px; line-height: 1.6; }
   footer a { color: var(--text-secondary); }
 </style>
@@ -278,6 +280,40 @@
         <p class="card-title">Combined bankroll over time</p>
         <p class="card-note" id="commod-breakdown">—</p>
         <div id="commod-chart-container"></div>
+      </div>
+    </section>
+
+    <section class="asset-section" id="section-maker">
+      <div class="asset-heading">
+        <span class="asset-dot" style="background:var(--series-3)"></span>
+        <h2>Fast maker (paper, live)</h2>
+        <span class="exp-badge" title="Hypothetical quotes against the live Kalshi order book. Never places orders.">experiment</span>
+      </div>
+      <p class="exp-lede">
+        Quotes both sides at the best price on 8 crypto markets (all but BTC), 10 contracts a side, and pulls the side in
+        the path when the coin jumps on Coinbase. <strong>Paper only:</strong> fills are decided from real Kalshi trades
+        with the same queue model as the simulation. Two identical copies run at different speeds:
+        <strong>AWS Ohio</strong> (~15 ms, next to Kalshi) and <strong>New York</strong> (~30 ms, our droplet).
+        The simulation's out-of-sample result was about <strong>+$9.50 per 15-minute period at 15 ms</strong> and
+        <strong>+$6.75 at 30 ms</strong>. "Spread earned" values leftover contracts at the mid when quoting stops.
+      </p>
+      <div class="maker-grid">
+        <div>
+          <p class="card-title">AWS Ohio (~15 ms)</p>
+          <div class="tiles">
+            <div class="tile"><div class="tile-label">Spread earned</div><div class="tile-value" id="mk-ohio-total">—</div><div class="tile-sub" id="mk-ohio-sub">—</div></div>
+            <div class="tile"><div class="tile-label">Per period (t)</div><div class="tile-value" id="mk-ohio-avg">—</div><div class="tile-sub" id="mk-ohio-t">—</div></div>
+          </div>
+          <div class="card"><p class="card-note">Running total of spread earned, one point per 15-minute period.</p><div id="mkohio-chart-container"></div></div>
+        </div>
+        <div>
+          <p class="card-title">New York droplet (~30 ms)</p>
+          <div class="tiles">
+            <div class="tile"><div class="tile-label">Spread earned</div><div class="tile-value" id="mk-nyc-total">—</div><div class="tile-sub" id="mk-nyc-sub">—</div></div>
+            <div class="tile"><div class="tile-label">Per period (t)</div><div class="tile-value" id="mk-nyc-avg">—</div><div class="tile-sub" id="mk-nyc-t">—</div></div>
+          </div>
+          <div class="card"><p class="card-note">Running total of spread earned, one point per 15-minute period.</p><div id="mknyc-chart-container"></div></div>
+        </div>
       </div>
     </section>
 
@@ -967,6 +1003,27 @@ function renderGroup(prefix, keys, since, assets, color) {
   renderChart(prefix, all, startingBankroll, color);
 }
 
+function renderPaperMaker(pm) {
+  for (const [name, prefix] of [["ohio", "mkohio"], ["nyc", "mknyc"]]) {
+    const copy = pm && pm[name];
+    const periods = copy ? copy.periods : [];
+    const tot = periods.reduce((a, p) => a + p.spread, 0);
+    const n = periods.length;
+    const mean = n ? tot / n : 0;
+    const sd = n > 1 ? Math.sqrt(periods.reduce((a, p) => a + (p.spread - mean) ** 2, 0) / (n - 1)) : 0;
+    const t = sd > 0 ? mean / sd * Math.sqrt(n) : 0;
+    const settled = periods.reduce((a, p) => a + p.settled_pnl, 0);
+    const fills = periods.reduce((a, p) => a + (p.fills || 0), 0);
+    const el = id => document.getElementById(`mk-${name}-${id}`);
+    el("total").textContent = n ? fmtUSD(tot) : "—";
+    el("sub").textContent = n ? `${n} periods · ${fills} fills · settled PnL ${fmtUSD(settled)}` : "starting up";
+    el("sub").className = "tile-sub " + (tot >= 0 ? "pos" : "neg");
+    el("avg").textContent = n ? fmtUSD(mean) : "—";
+    el("t").textContent = n > 1 ? `t = ${t.toFixed(2)}${Math.abs(t) < 2 ? " (not yet significant)" : ""}` : "needs 2+ periods";
+    renderChart(prefix, periods.map(p => ({ ts: p.close, realized_pnl: p.spread })), 0, "var(--series-3)");
+  }
+}
+
 function loadAndRender() {
   fetch("./data.json?_=" + Date.now())
     .then(r => r.json())
@@ -987,6 +1044,7 @@ function loadAndRender() {
       renderTotal(data.assets);
       renderGroup("commod", COMMOD_KEYS, COMMOD_SINCE, data.assets, "var(--series-2)");
       renderExperiments(data.experiments);
+      renderPaperMaker((data.experiments || {}).paper_maker);
     })
     .catch(err => {
       document.getElementById("last-updated").textContent = "failed to load data";
