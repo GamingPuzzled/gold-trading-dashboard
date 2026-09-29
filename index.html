@@ -283,6 +283,36 @@
       </div>
     </section>
 
+    <section class="asset-section" id="section-live">
+      <div class="asset-heading">
+        <span class="asset-dot" style="background:var(--series-4)"></span>
+        <h2>Fast maker (real money)</h2>
+        <span class="exp-badge" title="Real orders on Kalshi, 1 contract per quote. Read straight from the Kalshi account.">live</span>
+      </div>
+      <p class="exp-lede">
+        The same fast maker as below, placing <strong>real post-only orders, 1 contract a side</strong>, from AWS Ohio.
+        Run in short supervised sessions, not continuously. Figures come straight from the Kalshi account (balance,
+        fills and settlements), so they include settlement results, not just spread.
+      </p>
+      <div class="tiles">
+        <div class="tile"><div class="tile-label">Account value</div><div class="tile-value" id="live-equity">—</div><div class="tile-sub" id="live-equity-sub">—</div></div>
+        <div class="tile"><div class="tile-label">Profit / loss</div><div class="tile-value" id="live-pnl">—</div><div class="tile-sub" id="live-pnl-sub">—</div></div>
+        <div class="tile"><div class="tile-label">Fills</div><div class="tile-value" id="live-fills">—</div><div class="tile-sub" id="live-fills-sub">—</div></div>
+        <div class="tile"><div class="tile-label">Open positions</div><div class="tile-value" id="live-open">—</div><div class="tile-sub" id="live-open-sub">—</div></div>
+      </div>
+      <div class="card">
+        <p class="card-note">Account value after each settled 15-minute period.</p>
+        <div id="live-chart-container"></div>
+      </div>
+      <div class="card">
+        <p class="card-title">Recent periods</p>
+        <div class="table-scroll"><table>
+          <thead><tr><th>Period ending (UTC)</th><th class="num">Markets</th><th class="num">Fills</th><th class="num">Contracts</th><th class="num">PnL</th></tr></thead>
+          <tbody id="live-periods"></tbody>
+        </table></div>
+      </div>
+    </section>
+
     <section class="asset-section" id="section-maker">
       <div class="asset-heading">
         <span class="asset-dot" style="background:var(--series-3)"></span>
@@ -683,7 +713,7 @@ function renderChart(key, trades, startingBankroll, color) {
     const v = minV + (i / gridCount) * (maxV - minV);
     const yy = y(v);
     gridLines += `<line class="grid-line" x1="${padL}" y1="${yy}" x2="${W - padR}" y2="${yy}"/>`;
-    gridLabels += `<text class="axis-label" x="${padL - 8}" y="${yy + 3}" text-anchor="end">${v < 0 ? "-$" : "$"}${Math.abs(v).toFixed(0)}</text>`;
+    gridLabels += `<text class="axis-label" x="${padL - 8}" y="${yy + 3}" text-anchor="end">${v < 0 ? "-$" : "$"}${Math.abs(v).toFixed(maxV - minV < 10 ? 2 : 0)}</text>`;
   }
 
   const path = points.map((p, i) => `${i === 0 ? "M" : "L"} ${x(i).toFixed(1)} ${y(p.value).toFixed(1)}`).join(" ");
@@ -1006,6 +1036,35 @@ function renderGroup(prefix, keys, since, assets, color) {
   renderChart(prefix, all, startingBankroll, color);
 }
 
+function renderLiveAccount(acct) {
+  const section = document.getElementById("section-live");
+  if (!acct) { section.hidden = true; return; }
+  section.hidden = false;
+  const sign = (v) => (v >= 0 ? "+" : "") + fmtUSD(v);
+  const cls = (v) => "tile-sub " + (v >= 0 ? "pos" : "neg");
+  document.getElementById("live-equity").textContent = fmtUSD(acct.equity);
+  document.getElementById("live-equity-sub").textContent =
+    `${fmtUSD(acct.cash)} cash + ${fmtUSD(acct.positions_value)} in positions`;
+  const pnl = document.getElementById("live-pnl");
+  pnl.textContent = sign(acct.pnl);
+  const pnlSub = document.getElementById("live-pnl-sub");
+  pnlSub.textContent = `from ${fmtUSD(acct.starting_capital)} since ${acct.since.slice(0, 10)} (${sign(acct.pnl / acct.starting_capital * 100).replace("$", "")}%)`;
+  pnlSub.className = cls(acct.pnl);
+  document.getElementById("live-fills").textContent = acct.fills;
+  document.getElementById("live-fills-sub").textContent = acct.fills
+    ? `${acct.markets} markets · ${fmtPct(acct.maker_share)} as maker` : "no fills yet";
+  document.getElementById("live-open").textContent = acct.open_positions;
+  document.getElementById("live-open-sub").textContent = acct.open_positions ? "markets awaiting settlement" : "all settled";
+  const periods = acct.periods || [];
+  renderChart("live", periods.map(p => ({ ts: p.close, realized_pnl: p.pnl })), acct.starting_capital, "var(--series-4)");
+  const body = document.getElementById("live-periods");
+  body.innerHTML = periods.length ? periods.slice(-12).reverse().map(p => `<tr>
+      <td>${fmtTime(p.close)}</td><td class="num">${p.markets}</td><td class="num">${p.fills}</td>
+      <td class="num">${p.contracts.toFixed(0)}</td>
+      <td class="num ${p.pnl >= 0 ? "pos" : "neg"}">${sign(p.pnl)}</td></tr>`).join("")
+    : '<tr><td colspan="5">No settled periods yet.</td></tr>';
+}
+
 function renderPaperMaker(pm) {
   for (const [name, prefix] of [["ohio", "mkohio"], ["nyc", "mknyc"]]) {
     const copy = pm && pm[name];
@@ -1048,6 +1107,7 @@ function loadAndRender() {
       renderGroup("commod", COMMOD_KEYS, COMMOD_SINCE, data.assets, "var(--series-2)");
       renderExperiments(data.experiments);
       renderPaperMaker((data.experiments || {}).paper_maker);
+      renderLiveAccount((data.experiments || {}).live_account);
     })
     .catch(err => {
       document.getElementById("last-updated").textContent = "failed to load data";
