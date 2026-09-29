@@ -207,7 +207,7 @@
     <header>
       <div>
         <h1>Trading Bots</h1>
-        <div class="subtitle">Live paper-trading portfolios — Kalshi 15-minute markets</div>
+        <div class="subtitle">Fast maker, real money and paper — Kalshi 15-minute markets</div>
       </div>
       <div class="meta">
         <div id="last-updated">loading…</div>
@@ -1102,9 +1102,14 @@ function loadAndRender() {
         root.innerHTML = sortedKeys.map(key => assetSectionHTML(key, !!data.assets[key].simulated)).join("");
         sectionsBuilt = true;
       }
-      keys.forEach(key => renderAsset(key, data.assets[key]));
-      renderTotal(data.assets);
-      renderGroup("commod", COMMOD_KEYS, COMMOD_SINCE, data.assets, "var(--series-2)");
+      // The 85c favorite strategy was stopped on 2026-09-29; its sections hide once the export omits it.
+      const favorite = keys.length > 0;
+      for (const id of ["section-total", "section-commod", "assets-root"]) document.getElementById(id).hidden = !favorite;
+      if (favorite) {
+        keys.forEach(key => renderAsset(key, data.assets[key]));
+        renderTotal(data.assets);
+        renderGroup("commod", COMMOD_KEYS, COMMOD_SINCE, data.assets, "var(--series-2)");
+      }
       renderExperiments(data.experiments);
       renderPaperMaker((data.experiments || {}).paper_maker);
       renderLiveAccount((data.experiments || {}).live_account);
