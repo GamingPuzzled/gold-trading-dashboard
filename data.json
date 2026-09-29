@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T15:24:56.378631+00:00",
+  "generated_at": "2026-09-29T15:30:20.926678+00:00",
   "assets": {
     "gold": {
       "series_ticker": "KXGOLD15M",
@@ -76977,6 +76977,14 @@
           "price": 0.89,
           "size": 10,
           "realized_pnl": 1.0299999999999998
+        },
+        {
+          "window_id": "KXWTI15M-26SEP291130",
+          "ts": "2026-09-29T15:29:55.586416+00:00",
+          "side": "favorite_no",
+          "price": 0.996,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -179459,6 +179467,14 @@
           "price": 0.91,
           "size": 10,
           "realized_pnl": 0.8399999999999996
+        },
+        {
+          "window_id": "KXPALLADIUM15M-26SEP291130",
+          "ts": "2026-09-29T15:29:00.950217+00:00",
+          "side": "favorite_no",
+          "price": 0.87,
+          "size": 10,
+          "realized_pnl": null
         }
       ],
       "simulated": true
@@ -182691,12 +182707,30 @@
     },
     "paper_maker": {
       "ohio": {
-        "periods": [],
-        "leg_ms": null
+        "periods": [
+          {
+            "close": "2026-09-29T15:30:00+00:00",
+            "spread": -19.831273824107,
+            "settled_pnl": 0,
+            "settled": 0,
+            "windows": 8,
+            "fills": 434
+          }
+        ],
+        "leg_ms": 8.0
       },
       "nyc": {
-        "periods": [],
-        "leg_ms": null
+        "periods": [
+          {
+            "close": "2026-09-29T15:30:00+00:00",
+            "spread": -26.0791922565661,
+            "settled_pnl": 0,
+            "settled": 0,
+            "windows": 8,
+            "fills": 396
+          }
+        ],
+        "leg_ms": 14.0
       }
     }
   }
