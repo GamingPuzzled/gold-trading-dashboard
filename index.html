@@ -251,6 +251,36 @@
       </div>
     </section>
 
+    <section class="asset-section" id="section-commod">
+      <div class="asset-heading">
+        <span class="asset-dot" style="background:var(--series-2)"></span>
+        <h2>Copper, Platinum &amp; Natural Gas combined</h2>
+      </div>
+      <p class="card-note" style="margin-top:-8px">The 0.85 favorite strategy on these three markets added together. Starts 2026-09-23 19:45 UTC, when Platinum began trading, with each market entering at the bankroll it had at that moment. Copper runs as a live paper bot; Platinum and Natural Gas are paper-simulated from the book watcher.</p>
+      <div class="tiles">
+        <div class="tile">
+          <div class="tile-label">Combined bankroll</div>
+          <div class="tile-value" id="commod-tile-bankroll">—</div>
+          <div class="tile-sub" id="commod-tile-bankroll-sub">—</div>
+        </div>
+        <div class="tile">
+          <div class="tile-label">Total realized PnL</div>
+          <div class="tile-value" id="commod-tile-pnl">—</div>
+          <div class="tile-sub" id="commod-tile-pnl-sub">—</div>
+        </div>
+        <div class="tile">
+          <div class="tile-label">Trades settled</div>
+          <div class="tile-value" id="commod-tile-trades">—</div>
+          <div class="tile-sub" id="commod-tile-trades-sub">—</div>
+        </div>
+      </div>
+      <div class="card">
+        <p class="card-title">Combined bankroll over time</p>
+        <p class="card-note" id="commod-breakdown">—</p>
+        <div id="commod-chart-container"></div>
+      </div>
+    </section>
+
     <section class="asset-section" id="section-experiments">
       <div class="asset-heading">
         <span class="asset-dot" style="background:var(--series-4)"></span>
@@ -905,6 +935,38 @@ function renderExperiments(exp) {
   }).join("");
 }
 
+// A fixed-membership combined view (no gate switches): same baseline rule as the
+// Portfolio -- each market enters at the bankroll it had when the view starts.
+const COMMOD_SINCE = "2026-09-23T19:45:00Z";
+const COMMOD_KEYS = ["copper", "platinum", "natgas"];
+function renderGroup(prefix, keys, since, assets, color) {
+  const members = keys.filter(k => assets[k]);
+  const cutoff = new Date(since);
+  let startingBankroll = 0; const parts = []; let all = [];
+  for (const k of members) {
+    const a = assets[k];
+    const prior = a.trades.filter(t => t.realized_pnl !== null && new Date(t.ts) < cutoff).reduce((s, t) => s + t.realized_pnl, 0);
+    const after = a.trades.filter(t => new Date(t.ts) >= cutoff);
+    const pnl = after.reduce((s, t) => s + (t.realized_pnl ?? 0), 0);
+    startingBankroll += a.starting_bankroll + prior;
+    all = all.concat(after);
+    parts.push(`${(ASSET_META[k] || { label: k }).label} ${pnl >= 0 ? "+" : ""}${fmtUSD(pnl)}`);
+  }
+  const totalPnl = all.reduce((s, t) => s + (t.realized_pnl ?? 0), 0);
+  document.getElementById(`${prefix}-tile-bankroll`).textContent = fmtUSD(startingBankroll + totalPnl);
+  const bSub = document.getElementById(`${prefix}-tile-bankroll-sub`);
+  bSub.textContent = `${totalPnl >= 0 ? "+" : ""}${fmtUSD(totalPnl)} since ${since.slice(0, 10)} (from ${fmtUSD(startingBankroll)})`;
+  bSub.className = "tile-sub " + (totalPnl >= 0 ? "pos" : "neg");
+  document.getElementById(`${prefix}-tile-pnl`).textContent = fmtUSD(totalPnl);
+  const pSub = document.getElementById(`${prefix}-tile-pnl-sub`);
+  pSub.textContent = `across ${members.length} markets`; pSub.className = "tile-sub " + (totalPnl >= 0 ? "pos" : "neg");
+  const settled = all.filter(t => t.realized_pnl !== null); const wins = settled.filter(t => t.realized_pnl > 0).length;
+  document.getElementById(`${prefix}-tile-trades`).textContent = settled.length;
+  document.getElementById(`${prefix}-tile-trades-sub`).textContent = settled.length ? `${wins} won / ${settled.length - wins} lost` : "none settled yet";
+  document.getElementById(`${prefix}-breakdown`).textContent = `Since ${since.slice(0, 10)}: ${parts.join(" · ")}. Each point is a settled trade.`;
+  renderChart(prefix, all, startingBankroll, color);
+}
+
 function loadAndRender() {
   fetch("./data.json?_=" + Date.now())
     .then(r => r.json())
@@ -923,6 +985,7 @@ function loadAndRender() {
       }
       keys.forEach(key => renderAsset(key, data.assets[key]));
       renderTotal(data.assets);
+      renderGroup("commod", COMMOD_KEYS, COMMOD_SINCE, data.assets, "var(--series-2)");
       renderExperiments(data.experiments);
     })
     .catch(err => {
