@@ -331,18 +331,18 @@
         <div>
           <p class="card-title">AWS Ohio (~15 ms)</p>
           <div class="tiles">
-            <div class="tile"><div class="tile-label">Spread earned</div><div class="tile-value" id="mk-ohio-total">—</div><div class="tile-sub" id="mk-ohio-sub">—</div></div>
+            <div class="tile"><div class="tile-label">Spread earned (live-adjusted)</div><div class="tile-value" id="mk-ohio-total">—</div><div class="tile-sub" id="mk-ohio-sub">—</div></div>
             <div class="tile"><div class="tile-label">Per period (t)</div><div class="tile-value" id="mk-ohio-avg">—</div><div class="tile-sub" id="mk-ohio-t">—</div></div>
           </div>
-          <div class="card"><p class="card-note">Running total of spread earned, one point per 15-minute period.</p><div id="mkohio-chart-container"></div></div>
+          <div class="card"><p class="card-note">Running total of spread earned net of the measured live penalty (0.42c per contract), one point per 15-minute period.</p><div id="mkohio-chart-container"></div></div>
         </div>
         <div>
           <p class="card-title">New York droplet (~30 ms)</p>
           <div class="tiles">
-            <div class="tile"><div class="tile-label">Spread earned</div><div class="tile-value" id="mk-nyc-total">—</div><div class="tile-sub" id="mk-nyc-sub">—</div></div>
+            <div class="tile"><div class="tile-label">Spread earned (live-adjusted)</div><div class="tile-value" id="mk-nyc-total">—</div><div class="tile-sub" id="mk-nyc-sub">—</div></div>
             <div class="tile"><div class="tile-label">Per period (t)</div><div class="tile-value" id="mk-nyc-avg">—</div><div class="tile-sub" id="mk-nyc-t">—</div></div>
           </div>
-          <div class="card"><p class="card-note">Running total of spread earned, one point per 15-minute period.</p><div id="mknyc-chart-container"></div></div>
+          <div class="card"><p class="card-note">Running total of spread earned net of the measured live penalty (0.42c per contract), one point per 15-minute period.</p><div id="mknyc-chart-container"></div></div>
         </div>
       </div>
     </section>
@@ -1066,23 +1066,26 @@ function renderLiveAccount(acct) {
 }
 
 function renderPaperMaker(pm) {
+  // Paper fills are more favourable than real ones: measured on 5,065 live vs ~30,000 paper fills (2026-09-29/30),
+  // real fills are ~0.42c/contract worse. The headline is paper net of that live penalty; raw paper is shown below.
   for (const [name, prefix] of [["ohio", "mkohio"], ["nyc", "mknyc"]]) {
     const copy = pm && pm[name];
     const periods = copy ? copy.periods : [];
-    const tot = periods.reduce((a, p) => a + p.spread, 0);
+    const val = p => (p.spread_live_adj !== undefined ? p.spread_live_adj : p.spread);
+    const tot = periods.reduce((a, p) => a + val(p), 0);
+    const raw = periods.reduce((a, p) => a + p.spread, 0);
     const n = periods.length;
     const mean = n ? tot / n : 0;
-    const sd = n > 1 ? Math.sqrt(periods.reduce((a, p) => a + (p.spread - mean) ** 2, 0) / (n - 1)) : 0;
+    const sd = n > 1 ? Math.sqrt(periods.reduce((a, p) => a + (val(p) - mean) ** 2, 0) / (n - 1)) : 0;
     const t = sd > 0 ? mean / sd * Math.sqrt(n) : 0;
-    const settled = periods.reduce((a, p) => a + p.settled_pnl, 0);
     const fills = periods.reduce((a, p) => a + (p.fills || 0), 0);
     const el = id => document.getElementById(`mk-${name}-${id}`);
     el("total").textContent = n ? fmtUSD(tot) : "—";
-    el("sub").textContent = n ? `${n} periods · ${fills} fills · settled PnL ${fmtUSD(settled)}` : "starting up";
+    el("sub").textContent = n ? `live-adjusted · paper before adjustment ${fmtUSD(raw)} · ${n} periods · ${fills} fills` : "starting up";
     el("sub").className = "tile-sub " + (tot >= 0 ? "pos" : "neg");
     el("avg").textContent = n ? fmtUSD(mean) : "—";
     el("t").textContent = n > 1 ? `t = ${t.toFixed(2)}${Math.abs(t) < 2 ? " (not yet significant)" : ""}` : "needs 2+ periods";
-    renderChart(prefix, periods.map(p => ({ ts: p.close, realized_pnl: p.spread })), 0, "var(--series-3)");
+    renderChart(prefix, periods.map(p => ({ ts: p.close, realized_pnl: val(p) })), 0, "var(--series-3)");
   }
 }
 
