@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T17:57:45.002134+00:00",
+  "generated_at": "2026-10-05T18:02:59.837082+00:00",
   "assets": {},
   "experiments": {
     "lastmin": {
@@ -9058,6 +9058,16 @@
             "fills": 655,
             "contracts": 4076.57929229408,
             "spread_live_adj": 13.810249707072984
+          },
+          {
+            "close": "2026-10-05T18:00:00+00:00",
+            "spread": 64.76213207484042,
+            "settled_pnl": 43.54117474879428,
+            "settled": 8,
+            "windows": 8,
+            "fills": 783,
+            "contracts": 4411.093881270631,
+            "spread_live_adj": 46.23553777350378
           }
         ],
         "leg_ms": 8.0
@@ -14913,6 +14923,16 @@
             "fills": 549,
             "contracts": 3331.1386833091674,
             "spread_live_adj": 51.24183055696646
+          },
+          {
+            "close": "2026-10-05T18:00:00+00:00",
+            "spread": 67.67910476928708,
+            "settled_pnl": 36.98870422003074,
+            "settled": 8,
+            "windows": 8,
+            "fills": 676,
+            "contracts": 3841.675921591309,
+            "spread_live_adj": 51.544065898603584
           }
         ],
         "leg_ms": 14.0
@@ -14921,14 +14941,14 @@
     "live_account": {
       "starting_capital": 100.0,
       "since": "2026-09-29T00:00:00+00:00",
-      "cash": 3.7085,
-      "positions_value": 72.76,
-      "equity": 76.4685,
-      "pnl": -23.5315,
+      "cash": 32.7085,
+      "positions_value": 44.2,
+      "equity": 76.9085,
+      "pnl": -23.0915,
       "fills": 5189,
       "maker_share": 0.9928695317016766,
       "markets": 158,
-      "open_positions": 6,
+      "open_positions": 5,
       "periods": [
         {
           "close": "2026-09-29T18:15:00+00:00",
@@ -15117,6 +15137,13 @@
           "pnl": 2.7478,
           "fills": 2,
           "contracts": 19.0,
+          "markets": 2
+        },
+        {
+          "close": "2026-10-05T18:00:00+00:00",
+          "pnl": 0.7508,
+          "fills": 10,
+          "contracts": 49.0,
           "markets": 2
         }
       ]
