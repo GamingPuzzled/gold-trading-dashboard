@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T16:59:53.490264+00:00",
+  "generated_at": "2026-10-05T17:05:30.425420+00:00",
   "assets": {},
   "experiments": {
     "lastmin": {
@@ -9018,6 +9018,16 @@
             "fills": 696,
             "contracts": 3604.1766001319775,
             "spread_live_adj": -22.272565408739425
+          },
+          {
+            "close": "2026-10-05T17:00:00+00:00",
+            "spread": 17.571963069009072,
+            "settled_pnl": 18.563210971427274,
+            "settled": 8,
+            "windows": 8,
+            "fills": 422,
+            "contracts": 2244.9072115032945,
+            "spread_live_adj": 8.143352780695237
           }
         ],
         "leg_ms": 8.0
@@ -14833,6 +14843,16 @@
             "fills": 680,
             "contracts": 3553.0610987180453,
             "spread_live_adj": 9.517311858693269
+          },
+          {
+            "close": "2026-10-05T17:00:00+00:00",
+            "spread": 13.055368604034328,
+            "settled_pnl": 14.655372267511343,
+            "settled": 8,
+            "windows": 8,
+            "fills": 421,
+            "contracts": 2309.5690285586907,
+            "spread_live_adj": 3.3551786840878286
           }
         ],
         "leg_ms": 14.0
@@ -14841,14 +14861,14 @@
     "live_account": {
       "starting_capital": 100.0,
       "since": "2026-09-29T00:00:00+00:00",
-      "cash": 20.7887,
-      "positions_value": 45.78,
-      "equity": 66.5687,
-      "pnl": -33.4313,
+      "cash": 23.0187,
+      "positions_value": 44.2,
+      "equity": 67.2187,
+      "pnl": -32.7813,
       "fills": 5154,
       "maker_share": 0.9992239037640668,
       "markets": 151,
-      "open_positions": 6,
+      "open_positions": 5,
       "periods": [
         {
           "close": "2026-09-29T18:15:00+00:00",
@@ -15010,6 +15030,13 @@
           "fills": 16,
           "contracts": 15.47,
           "markets": 7
+        },
+        {
+          "close": "2026-10-05T17:00:00+00:00",
+          "pnl": 0.23,
+          "fills": 1,
+          "contracts": 2.23,
+          "markets": 1
         }
       ]
     }
