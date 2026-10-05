@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T19:57:39.169926+00:00",
+  "generated_at": "2026-10-05T20:02:39.962015+00:00",
   "assets": {},
   "experiments": {
     "lastmin": {
@@ -9138,6 +9138,16 @@
             "fills": 668,
             "contracts": 3783.820537119302,
             "spread_live_adj": -25.38635848519169
+          },
+          {
+            "close": "2026-10-05T20:00:00+00:00",
+            "spread": 3.6750502931446634,
+            "settled_pnl": 19.14465408806091,
+            "settled": 8,
+            "windows": 8,
+            "fills": 586,
+            "contracts": 3309.296186784965,
+            "spread_live_adj": -10.223993691352188
           }
         ],
         "leg_ms": 8.0
@@ -15073,6 +15083,16 @@
             "fills": 585,
             "contracts": 3365.500665563519,
             "spread_live_adj": -34.35284842317104
+          },
+          {
+            "close": "2026-10-05T20:00:00+00:00",
+            "spread": 34.67312587240105,
+            "settled_pnl": 44.98703550912282,
+            "settled": 8,
+            "windows": 8,
+            "fills": 589,
+            "contracts": 3181.168494215734,
+            "spread_live_adj": 21.31221819669497
           }
         ],
         "leg_ms": 14.0
@@ -15081,14 +15101,14 @@
     "live_account": {
       "starting_capital": 100.0,
       "since": "2026-09-29T00:00:00+00:00",
-      "cash": 6.8867,
-      "positions_value": 53.5,
-      "equity": 60.3867,
-      "pnl": -39.6133,
-      "fills": 5203,
-      "maker_share": 0.990390159523352,
+      "cash": 16.9797,
+      "positions_value": 48.2,
+      "equity": 65.1797,
+      "pnl": -34.8203,
+      "fills": 5204,
+      "maker_share": 0.9901998462720983,
       "markets": 161,
-      "open_positions": 6,
+      "open_positions": 5,
       "periods": [
         {
           "close": "2026-09-29T18:15:00+00:00",
@@ -15292,6 +15312,13 @@
           "fills": 7,
           "contracts": 80.0,
           "markets": 1
+        },
+        {
+          "close": "2026-10-05T20:00:00+00:00",
+          "pnl": -11.6742,
+          "fills": 8,
+          "contracts": 78.0,
+          "markets": 2
         }
       ]
     }
