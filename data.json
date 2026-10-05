@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T20:44:30.404868+00:00",
+  "generated_at": "2026-10-05T20:49:33.749908+00:00",
   "assets": {},
   "experiments": {
     "lastmin": {
@@ -9168,6 +9168,16 @@
             "fills": 716,
             "contracts": 4313.844747398078,
             "spread_live_adj": 23.709303855969793
+          },
+          {
+            "close": "2026-10-05T20:45:00+00:00",
+            "spread": 17.957030073314936,
+            "settled_pnl": 42.08229560243544,
+            "settled": 8,
+            "windows": 8,
+            "fills": 554,
+            "contracts": 2925.0625299177887,
+            "spread_live_adj": 5.6717674476602244
           }
         ],
         "leg_ms": 8.0
@@ -15133,6 +15143,16 @@
             "fills": 636,
             "contracts": 3795.624428490947,
             "spread_live_adj": 14.74225107936842
+          },
+          {
+            "close": "2026-10-05T20:45:00+00:00",
+            "spread": 30.99630018727028,
+            "settled_pnl": 48.550874045268834,
+            "settled": 8,
+            "windows": 8,
+            "fills": 536,
+            "contracts": 2981.4346813318325,
+            "spread_live_adj": 18.474274525676584
           }
         ],
         "leg_ms": 14.0
@@ -15141,14 +15161,14 @@
     "live_account": {
       "starting_capital": 100.0,
       "since": "2026-09-29T00:00:00+00:00",
-      "cash": 15.9758,
-      "positions_value": 52.77,
-      "equity": 68.7458,
-      "pnl": -31.2542,
+      "cash": 20.9758,
+      "positions_value": 48.2,
+      "equity": 69.1758,
+      "pnl": -30.8242,
       "fills": 5205,
       "maker_share": 0.9900096061479347,
       "markets": 162,
-      "open_positions": 6,
+      "open_positions": 5,
       "periods": [
         {
           "close": "2026-09-29T18:15:00+00:00",
@@ -15359,6 +15379,13 @@
           "fills": 8,
           "contracts": 78.0,
           "markets": 2
+        },
+        {
+          "close": "2026-10-05T20:45:00+00:00",
+          "pnl": 3.9961,
+          "fills": 1,
+          "contracts": 5.0,
+          "markets": 1
         }
       ]
     }
