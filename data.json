@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21T21:20:23.180105+00:00",
+  "generated_at": "2026-10-21T21:35:29.328201+00:00",
   "assets": {},
   "experiments": {
     "lastmin": {
@@ -15161,14 +15161,14 @@
     "live_account": {
       "starting_capital": 100.0,
       "since": "2026-09-29T00:00:00+00:00",
-      "cash": 19.5267,
-      "positions_value": 9.9,
-      "equity": 29.4267,
-      "pnl": -70.5733,
+      "cash": 29.5267,
+      "positions_value": 0.0,
+      "equity": 29.5267,
+      "pnl": -70.4733,
       "fills": 5400,
       "maker_share": 0.9616666666666667,
       "markets": 237,
-      "open_positions": 1,
+      "open_positions": 0,
       "periods": [
         {
           "close": "2026-09-29T18:15:00+00:00",
@@ -15741,6 +15741,13 @@
           "close": "2026-10-20T21:00:00+00:00",
           "pnl": 0.5,
           "fills": 1,
+          "contracts": 10.0,
+          "markets": 1
+        },
+        {
+          "close": "2026-10-21T21:30:00+00:00",
+          "pnl": 0.7,
+          "fills": 3,
           "contracts": 10.0,
           "markets": 1
         }
